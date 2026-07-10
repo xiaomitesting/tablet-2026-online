@@ -41,7 +41,7 @@ const PRODUCTS = [
     cons: ["价格较高", "重量偏重"],
     rating: 4.8,
     targetUser: "商务人士、设计师、学生党（预算充足）",
-    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-8-pro/buy/",
+    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-8-pro/",
     lastUpdated: "2026-07-10"
   },
   {
@@ -81,7 +81,7 @@ const PRODUCTS = [
     cons: ["无手写笔支持", "续航一般"],
     rating: 4.7,
     targetUser: "手游玩家、通勤族、小屏爱好者",
-    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-mini/buy/",
+    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-mini/",
     lastUpdated: "2026-07-10"
   },
   {
@@ -121,7 +121,7 @@ const PRODUCTS = [
     cons: ["充电速度一般", "无OLED"],
     rating: 4.6,
     targetUser: "学生、家庭用户、日常办公",
-    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-8/buy/",
+    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-8/",
     lastUpdated: "2026-07-10"
   },
   {
@@ -160,7 +160,7 @@ const PRODUCTS = [
     cons: ["90Hz刷新率偏低", "无手写笔"],
     rating: 4.4,
     targetUser: "经常出差、户外工作者、无Wi-Fi环境用户",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro-5g/buy/",
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro-5g/",
     lastUpdated: "2026-07-10"
   },
   {
@@ -200,7 +200,7 @@ const PRODUCTS = [
     cons: ["6GB运存偏小", "无手写笔"],
     rating: 4.3,
     targetUser: "学生、长辈、家庭共享",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro/buy/",
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro/",
     lastUpdated: "2026-07-10"
   },
   {
@@ -240,7 +240,7 @@ const PRODUCTS = [
     cons: ["性能较弱", "存储较小"],
     rating: 4.1,
     targetUser: "儿童、老人、电子书爱好者",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-97/buy/",
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-97/",
     lastUpdated: "2026-07-10"
   },
   {
@@ -279,7 +279,7 @@ const PRODUCTS = [
     cons: ["性能入门", "屏幕较小"],
     rating: 4.0,
     targetUser: "通勤族、预算极低用户、备用机",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-se-87/buy/",
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-se-87/",
     lastUpdated: "2026-07-10"
   }
 ];
