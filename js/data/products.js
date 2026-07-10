@@ -9,10 +9,10 @@ const PRODUCTS = [
     name: "Xiaomi Pad 8 Pro",
     series: "Xiaomi",
     generation: 8,
-    price: 3999,
+    price: 4199,
     variants: [
-      { ram: 8, storage: 256, price: 3999 },
-      { ram: 12, storage: 512, price: 4199, label: "柔光螢幕版" }
+      { ram: 8, storage: 256, price: 4199 },
+      { ram: 12, storage: 512, price: 4699, label: "柔光螢幕版" }
     ],
     currency: "HKD",
     size: 12.4,
@@ -49,10 +49,10 @@ const PRODUCTS = [
     name: "Xiaomi Pad Mini",
     series: "Xiaomi",
     generation: 1,
-    price: 3499,
+    price: 3799,
     variants: [
-      { ram: 8, storage: 256, price: 3499 },
-      { ram: 12, storage: 512, price: 3799 }
+      { ram: 8, storage: 256, price: 3799 },
+      { ram: 12, storage: 512, price: 4299 }
     ],
     currency: "HKD",
     size: 8.8,
@@ -89,10 +89,11 @@ const PRODUCTS = [
     name: "Xiaomi Pad 8",
     series: "Xiaomi",
     generation: 8,
-    price: 3599,
+    price: 2999,
     variants: [
-      { ram: 8, storage: 256, price: 3599 },
-      { ram: 12, storage: 256, price: 3799 }
+      { ram: 8, storage: 128, price: 2999 },
+      { ram: 8, storage: 256, price: 3299 },
+      { ram: 12, storage: 256, price: 3599 }
     ],
     currency: "HKD",
     size: 11.2,
@@ -129,9 +130,9 @@ const PRODUCTS = [
     name: "REDMI Pad 2 Pro 5G",
     series: "Redmi",
     generation: 2,
-    price: 2699,
+    price: 2339,
     variants: [
-      { ram: 8, storage: 256, price: 2699 }
+      { ram: 8, storage: 256, price: 2339 }
     ],
     currency: "HKD",
     size: 12.1,
