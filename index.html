@@ -366,8 +366,7 @@ function showRecommendation() {
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
             ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
             <div class="flex flex-col sm:flex-row gap-3">
-                <a href="${top.product.buyLink}" target="_blank" class="flex-grow text-center px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-opacity-95 transition-all shadow-md">前往官網選購 →</a>
-                <button onclick="toggleFav('${top.product.id}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                <button onclick="toggleFav('${top.product.id}')" class="flex-grow px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
                 <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
             </div>
         </div>
@@ -387,7 +386,6 @@ function showRecommendation() {
                             <span class="text-xs text-gray-500">${r.product.size.split('(')[0]}</span>
                             <div class="flex gap-2">
                                 <button onclick="toggleFav('${r.product.id}')" class="text-sm">${favorites.includes(r.product.id)?'❤️':'🤍'}</button>
-                                <a href="${r.product.buyLink}" target="_blank" class="text-xs font-semibold text-miOrange hover:underline">詳情 ></a>
                             </div>
                         </div>
                     </div>
@@ -443,7 +441,6 @@ function renderCatalog(filter='all') {
                 </label>
                 <div class="flex items-center gap-2">
                     <button onclick="toggleFav('${p.id}')" class="fav-btn text-lg">${favorites.includes(p.id)?'❤️':'🤍'}</button>
-                    <a href="${p.buyLink}" target="_blank" class="text-[11px] font-bold text-miOrange hover:underline">立即購買 ></a>
                 </div>
             </div>
         </div>
@@ -541,8 +538,7 @@ function renderCalculator() {
                         <h4 class="font-bold text-sm">${p.name}</h4>
                         <p class="text-[11px] text-gray-500 mt-1">${p.size.split('(')[0]} · ⭐${p.rating}</p>
                         <div class="flex gap-2 mt-3">
-                            <a href="${p.buyLink}" target="_blank" class="flex-1 text-center text-xs font-semibold bg-miOrange text-white py-1.5 rounded-lg">購買</a>
-                            <button onclick="toggleFav('${p.id}')" class="px-3 py-1.5 border rounded-lg text-sm">${favorites.includes(p.id)?'❤️':'🤍'}</button>
+                            <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-1.5 rounded-lg">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
                         </div>
                     </div>
                 `).join('')}
@@ -591,8 +587,7 @@ function renderFavorites() {
                     <p class="text-xs text-gray-400 mt-1">${p.tag}</p>
                     <p class="text-xs text-gray-600 mt-2 line-clamp-2">${p.desc}</p>
                     <div class="flex gap-2 mt-3">
-                        <a href="${p.buyLink}" target="_blank" class="flex-1 text-center text-xs font-semibold bg-miOrange text-white py-2 rounded-lg">購買</a>
-                        <button onclick="toggleFav('${p.id}')" class="px-3 py-2 border rounded-lg text-sm">💔 移除</button>
+                        <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-2 rounded-lg">💔 移除收藏</button>
                     </div>
                 </div>
             `).join('')}
