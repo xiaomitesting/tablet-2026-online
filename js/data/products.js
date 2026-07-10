@@ -1,7 +1,7 @@
 /**
  * Xiaomi 平板产品数据库
- * 数据来源：小米香港官网 mi.com/hk
- * 最后更新：2026-07
+ * 数据来源：小米香港官网 mi.com/hk（2026-07 爬取确认）
+ * 每款产品的 buyLink 均指向 mi.com/hk 对应产品购买页
  */
 const PRODUCTS = [
   {
@@ -10,7 +10,10 @@ const PRODUCTS = [
     series: "Xiaomi",
     generation: 8,
     price: 3999,
-    originalPrice: 3999,
+    variants: [
+      { ram: 8, storage: 256, price: 3999 },
+      { ram: 12, storage: 512, price: 4199, label: "柔光螢幕版" }
+    ],
     currency: "HKD",
     size: 12.4,
     sizeLabel: "12.4吋",
@@ -18,7 +21,7 @@ const PRODUCTS = [
     panel: "OLED",
     chip: "Snapdragon 8s Gen 4",
     chipBrand: "Qualcomm",
-    battery: 10000,
+    battery: 9200,
     charging: 120,
     ram: 8,
     storage: 256,
@@ -38,8 +41,8 @@ const PRODUCTS = [
     cons: ["价格较高", "重量偏重"],
     rating: 4.8,
     targetUser: "商务人士、设计师、学生党（预算充足）",
-    buyLink: "https://www.mi.com/hk/product/pad-8-pro",
-    image: "assets/pad8pro.png"
+    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-8-pro/buy/",
+    lastUpdated: "2026-07-10"
   },
   {
     id: "pad_mini",
@@ -47,7 +50,10 @@ const PRODUCTS = [
     series: "Xiaomi",
     generation: 1,
     price: 3499,
-    originalPrice: 3499,
+    variants: [
+      { ram: 8, storage: 256, price: 3499 },
+      { ram: 12, storage: 512, price: 3799 }
+    ],
     currency: "HKD",
     size: 8.8,
     sizeLabel: "8.8吋",
@@ -75,16 +81,19 @@ const PRODUCTS = [
     cons: ["无手写笔支持", "续航一般"],
     rating: 4.7,
     targetUser: "手游玩家、通勤族、小屏爱好者",
-    buyLink: "https://www.mi.com/hk/product/pad-mini",
-    image: "assets/padmini.png"
+    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-mini/buy/",
+    lastUpdated: "2026-07-10"
   },
   {
     id: "pad_8",
     name: "Xiaomi Pad 8",
     series: "Xiaomi",
     generation: 8,
-    price: 2999,
-    originalPrice: 2999,
+    price: 3599,
+    variants: [
+      { ram: 8, storage: 256, price: 3599 },
+      { ram: 12, storage: 256, price: 3799 }
+    ],
     currency: "HKD",
     size: 11.2,
     sizeLabel: "11.2吋",
@@ -112,8 +121,8 @@ const PRODUCTS = [
     cons: ["充电速度一般", "无OLED"],
     rating: 4.6,
     targetUser: "学生、家庭用户、日常办公",
-    buyLink: "https://www.mi.com/hk/product/pad-8",
-    image: "assets/pad8.png"
+    buyLink: "https://www.mi.com/hk/product/xiaomi-pad-8/buy/",
+    lastUpdated: "2026-07-10"
   },
   {
     id: "redmi_pad_2_pro_5g",
@@ -121,7 +130,9 @@ const PRODUCTS = [
     series: "Redmi",
     generation: 2,
     price: 2699,
-    originalPrice: 2699,
+    variants: [
+      { ram: 8, storage: 256, price: 2699 }
+    ],
     currency: "HKD",
     size: 12.1,
     sizeLabel: "12.1吋",
@@ -149,16 +160,19 @@ const PRODUCTS = [
     cons: ["90Hz刷新率偏低", "无手写笔"],
     rating: 4.4,
     targetUser: "经常出差、户外工作者、无Wi-Fi环境用户",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro-5g",
-    image: "assets/redmipad2pro5g.png"
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro-5g/buy/",
+    lastUpdated: "2026-07-10"
   },
   {
     id: "redmi_pad_2_pro",
     name: "REDMI Pad 2 Pro",
     series: "Redmi",
     generation: 2,
-    price: 1899,
-    originalPrice: 1899,
+    price: 2199,
+    variants: [
+      { ram: 6, storage: 128, price: 1899 },
+      { ram: 8, storage: 256, price: 2199 }
+    ],
     currency: "HKD",
     size: 12.1,
     sizeLabel: "12.1吋",
@@ -178,7 +192,7 @@ const PRODUCTS = [
     thickness: 7.5,
     os: "HyperOS 2.0",
     connectivity: ["Wi-Fi 5", "Bluetooth 5.1"],
-    colors: ["Gray", "Green"],
+    colors: ["Gray", "Green", "Lavender"],
     scenarios: ["media", "reading", "education"],
     tags: ["学习", "娱乐", "性价比"],
     highlight: "学生网课、长辈看剧最佳伴侣",
@@ -186,16 +200,19 @@ const PRODUCTS = [
     cons: ["6GB运存偏小", "无手写笔"],
     rating: 4.3,
     targetUser: "学生、长辈、家庭共享",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro",
-    image: "assets/redmipad2pro.png"
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro/buy/",
+    lastUpdated: "2026-07-10"
   },
   {
     id: "redmi_pad_2_97",
     name: "REDMI Pad 2 9.7",
     series: "Redmi",
     generation: 2,
-    price: 1099,
-    originalPrice: 1099,
+    price: 1299,
+    variants: [
+      { ram: 4, storage: 64, price: 1099 },
+      { ram: 4, storage: 128, price: 1299, label: "4G版" }
+    ],
     currency: "HKD",
     size: 9.7,
     sizeLabel: "9.7吋",
@@ -223,16 +240,18 @@ const PRODUCTS = [
     cons: ["性能较弱", "存储较小"],
     rating: 4.1,
     targetUser: "儿童、老人、电子书爱好者",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-97",
-    image: "assets/redmipad297.png"
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-97/buy/",
+    lastUpdated: "2026-07-10"
   },
   {
     id: "redmi_pad_se_87",
     name: "REDMI Pad SE 8.7",
     series: "Redmi",
     generation: 1,
-    price: 999,
-    originalPrice: 999,
+    price: 799,
+    variants: [
+      { ram: 4, storage: 64, price: 799 }
+    ],
     currency: "HKD",
     size: 8.7,
     sizeLabel: "8.7吋",
@@ -260,93 +279,8 @@ const PRODUCTS = [
     cons: ["性能入门", "屏幕较小"],
     rating: 4.0,
     targetUser: "通勤族、预算极低用户、备用机",
-    buyLink: "https://www.mi.com/hk/product/redmi-pad-se-87",
-    image: "assets/redmipadse87.png"
-  }
-];
-
-// 竞品数据库
-const COMPETITORS = [
-  {
-    id: "ipad_10",
-    name: "Apple iPad (10th Gen)",
-    brand: "Apple",
-    price: 2999,
-    size: 10.9,
-    panel: "Liquid Retina LCD",
-    chip: "A14 Bionic",
-    battery: "~28.6Wh",
-    ram: 4,
-    storage: 64,
-    weight: 477,
-    stylus: true,
-    os: "iPadOS 18",
-    scenarios: ["education", "creative"],
-    highlight: "iPadOS生态，学生首选",
-    pros: ["iPadOS生态丰富", "App Store优质应用", "Apple Pencil支持"],
-    cons: ["存储起步64GB", "非全贴合屏", "充电慢"],
-    vsNote: "同价位iPad生态优势明显，但小米硬件配置更高"
-  },
-  {
-    id: "ipad_air_m3",
-    name: "Apple iPad Air (M3)",
-    brand: "Apple",
-    price: 4799,
-    size: 11,
-    panel: "Liquid Retina LCD",
-    chip: "Apple M3",
-    battery: "~28.93Wh",
-    ram: 8,
-    storage: 128,
-    weight: 460,
-    stylus: true,
-    os: "iPadOS 18",
-    scenarios: ["productivity", "creative"],
-    highlight: "M3芯片，轻薄生产力",
-    pros: ["M3性能强劲", "轻薄设计", "Apple Pencil Pro"],
-    cons: ["价格高", "仍为LCD屏", "配件另购"],
-    vsNote: "性能对标Pad 8 Pro，但价格贵800 HKD，小米性价比更高"
-  },
-  {
-    id: "samsung_tab_s10_fe",
-    name: "Samsung Galaxy Tab S10 FE",
-    brand: "Samsung",
-    price: 2999,
-    size: 10.9,
-    panel: "LCD 90Hz",
-    chip: "Exynos 1580",
-    battery: "8000mAh",
-    ram: 6,
-    storage: 128,
-    weight: 523,
-    stylus: true,
-    os: "Android 14 + One UI 6.1",
-    scenarios: ["productivity", "media"],
-    highlight: "S Pen附赠，DeX模式",
-    pros: ["S Pen随机附送", "Samsung DeX桌面模式", "IP68防水"],
-    cons: ["Exynos芯片性能一般", "重量偏重", "充电慢"],
-    vsNote: "同价位，S Pen附赠是优势，但小米性能更强"
-  },
-  {
-    id: "huawei_matepad_11_5s",
-    name: "HUAWEI MatePad 11.5\"S",
-    brand: "Huawei",
-    price: 2999,
-    size: 11.5,
-    paperMatte: true,
-    panel: "PaperMatte LCD 144Hz",
-    chip: "Snapdragon 7 Gen 1",
-    battery: "7700mAh",
-    ram: 8,
-    storage: 256,
-    weight: 510,
-    stylus: true,
-    os: "HarmonyOS 4.2",
-    scenarios: ["reading", "productivity"],
-    highlight: "纸感屏幕，护眼王者",
-    pros: ["PaperMatte护眼屏", "144Hz高刷", "星闪手写笔"],
-    cons: ["无GMS", "芯片性能中端", "生态封闭"],
-    vsNote: "护眼场景小米Pad 8更均衡，华为在阅读体验上有独特优势"
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-se-87/buy/",
+    lastUpdated: "2026-07-10"
   }
 ];
 
