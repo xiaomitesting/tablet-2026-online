@@ -1,0 +1,49 @@
+{
+  "competitors": [
+    {
+      "id": "apple_ipad_11_a16",
+      "brand": "Apple",
+      "name": "iPad 11\" (A16)",
+      "market": "HK",
+      "price": 2799,
+      "currency": "HKD",
+      "source": "apple.com/hk",
+      "notes": "128GB Wi-Fi 起步價，教育優惠 HK$2,599",
+      "lastUpdated": "2026-07-11"
+    },
+    {
+      "id": "apple_ipad_air_m3",
+      "brand": "Apple",
+      "name": "iPad Air 11\" (M3)",
+      "market": "HK",
+      "price": 4599,
+      "currency": "HKD",
+      "source": "apple.com/hk",
+      "notes": "128GB Wi-Fi 起步價",
+      "lastUpdated": "2026-07-11"
+    },
+    {
+      "id": "samsung_tab_s10_fe",
+      "brand": "Samsung",
+      "name": "Galaxy Tab S10 FE",
+      "market": "HK",
+      "price": 5188,
+      "currency": "HKD",
+      "source": "samsung.com/hk",
+      "notes": "128GB/8GB Wi-Fi 版；256GB/12GB 版 HK$6,188",
+      "lastUpdated": "2026-07-11"
+    },
+    {
+      "id": "huawei_matepad_11_5s_2026",
+      "brand": "HUAWEI",
+      "name": "MatePad 11.5\"S 2026",
+      "market": "HK",
+      "price": 3588,
+      "currency": "HKD",
+      "source": "fortress.com.hk / consumer.huawei.com/hk",
+      "notes": "PaperMatte 柔光版 RRP；部分渠道特價 HK$3,188",
+      "lastUpdated": "2026-07-11"
+    }
+  ],
+  "lastChecked": "2026-07-11T06:00:00+08:00"
+}
