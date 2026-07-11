@@ -122,9 +122,17 @@ const QuizEngine = (() => {
 
   function showResult(container) {
     const results = scoreAndFilter();
+
+    // 數據收集：保存本次問答到 localStorage
+    QuizData.saveResponse(answers, results);
+
     const html = results.length > 0
       ? results.map((r, i) => renderResultCard(r, i === 0)).join('')
       : '<div class="text-center mt-6"><p>暂无完全匹配的机型，建议查看全部产品</p></div>';
+
+    // 本地統計
+    const stats = QuizData.getStats();
+    const statsHtml = renderStats(stats);
 
     container.innerHTML = `
       <div class="flex justify-between items-center mb-4">
@@ -134,6 +142,60 @@ const QuizEngine = (() => {
         </button>
       </div>
       <div class="fade-in">${html}</div>
+      ${statsHtml}
+    `;
+  }
+
+  function renderStats(stats) {
+    if (stats.total === 0) return '';
+
+    function bar(label, count, max) {
+      const pct = max > 0 ? Math.round((count / max) * 100) : 0;
+      return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;color:#6B7280;width:70px;text-align:right;flex-shrink:0;">${label}</span>
+        <div style="flex:1;height:16px;background:#F3F4F6;border-radius:8px;overflow:hidden;">
+          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#FF6700,#FF8533);border-radius:8px;transition:width 0.5s ease;"></div>
+        </div>
+        <span style="font-size:11px;color:#9CA3AF;width:24px;">${count}</span>
+      </div>`;
+    }
+
+    function section(title, obj) {
+      const entries = Object.entries(obj).sort((a, b) => b[1] - a[1]);
+      if (entries.length === 0) return '';
+      const max = entries[0][1];
+      return `<div style="margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:6px;">${title}</div>
+        ${entries.map(([k, v]) => bar(k, v, max)).join('')}
+      </div>`;
+    }
+
+    return `
+      <div style="margin-top:32px;padding:20px;background:white;border-radius:12px;border:1px solid #E5E7EB;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div style="font-size:14px;font-weight:700;color:#111827;">📊 數據洞察</div>
+          <div style="font-size:12px;color:#6B7280;">已收集 ${stats.total} 份問答 · ${stats.synced} 份已同步</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          ${section('🎯 場景偏好', stats.scenarios)}
+          ${section('💰 預算分佈', stats.budgets)}
+          ${section('📱 尺寸偏好', stats.sizes)}
+          ${section('⚡ 優先級', stats.priorities)}
+        </div>
+        ${Object.keys(stats.topProducts).length > 0 ? `
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid #F3F4F6;">
+            <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:6px;">🏆 熱門推薦</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              ${Object.entries(stats.topProducts).sort((a,b) => b[1]-a[1]).map(([k,v]) => 
+                `<span style="background:#FFF7ED;color:#FF6700;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:500;">${k} ×${v}</span>`
+              ).join('')}
+            </div>
+          </div>
+        ` : ''}
+        <div style="margin-top:16px;text-align:center;">
+          <button onclick="QuizData.exportJSON();" style="font-size:11px;color:#9CA3AF;background:none;border:none;cursor:pointer;text-decoration:underline;">📥 匯出數據 (JSON)</button>
+        </div>
+      </div>
     `;
   }
 
