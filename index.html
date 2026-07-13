@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xiaomi 平板電腦智能選購助手</title>
+    <title>Xiaomi 平板電腦智能選購助手（線下版）</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -307,7 +307,7 @@
     <!-- 頁尾 -->
     <footer class="bg-white border-t border-gray-200 mt-8 sm:mt-12 py-4 sm:py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-            <p>© 2026 小米香港官網產品線參考 · 數據僅供參考，以官網為準 · Made with 🦞</p>
+            <p>© 2026 小米平板電腦選購助手 · 數據僅供參考 · Made with 🦞</p>
         </div>
     </footer>
 
@@ -1017,7 +1017,7 @@ function renderGuide() {
                 ${has5G ? `<div class="flex gap-2"><span>✅</span><div><strong>5G需求</strong><br>${products.filter(p=>p.id.includes('5g')).map(p=>p.name).join('、')} 支持5G SIM</div></div>` : ''}
                 ${hasMatte ? `<div class="flex gap-2"><span>✅</span><div><strong>護眼柔光屏</strong><br>${products.filter(p=>p.panel&&p.panel.includes('柔光')).map(p=>p.name).join('、')} — 長時間使用更護眼</div></div>` : ''}
                 <div class="flex gap-2"><span>✅</span><div><strong>存儲選擇</strong><br>128GB 日常夠用，256GB 更從容</div></div>
-                <div class="flex gap-2"><span>✅</span><div><strong>售後保障</strong><br>香港官網享官方保修</div></div>
+                <div class="flex gap-2"><span>✅</span><div><strong>售後保障</strong><br>享官方保修</div></div>
             </div>
         </div>
     `;
