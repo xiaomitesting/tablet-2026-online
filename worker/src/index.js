@@ -92,14 +92,18 @@ function mapRecord(record) {
   const scenarios = Array.isArray(a.scenario) ? a.scenario : (a.scenario ? [a.scenario] : []);
   const priorities = Array.isArray(a.priority) ? a.priority : (a.priority ? [a.priority] : []);
 
+  // multi_select 字段需要數組格式
+  const scenarioValues = scenarios.map(s => scenarioLabels[s] || s).filter(Boolean);
+  const priorityValues = priorities.map(p => priorityLabels[p] || p).filter(Boolean);
+
   return {
     '時間戳': new Date(record.timestamp).getTime() || null,
-    '場景': scenarios.map(s => scenarioLabels[s] || s).join(', ') || '',
-    '預算': budgetLabels[a.budget] || a.budget || '',
-    '尺寸偏好': sizeLabels[a.size] || a.size || '',
-    '優先級': priorities.map(p => priorityLabels[p] || p).join(', ') || '',
-    '配件需求': accessoryLabels[a.accessory] || a.accessory || '',
-    'SIM卡需求': connectivityLabels[a.connectivity] || a.connectivity || '',
+    '場景': scenarioValues.length > 0 ? scenarioValues : null,
+    '預算': budgetLabels[a.budget] || a.budget || null,
+    '尺寸偏好': sizeLabels[a.size] || a.size || null,
+    '優先級': priorityValues.length > 0 ? priorityValues : null,
+    '配件需求': accessoryLabels[a.accessory] || a.accessory || null,
+    'SIM卡需求': connectivityLabels[a.connectivity] || a.connectivity || null,
     '推薦產品': record.topProduct || '',
     '匹配度': record.topScore || 0,
     '設備信息': record.deviceInfo || '',
