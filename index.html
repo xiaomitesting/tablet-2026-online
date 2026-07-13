@@ -312,15 +312,13 @@
 // 1. 產品數據庫
 // ============================================================
 let products = [];
-// DRC 動態運存擴展顯示：物理RAM × 2
+// RAM顯示：直接使用物理RAM值
 function dram(ram) {
-    const expanded = ram * 2;
-    return expanded === ram ? `${ram}GB` : `${expanded}(${ram}+${ram})`;
+    return `${ram}GB`;
 }
-// 簡潔版（用於小標籤）：顯示擴展RAM+物理RAM格式
+// 簡潔版（用於小標籤）
 function dramShort(ram) {
-    const expanded = ram * 2;
-    return expanded === ram ? `${ram}GB` : `${expanded}(${ram}+${ram})`;
+    return `${ram}`;
 }
 
 async function loadProducts() {
