@@ -505,7 +505,8 @@ const stepsData = {
     3: { title:"💰 第三步：您的預算範圍？", options:[
         {value:"low",label:"🪙 實惠入門 (HK$1,500以下)",desc:"滿足基本需求，最高性價比。"},
         {value:"mid",label:"⚖️ 均衡中階 (HK$1,500-$3,000)",desc:"性能與價格最佳平衡。"},
-        {value:"premium",label:"💎 高端旗艦 (HK$3,000以上)",desc:"追求極致螢幕與頂級體驗。"}
+        {value:"premium",label:"💎 高端旗艦 (HK$3,000以上)",desc:"追求極致螢幕與頂級體驗。"},
+        {value:"no_budget",label:"🤷 無預算範圍",desc:"不限制預算，看最適合的。"}
     ]},
     4: { title:"📏 第四步：您偏好的螢幕尺寸？", options:[
         {value:"compact",label:"🎒 輕巧便攜 (10吋以下)",desc:"單手好拿，適合隨身攜帶。"},
@@ -644,8 +645,16 @@ function calculateMatches() {
                 score += 10; reasons.push('場景+尺寸完美匹配');
             }
         }
+        // 網絡硬性篩選（最高優先級，直接決策）
+        if (answers.connectivity === 'need_5g') {
+            if (p.id === 'redmi_pad_2_pro_5g') { score += 100; reasons.push('5G唯一選擇'); }
+            else { return { product:p, score:-999, reasons:[], warnings:['不支持5G'] }; }
+        } else if (answers.connectivity === 'need_4g') {
+            if (p.id === 'redmi_pad_2' || p.id === 'redmi_pad_2_97') { score += 80; reasons.push('4G插卡推薦'); }
+            else { return { product:p, score:-999, reasons:[], warnings:['無SIM卡版本'] }; }
+        }
         // 預算 (最高50分，核心決策因素)
-        if (answers.budget) {
+        if (answers.budget && answers.budget !== 'no_budget') {
             if (p.budget === answers.budget) { score += 50; reasons.push('預算完美匹配'); }
             else if (answers.budget === 'premium' && p.budget === 'mid') { score += 30; reasons.push('略低於預算'); }
             else if (answers.budget === 'mid' && p.budget === 'low') { score += 20; reasons.push('低於預算'); }
@@ -672,20 +681,7 @@ function calculateMatches() {
                 }
             });
         }
-        // 網絡需求 (硬性篩選)
-        if (answers.connectivity && answers.connectivity !== 'no_preference') {
-            const has5G = p.id.includes('5g');
-            const has4G = p.id.includes('4g') || (p.variants && p.variants.some(v => v.label && (v.label.includes('4G') || v.label.includes('SIM'))));
-            if (answers.connectivity === 'need_5g') {
-                if (has5G) { score+=15; reasons.push('支持5G'); }
-                else { score-=40; warnings.push('不支持5G'); }
-            } else if (answers.connectivity === 'need_4g') {
-                if (has5G || has4G) { score+=15; reasons.push('支持SIM卡'); }
-                else { score-=30; warnings.push('無SIM卡版本'); }
-            } else {
-                score+=5;
-            }
-        }
+        // 網絡已在此函數開頭硬性篩選，此處跳過
         // 使用環境 (8分)
         if (answers.environment && answers.environment !== 'none') {
             switch(answers.environment) {
