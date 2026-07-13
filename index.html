@@ -676,7 +676,7 @@ function calculateMatches() {
                     case 'battery': if (parseInt(p.battery)>=10000) { score+=10; reasons.push('超大電池'); } else score+=3; break;
                     case 'display': if (p.refreshRate>=120) { score+=10; reasons.push('高刷螢幕'); } else score+=3; break;
                     case 'price': if (p.price<=1500) { score+=10; reasons.push('極致性價比'); } else score+=3; break;
-                    case 'portable': if (p.weight<=300) { score+=10; reasons.push('超輕機身'); } else score+=2; break;
+                    case 'portable': if (p.weight<=300) { score+=10; reasons.push('超輕機身'); } else if (p.weight<=400) { score+=3; } else { score-=10; warnings.push('机身偏重不利便攜'); } break;
                     case 'stylus': if (p.stylus) { score+=10; reasons.push('支持手寫筆'); } else { warnings.push('不支持手寫筆'); } break;
                 }
             });
@@ -688,7 +688,7 @@ function calculateMatches() {
                 case 'personal': score += 3; break;
                 case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += 8; reasons.push('適合家庭使用'); } else score += 3; break;
                 case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += 8; reasons.push('辦公生產力強'); } else score += 3; break;
-                case 'outdoor': if (p.id.includes('5g') || p.weight <= 350) { score += 8; reasons.push('戶外便攜'); } else score += 3; break;
+                case 'outdoor': if (p.weight <= 350) { score += 8; reasons.push('戶外便攜'); } else if (p.weight <= 450) { score += 3; } else { score -= 5; warnings.push('過重不適合戶外'); } break;
             }
         }
         score += p.rating * 2;
