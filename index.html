@@ -618,7 +618,15 @@ function resetQuiz() {
 function calculateMatches() {
     // 權重分配（總分100）：配件30 + 場景20 + 預算20 + 尺寸15 + 優先級10 + 環境5
     const WEIGHT = { accessory: 30, scenario: 20, budget: 20, size: 15, priority: 10, environment: 5 };
-    return products.map(p => {
+
+    // 為每款產品衍生 budget 和 screenType
+    const enriched = products.map(p => ({
+        ...p,
+        budget: p.price < 1500 ? 'low' : p.price <= 3000 ? 'mid' : 'premium',
+        screenType: p.size < 10 ? 'compact' : 'large'
+    }));
+
+    return enriched.map(p => {
         let score = 0, reasons = [], warnings = [], penalty = 0;
 
         // ── 配件 (30分) ──
@@ -638,7 +646,7 @@ function calculateMatches() {
 
         // ── 場景 (20分) ──
         if (answers.scenario && answers.scenario.length > 0) {
-            const matchedScenarios = p.scenario.filter(s => answers.scenario.includes(s));
+            const matchedScenarios = (p.scenarios || []).filter(s => answers.scenario.includes(s));
             if (matchedScenarios.length > 0) {
                 score += Math.min(WEIGHT.scenario, 10 + matchedScenarios.length * 5);
                 reasons.push('匹配使用場景');
@@ -646,7 +654,7 @@ function calculateMatches() {
         }
         // 交叉加分：場景+尺寸同時匹配
         if (answers.size && answers.scenario && answers.scenario.length > 0) {
-            if (p.screenType === answers.size && p.scenario.some(s => answers.scenario.includes(s))) {
+            if (p.screenType === answers.size && (p.scenarios || []).some(s => answers.scenario.includes(s))) {
                 score += 5; reasons.push('場景+尺寸完美匹配');
             }
         }
@@ -694,7 +702,7 @@ function calculateMatches() {
             switch(answers.environment) {
                 case 'personal': score += 2; break;
                 case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += WEIGHT.environment; reasons.push('適合家庭使用'); } else score += 2; break;
-                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += WEIGHT.environment; reasons.push('辦公生產力強'); } else score += 2; break;
+                case 'office': if (p.scenarios && p.scenarios.includes('productivity')) { score += WEIGHT.environment; reasons.push('辦公生產力強'); } else score += 2; break;
                 case 'outdoor': if (p.weight <= 350) { score += WEIGHT.environment; reasons.push('戶外便攜'); } else if (p.weight > 450) { penalty += 3; warnings.push('過重不適合戶外'); } break;
             }
         }
@@ -731,6 +739,34 @@ function showRecommendation() {
     const top = results[0], runnerUps = results.slice(1,4);
     const stats = typeof QuizData !== 'undefined' ? QuizData.getStats() : null;
     const statsHtml = stats ? renderQuizStats(stats) : '';
+
+    // 最低契合度門檻：低於15%不推薦
+    const MIN_SCORE = 15;
+    if (top.score < MIN_SCORE) {
+        rc.innerHTML = `
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden p-4 sm:p-10 relative fade-in">
+                <div class="absolute top-4 right-4 bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full">暫無合適推薦</div>
+                <div class="text-center py-8">
+                    <div class="text-5xl mb-4">🤔</div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">暫時找不到高度匹配的機型</h2>
+                    <p class="text-gray-500 mb-6 max-w-md mx-auto">您選擇的條件組合較為特殊，現有机型無法完美匹配。建議調整部分需求，或瀏覽全部機型自行挑選。</p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <button onclick="resetQuiz()" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">🔄 重新測驗</button>
+                        <button onclick="App.switchTab('catalog')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-miOrange transition-all">📱 瀏覽全部機型</button>
+                    </div>
+                    <div class="mt-8 text-left">
+                        <p class="text-sm font-semibold text-gray-700 mb-3">💡 您的選擇摘要：</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${answers.scenario?.length ? answers.scenario.map(s => `<span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">${SCENARIOS.find(x=>x.id===s)?.label||s}</span>`).join('') : ''}
+                            ${answers.budget && answers.budget!=='no_budget' ? `<span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs">${BUDGETS.find(x=>x.id===answers.budget)?.label||answers.budget}</span>` : ''}
+                            ${answers.size ? `<span class="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">${answers.size==='compact'?'輕巧便攜':'寬廣視野'}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        return;
+    }
 
     rc.innerHTML = `
         <div class="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg border-2 border-miOrange overflow-hidden p-4 sm:p-10 relative fade-in">
@@ -949,7 +985,7 @@ function renderGuide() {
     // 按场景分组
     const scenarioMap = {};
     products.forEach(p => {
-        (p.scenario || []).forEach(s => {
+        (p.scenarios || []).forEach(s => {
             if (!scenarioMap[s]) scenarioMap[s] = [];
             scenarioMap[s].push(p);
         });
