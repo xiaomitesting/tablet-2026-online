@@ -616,85 +616,95 @@ function resetQuiz() {
 // 6. 推薦演算法
 // ============================================================
 function calculateMatches() {
+    // 權重分配（總分100）：配件30 + 場景20 + 預算20 + 尺寸15 + 優先級10 + 環境5
+    const WEIGHT = { accessory: 30, scenario: 20, budget: 20, size: 15, priority: 10, environment: 5 };
     return products.map(p => {
-        let score = 0, reasons = [], warnings = [];
+        let score = 0, reasons = [], warnings = [], penalty = 0;
 
-        // 配件硬性篩選（最高優先級）
+        // ── 配件 (30分) ──
         if (answers.accessory && answers.accessory !== 'none') {
             const needStylus = answers.accessory === 'stylus' || answers.accessory === 'both';
             const needKeyboard = answers.accessory === 'keyboard' || answers.accessory === 'both';
             const hasStylus = p.stylus;
             const hasKeyboard = p.keyboard;
-            
-            if (needStylus && !hasStylus) { score -= 30; warnings.push('不支持手寫筆'); }
-            if (needKeyboard && !hasKeyboard) { score -= 30; warnings.push('不支持鍵盤'); }
-            if (needStylus && hasStylus) { score += 15; reasons.push('支持手寫筆'); }
-            if (needKeyboard && hasKeyboard) { score += 15; reasons.push('支持鍵盤'); }
-            if (needStylus && needKeyboard && hasStylus && hasKeyboard) { score += 10; reasons.push('手寫筆+鍵盤全支持'); }
+            let accScore = 0;
+            if (needStylus && hasStylus) { accScore += 15; reasons.push('支持手寫筆'); }
+            if (needKeyboard && hasKeyboard) { accScore += 15; reasons.push('支持鍵盤'); }
+            if (needStylus && needKeyboard && hasStylus && hasKeyboard) { reasons.push('手寫筆+鍵盤全支持'); }
+            if (needStylus && !hasStylus) { penalty += 25; warnings.push('不支持手寫筆'); }
+            if (needKeyboard && !hasKeyboard) { penalty += 25; warnings.push('不支持鍵盤'); }
+            score += Math.min(WEIGHT.accessory, accScore);
         }
 
-        // 用途 (25分) - 支持多選
+        // ── 場景 (20分) ──
         if (answers.scenario && answers.scenario.length > 0) {
             const matchedScenarios = p.scenario.filter(s => answers.scenario.includes(s));
             if (matchedScenarios.length > 0) {
-                score += Math.min(25, 15 + matchedScenarios.length * 5);
+                score += Math.min(WEIGHT.scenario, 10 + matchedScenarios.length * 5);
                 reasons.push('匹配使用場景');
-            } else { score += 5; warnings.push('場景不完全匹配'); }
+            } else { warnings.push('場景不完全匹配'); }
         }
-        // 交叉加分：場景+尺寸同時匹配額外加分
+        // 交叉加分：場景+尺寸同時匹配
         if (answers.size && answers.scenario && answers.scenario.length > 0) {
             if (p.screenType === answers.size && p.scenario.some(s => answers.scenario.includes(s))) {
-                score += 10; reasons.push('場景+尺寸完美匹配');
+                score += 5; reasons.push('場景+尺寸完美匹配');
             }
         }
-        // 網絡硬性篩選（最高優先級，直接決策）
+
+        // ── 網絡（硬性篩選，不計分） ──
         if (answers.connectivity === 'need_5g') {
-            if (p.id === 'redmi_pad_2_pro_5g') { score += 100; reasons.push('5G唯一選擇'); }
+            if (p.id === 'redmi_pad_2_pro_5g') { reasons.push('5G唯一選擇'); }
             else { return { product:p, score:-999, reasons:[], warnings:['不支持5G'] }; }
         } else if (answers.connectivity === 'need_4g') {
-            if (p.id === 'redmi_pad_2' || p.id === 'redmi_pad_2_97') { score += 80; reasons.push('4G插卡推薦'); }
+            if (p.id === 'redmi_pad_2' || p.id === 'redmi_pad_2_97') { reasons.push('4G插卡推薦'); }
             else { return { product:p, score:-999, reasons:[], warnings:['無SIM卡版本'] }; }
         }
-        // 預算 (最高50分，核心決策因素)
+
+        // ── 預算 (20分) ──
         if (answers.budget && answers.budget !== 'no_budget') {
-            if (p.budget === answers.budget) { score += 50; reasons.push('預算完美匹配'); }
-            else if (answers.budget === 'premium' && p.budget === 'mid') { score += 30; reasons.push('略低於預算'); }
-            else if (answers.budget === 'mid' && p.budget === 'low') { score += 20; reasons.push('低於預算'); }
-            else { score -= 20; warnings.push('超出預算'); }
+            if (p.budget === answers.budget) { score += WEIGHT.budget; reasons.push('預算完美匹配'); }
+            else if (answers.budget === 'premium' && p.budget === 'mid') { score += 12; reasons.push('略低於預算'); }
+            else if (answers.budget === 'mid' && p.budget === 'low') { score += 8; reasons.push('低於預算'); }
+            else { penalty += 10; warnings.push('超出預算'); }
         }
-        // 尺寸 (最高20分，次要因素)
+
+        // ── 尺寸 (15分) ──
         if (answers.size) {
-            if (p.screenType === answers.size) {
-                score += 20; reasons.push('尺寸匹配');
-            } else {
-                score -= 15; warnings.push('尺寸與需求不符');
-            }
+            if (p.screenType === answers.size) { score += WEIGHT.size; reasons.push('尺寸匹配'); }
+            else { penalty += 10; warnings.push('尺寸與需求不符'); }
         }
-        // 優先級 (10分) - 支持多選，每個優先級獨立計分
+
+        // ── 優先級 (10分，均分) ──
         if (answers.priority && answers.priority.length > 0) {
+            const perPri = Math.floor(WEIGHT.priority / answers.priority.length);
             answers.priority.forEach(pr => {
                 switch(pr) {
-                    case 'performance': if (p.chip.includes('8')||p.chip.includes('9')) { score+=10; reasons.push('旗艦芯片'); } else score+=3; break;
-                    case 'battery': if (parseInt(p.battery)>=10000) { score+=10; reasons.push('超大電池'); } else score+=3; break;
-                    case 'display': if (p.refreshRate>=120) { score+=10; reasons.push('高刷螢幕'); } else score+=3; break;
-                    case 'price': if (p.price<=1500) { score+=10; reasons.push('極致性價比'); } else score+=3; break;
-                    case 'portable': if (p.weight<=300) { score+=10; reasons.push('超輕機身'); } else if (p.weight<=400) { score+=3; } else { score-=10; warnings.push('机身偏重不利便攜'); } break;
-                    case 'stylus': if (p.stylus) { score+=10; reasons.push('支持手寫筆'); } else { warnings.push('不支持手寫筆'); } break;
+                    case 'performance': if (p.chip.includes('8')||p.chip.includes('9')) { score+=perPri; reasons.push('旗艦芯片'); } break;
+                    case 'battery': if (parseInt(p.battery)>=10000) { score+=perPri; reasons.push('超大電池'); } break;
+                    case 'display': if (p.refreshRate>=120) { score+=perPri; reasons.push('高刷螢幕'); } break;
+                    case 'price': if (p.price<=1500) { score+=perPri; reasons.push('極致性價比'); } break;
+                    case 'portable': if (p.weight<=300) { score+=perPri; reasons.push('超輕機身'); } else if (p.weight>400) { penalty+=5; warnings.push('机身偏重不利便攜'); } break;
+                    case 'stylus': if (p.stylus) { score+=perPri; reasons.push('支持手寫筆'); } else { warnings.push('不支持手寫筆'); } break;
                 }
             });
         }
-        // 網絡已在此函數開頭硬性篩選，此處跳過
-        // 使用環境 (8分)
+
+        // ── 環境 (5分) ──
         if (answers.environment && answers.environment !== 'none') {
             switch(answers.environment) {
-                case 'personal': score += 3; break;
-                case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += 8; reasons.push('適合家庭使用'); } else score += 3; break;
-                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += 8; reasons.push('辦公生產力強'); } else score += 3; break;
-                case 'outdoor': if (p.weight <= 350) { score += 8; reasons.push('戶外便攜'); } else if (p.weight <= 450) { score += 3; } else { score -= 5; warnings.push('過重不適合戶外'); } break;
+                case 'personal': score += 2; break;
+                case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += WEIGHT.environment; reasons.push('適合家庭使用'); } else score += 2; break;
+                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += WEIGHT.environment; reasons.push('辦公生產力強'); } else score += 2; break;
+                case 'outdoor': if (p.weight <= 350) { score += WEIGHT.environment; reasons.push('戶外便攜'); } else if (p.weight > 450) { penalty += 3; warnings.push('過重不適合戶外'); } break;
             }
         }
-        score += p.rating * 2;
-        return { product:p, score:Math.min(100,Math.round(score)), reasons, warnings };
+
+        // 評分加成 (滿分5)
+        score += Math.min(5, p.rating);
+
+        // 扣分不低於0，總分 cap 到100
+        const finalScore = Math.max(0, Math.min(100, Math.round(score - penalty)));
+        return { product:p, score:finalScore, reasons, warnings };
     }).sort((a,b) => b.score - a.score);
 }
 
@@ -743,7 +753,8 @@ function showRecommendation() {
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
             ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
             <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="toggleFav('${top.product.id}')" class="flex-grow px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                ${top.product.buyLink ? `<a href="${top.product.buyLink}" target="_blank" rel="noopener" class="flex-grow px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold text-center transition-all">🛒 前往官網選購 →</a>` : ''}
+                <button onclick="toggleFav('${top.product.id}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
                 <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
             </div>
         </div>
