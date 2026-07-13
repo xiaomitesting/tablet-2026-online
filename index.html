@@ -71,6 +71,8 @@
         body.dark #compare-modal th { background: #374151; color: #d1d5db; }
         body.dark #compare-modal td { color: #e5e7eb; border-color: #374151; }
         body.dark #compare-modal tr:hover td { background: #374151; }
+        body.dark #compare-modal .bg-gray-50 { background: #1f2937; }
+        body.dark #compare-placeholder { color: #9ca3af; }
         body.dark #import-modal > div { background: #1f2937; }
         body.dark #import-modal textarea { background: #374151; color: #e5e7eb; border-color: #4b5563; }
         /* 產品詳情彈窗 */
@@ -261,13 +263,26 @@
 
     <!-- 對比詳情彈窗 -->
     <div id="compare-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-2 sm:p-4">
-        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+        <div class="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-4 sm:p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
-                <h3 class="text-lg sm:text-xl font-bold text-gray-900">詳細規格對比</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-gray-900">⚖️ 橫向對比</h3>
                 <button onclick="closeCompareModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-semibold">&times;</button>
             </div>
+            <!-- 機型選擇器 -->
+            <div class="p-4 sm:p-6 border-b border-gray-100 bg-gray-50">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-semibold text-gray-700">選擇機型（最多3款，至少2款）</span>
+                    <span id="compare-select-count" class="text-xs text-miOrange font-bold">已選 0 款</span>
+                </div>
+                <div class="flex flex-wrap gap-2" id="compare-product-selector"></div>
+            </div>
+            <!-- 對比表格 -->
             <div class="p-3 sm:p-6 overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <div id="compare-placeholder" class="text-center py-12 text-gray-400">
+                    <div class="text-4xl mb-3">📊</div>
+                    <p class="text-sm">請至少選擇2款機型開始對比</p>
+                </div>
+                <table id="compare-table" class="w-full text-left border-collapse hidden">
                     <thead><tr id="compare-table-headers" class="border-b-2 border-gray-200"></tr></thead>
                     <tbody id="compare-table-body" class="divide-y divide-gray-100"></tbody>
                 </table>
@@ -1206,6 +1221,11 @@ function toggleCompare(id) {
     if (idx>-1) selectedForCompare.splice(idx,1);
     else { if (selectedForCompare.length>=3) { alert('最多同時對比3款'); return; } selectedForCompare.push(id); }
     updateCompareDrawer();
+    // 如果對比彈窗已打開，同步更新選擇器和表格
+    if (!document.getElementById('compare-modal').classList.contains('hidden')) {
+        renderCompareSelector();
+        renderCompareTable();
+    }
 }
 
 function updateCompareDrawer() {
@@ -1224,10 +1244,36 @@ function updateCompareDrawer() {
 
 function clearCompare() { selectedForCompare=[]; updateCompareDrawer(); renderCatalog(currentCatalogFilter); }
 
-function openCompareModal() {
-    if (selectedForCompare.length<2) { alert('請至少勾選2款'); return; }
-    const modal = document.getElementById('compare-modal');
-    const prods = selectedForCompare.map(id=>products.find(p=>p.id===id));
+// 渲染對比彈窗內的機型選擇器
+function renderCompareSelector() {
+    const container = document.getElementById('compare-product-selector');
+    if (!container) return;
+    container.innerHTML = products.map(p => {
+        const checked = selectedForCompare.includes(p.id);
+        const disabled = !checked && selectedForCompare.length >= 3;
+        return `<label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all border ${checked ? 'bg-miOrange text-white border-miOrange' : disabled ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed' : 'bg-white text-gray-700 border-gray-200 hover:border-miOrange hover:text-miOrange'}">
+            <input type="checkbox" ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} onchange="toggleCompare('${p.id}')" class="w-3.5 h-3.5 rounded text-miOrange focus:ring-miOrange">
+            <span>${p.name}</span>
+            <span class="${checked ? 'text-white/70' : 'text-gray-400'}">HK$${p.price.toLocaleString()}</span>
+        </label>`;
+    }).join('');
+    const countEl = document.getElementById('compare-select-count');
+    if (countEl) countEl.textContent = `已選 ${selectedForCompare.length} 款`;
+}
+
+// 渲染對比表格
+function renderCompareTable() {
+    const table = document.getElementById('compare-table');
+    const placeholder = document.getElementById('compare-placeholder');
+    if (selectedForCompare.length < 2) {
+        table.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+        return;
+    }
+    table.classList.remove('hidden');
+    placeholder.classList.add('hidden');
+
+    const prods = selectedForCompare.map(id => products.find(p => p.id === id));
     const scenarioLabels = {productivity:'辦公/學習',gaming:'遊戲電競',media:'影音娛樂',creative:'創意設計',reading:'閱讀',portable:'便攜出行',kids:'兒童教育',outdoor:'戶外辦公'};
     const fields = [
         {key:'tag',label:'定位'},{key:'size',label:'螢幕'},{key:'panel',label:'面板類型'},{key:'refreshRate',label:'刷新率',fmt:v=>`${v}Hz`},
@@ -1264,23 +1310,26 @@ function openCompareModal() {
     fields.forEach(f => {
         const vals = prods.map(p => p[f.key]);
         if (f.key === 'price' || f.key === 'weight') {
-            // 越小越好
             const numVals = vals.map(v => typeof v === 'number' ? v : Infinity);
             const minVal = Math.min(...numVals);
             bestValues[f.key] = prods.map(p => (typeof p[f.key] === 'number' && p[f.key] === minVal));
         } else if (f.key === 'refreshRate' || f.key === 'battery' || f.key === 'rating' || f.key === 'storage' || f.key === 'ram') {
-            // 越大越好
             const numVals = vals.map(v => typeof v === 'number' ? v : -Infinity);
             const maxVal = Math.max(...numVals);
             bestValues[f.key] = prods.map(p => (typeof p[f.key] === 'number' && p[f.key] === maxVal));
         } else if (f.key === 'stylus' || f.key === 'keyboard') {
-            // true 為佳
             bestValues[f.key] = prods.map(p => p[f.key] === true);
         } else {
             bestValues[f.key] = prods.map(() => false);
         }
     });
     document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map((p,i)=>{const isBest=bestValues[f.key]&&bestValues[f.key][i];return `<td class="p-3 text-sm text-center ${isBest?'bg-green-200 font-bold text-green-900 ring-2 ring-green-400 ring-inset':''}">${f.fmt?f.fmt(p[f.key]):p[f.key]}${isBest?' 🏅':''}</td>`;}).join('')}</tr>`).join('');
+}
+
+function openCompareModal() {
+    const modal = document.getElementById('compare-modal');
+    renderCompareSelector();
+    renderCompareTable();
     modal.classList.remove('hidden');
 }
 
