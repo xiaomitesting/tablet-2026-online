@@ -892,12 +892,13 @@ function renderCatalog(filter='all') {
                     </div>
                 </div>` : ''}
             </div>
-            <div class="p-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
-                <label class="flex items-center gap-1.5 cursor-pointer">
-                    <input type="checkbox" onchange="toggleCompare('${p.id}')" ${selectedForCompare.includes(p.id)?'checked':''} class="w-3.5 h-3.5 text-miOrange rounded">
-                    <span class="text-[11px] font-semibold text-gray-600">橫向對比</span>
-                </label>
-                <div class="flex items-center gap-2">
+            <div class="p-3 bg-gray-50 border-t border-gray-100 space-y-2">
+                ${p.buyLink ? `<a href="${p.buyLink}" target="_blank" rel="noopener" class="block w-full text-center bg-miOrange hover:bg-orange-600 text-white text-xs font-bold py-2 rounded-lg transition-colors">前往官網連結 →</a>` : ''}
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center gap-1.5 cursor-pointer">
+                        <input type="checkbox" onchange="toggleCompare('${p.id}')" ${selectedForCompare.includes(p.id)?'checked':''} class="w-3.5 h-3.5 text-miOrange rounded">
+                        <span class="text-[11px] font-semibold text-gray-600">橫向對比</span>
+                    </label>
                     <button onclick="toggleFav('${p.id}')" class="fav-btn text-lg">${favorites.includes(p.id)?'❤️':'🤍'}</button>
                 </div>
             </div>
@@ -1207,7 +1208,28 @@ function openCompareModal() {
             <div class="text-miOrange font-bold">${p.name}</div>
             <div class="text-xs text-gray-500">HK$${p.price.toLocaleString()}</div>
         </th>`).join('')}`;
-    document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map(p=>`<td class="p-3 text-sm text-center">${f.fmt?f.fmt(p[f.key]):p[f.key]}</td>`).join('')}</tr>`).join('');
+    // 計算每行最佳值並高亮
+    const bestValues = {};
+    fields.forEach(f => {
+        const vals = prods.map(p => p[f.key]);
+        if (f.key === 'price' || f.key === 'weight') {
+            // 越小越好
+            const numVals = vals.map(v => typeof v === 'number' ? v : Infinity);
+            const minVal = Math.min(...numVals);
+            bestValues[f.key] = prods.map(p => (typeof p[f.key] === 'number' && p[f.key] === minVal));
+        } else if (f.key === 'refreshRate' || f.key === 'battery' || f.key === 'rating' || f.key === 'storage' || f.key === 'ram') {
+            // 越大越好
+            const numVals = vals.map(v => typeof v === 'number' ? v : -Infinity);
+            const maxVal = Math.max(...numVals);
+            bestValues[f.key] = prods.map(p => (typeof p[f.key] === 'number' && p[f.key] === maxVal));
+        } else if (f.key === 'stylus' || f.key === 'keyboard') {
+            // true 為佳
+            bestValues[f.key] = prods.map(p => p[f.key] === true);
+        } else {
+            bestValues[f.key] = prods.map(() => false);
+        }
+    });
+    document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map((p,i)=>{const isBest=bestValues[f.key]&&bestValues[f.key][i];return `<td class="p-3 text-sm text-center ${isBest?'bg-green-50 font-bold text-green-700':''}">${f.fmt?f.fmt(p[f.key]):p[f.key]}${isBest?' 🏅':''}</td>`;}).join('')}</tr>`).join('');
     modal.classList.remove('hidden');
 }
 
