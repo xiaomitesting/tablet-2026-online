@@ -675,14 +675,48 @@ body {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 24px; }
+  /* Header */
+  .logo-text { font-size: 15px; }
+  .nav-tab { font-size: 12px; padding: 6px 10px; }
+  /* Hero */
+  .hero h1 { font-size: 22px; line-height: 1.3; }
+  .hero p { font-size: 13px; }
+  /* Section titles */
+  .section-title { font-size: 18px; }
+  .section-subtitle { font-size: 13px; }
+  /* Cards */
+  .product-card-title { font-size: 15px; }
+  .product-card-desc { font-size: 12px; }
+  .product-card-price { font-size: 18px; }
+  .home-feature-title { font-size: 13px; }
+  .home-feature-desc { font-size: 11px; }
+  .home-stat-value { font-size: 20px; }
+  /* Quiz */
+  .quiz-option-label { font-size: 13px; }
+  .quiz-option-desc { font-size: 11px; }
+  .quiz-option-icon { font-size: 24px; }
+  /* Results */
+  .result-product-name { font-size: 18px; }
+  .result-score { font-size: 28px; }
+  .result-specs-grid { grid-template-columns: 1fr; }
+  /* Table */
+  .compare-table { font-size: 12px; }
+  /* Grids */
   .products-grid { grid-template-columns: 1fr; }
   .quiz-options { grid-template-columns: repeat(2, 1fr); }
-  .result-specs-grid { grid-template-columns: 1fr; }
-  .nav-tabs { overflow-x: auto; }
+  .nav-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .header-inner { padding: 0 12px; }
   .section { padding: 0 12px 24px; }
   .modal { margin: 10px; max-height: 95vh; }
+  /* Touch targets */
+  .quiz-option { min-height: 80px; }
+  .btn { min-height: 44px; }
+}
+@media (max-width: 374px) {
+  .logo-text { font-size: 13px; }
+  .hero h1 { font-size: 20px; }
+  .section-title { font-size: 16px; }
+  .quiz-options { grid-template-columns: 1fr; }
 }
 
 /* --- Homepage --- */
