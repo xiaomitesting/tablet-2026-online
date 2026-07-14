@@ -1493,12 +1493,23 @@ function renderCompareTable() {
     const maxPrice = Math.max(...prods.map(p => p.price));
     const maxBattery = Math.max(...prods.map(p => p.battery));
     const maxRefresh = Math.max(...prods.map(p => p.refreshRate));
+    // 判斷是否同機型不同版本（如標準 vs 柔光版）
+    const isSameModel = prods.length === 2 && (
+        prods[0].name.replace(/柔光版|兒童護眼版/g, '').trim() ===
+        prods[1].name.replace(/柔光版|兒童護眼版/g, '').trim()
+    );
     const recScores = prods.map(p => {
         let s = 0;
         s += p.rating * 30;
-        s += (1 - p.price / maxPrice) * 40;
         s += (p.battery / maxBattery) * 15;
         s += (p.refreshRate / maxRefresh) * 15;
+        if (isSameModel) {
+            // 同機型對比：柔光版 +20（護眼溢價），降價差權重
+            if (p.panel && p.panel.includes('柔光')) s += 20;
+            s += (1 - p.price / maxPrice) * 10;
+        } else {
+            s += (1 - p.price / maxPrice) * 40;
+        }
         return { id: p.id, score: s };
     }).sort((a, b) => b.score - a.score);
     const recId = recScores[0].id;
