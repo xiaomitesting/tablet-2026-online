@@ -1410,20 +1410,41 @@ function renderCompareTable() {
         summaryText = `同為 ${budgetLevel(profiles[0].price) === 'mid' ? '中階' : budgetLevel(profiles[0].price) === 'budget' ? '入門' : '旗艦'} 段位，定位各有側重：${descs.join('；')}。`;
 
     } else if (dim.price && priceRange >= 2000) {
-        // ── 策略 D：跨價位段對比（$2000+差距）──
+        // ── 策略 D：跨價位段對比 — 按使用場景+實際升級方向描述 ──
         const sorted = [...profiles].sort((a, b) => a.price - b.price);
         const cheapest = sorted[0];
         const priciest = sorted[sorted.length - 1];
+        // 只列出「多付錢確實能獲得的」升級（方向要正確）
         const upgrades = [];
         if (dim.chip) upgrades.push('更強芯片');
-        if (dim.battery) upgrades.push('更大電池');
-        if (dim.screen) upgrades.push('更高刷新率');
-        if (dim.weight) upgrades.push('更輕機身');
-        if (dim.stylus) upgrades.push('手寫筆支持');
-        if (dim.keyboard) upgrades.push('鍵盤支持');
+        if (dim.battery && priciest.battery > cheapest.battery) upgrades.push('更大電池');
+        if (dim.screen && priciest.refreshRate > cheapest.refreshRate) upgrades.push('更高刷新率');
+        if (dim.weight && priciest.weight < cheapest.weight) upgrades.push('更輕機身');
+        if (dim.stylus && priciest.stylus && !cheapest.stylus) upgrades.push('手寫筆支持');
+        if (dim.keyboard && priciest.keyboard && !cheapest.keyboard) upgrades.push('鍵盤支持');
         if (dim.matte) upgrades.push('護眼柔光屏');
-        const upgradeText = upgrades.length > 0 ? `多付 HK$${priciest.price - cheapest.price}，可獲得：${upgrades.join('、')}。` : '';
-        summaryText = `${cheapest.name} 是預算之選（HK$${cheapest.price.toLocaleString()}）；${priciest.name} 是旗艦體驗（HK$${priciest.price.toLocaleString()}）。${upgradeText}`;
+        // 反向：便宜的有哪些獨特優勢
+        const cheaperAdv = [];
+        if (dim.battery && cheapest.battery > priciest.battery) cheaperAdv.push('更大電池');
+        if (dim.weight && cheapest.weight < priciest.weight) cheaperAdv.push('更輕機身');
+        if (dim.screen && cheapest.refreshRate > priciest.refreshRate) cheaperAdv.push('更高刷新率');
+        // 場景描述
+        const cheapScene = Array.isArray(cheapest.scenario) ? cheapest.scenario.map(s => scenarioLabels[s] || s).join('、') : '';
+        const priceyScene = Array.isArray(priciest.scenario) ? priciest.scenario.map(s => scenarioLabels[s] || s).join('、') : '';
+        const priceGap = priciest.price - cheapest.price;
+        let summaryText = '';
+        // 先說便宜的適合誰
+        if (cheapScene) summaryText += `${cheapest.name}（HK$${cheapest.price.toLocaleString()}）主打${cheapest.tag || cheapScene}；`;
+        // 再說贵的升級了什麼
+        if (upgrades.length > 0) {
+            summaryText += `${priciest.name}（HK$${priciest.price.toLocaleString()}）多付 HK$${priceGap.toLocaleString()}，升級：${upgrades.join('、')}。`;
+        } else {
+            summaryText += `${priciest.name}（HK$${priciest.price.toLocaleString()}）定位更高，做工用料更講究。`;
+        }
+        // 如果便宜的反而有獨特優勢，補充
+        if (cheaperAdv.length > 0) {
+            summaryText += `不過 ${cheapest.name} 在${cheaperAdv.join('、')}方面反而更優。`;
+        }
 
     } else {
         // ── 策略 E：通用 — 逐款描述核心賣點 + 差異 ──
@@ -1488,8 +1509,7 @@ function renderCompareTable() {
         {key:'weight',label:'重量',fmt:v=>`${v}g`},
         {key:'stylus',label:'手寫筆',fmt:v=>v?'✅ 支持':'❌ 不支持'},{key:'keyboard',label:'鍵盤',fmt:v=>v?'✅ 支持':'❌ 不支持'},
         {key:'scenario',label:'適用場景',fmt:v=>Array.isArray(v)?v.map(s=>scenarioLabels[s]||s).join('、'):(v||'-')},
-        {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},
-        {key:'rating',label:'評分',fmt:v=>`⭐ ${v}`},{key:'targetUser',label:'適合人群'}
+        {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},{key:'targetUser',label:'適合人群'}
     );
 
     // 計算推薦標記
@@ -1503,15 +1523,17 @@ function renderCompareTable() {
     );
     const recScores = prods.map(p => {
         let s = 0;
-        s += p.rating * 30;
         s += (p.battery / maxBattery) * 15;
         s += (p.refreshRate / maxRefresh) * 15;
         if (isSameModel) {
             // 同機型對比：柔光版 +20（護眼溢價），降價差權重
             if (p.panel && p.panel.includes('柔光')) s += 20;
+            s += p.rating * 30;
             s += (1 - p.price / maxPrice) * 10;
         } else {
-            s += (1 - p.price / maxPrice) * 40;
+            // 跨價位：性價比（規格/價格比）+ 場景覆蓋面
+            s += (1 - p.price / maxPrice) * 25;
+            s += (p.rating / 5) * 10;
         }
         return { id: p.id, score: s };
     }).sort((a, b) => b.score - a.score);
@@ -1533,7 +1555,7 @@ function renderCompareTable() {
             const maxVal = Math.max(...numVals);
             const hasVariation = minVal !== maxVal && minVal !== Infinity;
             bestValues[f.key] = prods.map(p => { const v = f.compute ? f.compute(p) : p[f.key]; return hasVariation && typeof v === 'number' && v === minVal; });
-        } else if (f.key === 'refreshRate' || f.key === 'battery' || f.key === 'rating' || f.key === 'storage' || f.key === 'ram') {
+        } else if (f.key === 'refreshRate' || f.key === 'battery' || f.key === 'storage' || f.key === 'ram') {
             const numVals = vals.map(v => typeof v === 'number' ? v : -Infinity);
             const minVal = Math.min(...numVals);
             const maxVal = Math.max(...numVals);
