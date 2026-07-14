@@ -1288,8 +1288,9 @@ function renderCompareTable() {
     const prods = selectedForCompare.map(id => products.find(p => p.id === id));
     const scenarioLabels = {productivity:'辦公/學習',gaming:'遊戲電競',media:'影音娛樂',creative:'創意設計',reading:'閱讀',portable:'便攜出行',kids:'兒童教育',outdoor:'戶外辦公'};
 
-    // ── 1. 智能推薦結語 ──
-    // 芯片性能分級
+    // ══════════════════════════════════════════════
+    // 1. 產品畫像 — 每款產品提取關鍵特徵
+    // ══════════════════════════════════════════════
     const chipTier = (chip) => {
         if (!chip) return 0;
         if (chip.includes('8 Elite')) return 5;
@@ -1298,7 +1299,24 @@ function renderCompareTable() {
         if (chip.includes('7s Gen')) return 2;
         return 1;
     };
-    // 工具函數：判斷數值是否有差異
+    const budgetLevel = (price) => price < 1600 ? 'budget' : price < 3000 ? 'mid' : 'premium';
+    const perfLevel = (chip) => { const t = chipTier(chip); return t >= 4 ? 'flagship' : t >= 3 ? 'upper' : t >= 2 ? 'mid' : 'entry'; };
+
+    // 為每款產品建立畫像
+    const profiles = prods.map(p => ({
+        ...p,
+        _budget: budgetLevel(p.price),
+        _perf: perfLevel(p.chip),
+        _tier: `${budgetLevel(p.price)}_${perfLevel(p.chip)}`,
+        _portable: (p.weight || 999) <= 350,
+        _productive: p.stylus && p.keyboard,
+        _matte: p.panel && p.panel.includes('柔光'),
+        _scenarios: Array.isArray(p.scenario) ? p.scenario : [],
+    }));
+
+    // ══════════════════════════════════════════════
+    // 2. 差異分析 — 找出真正有意義的維度差
+    // ══════════════════════════════════════════════
     const hasDiff = (vals, threshold) => {
         const nums = vals.filter(v => typeof v === 'number' && !isNaN(v));
         if (nums.length < 2) return false;
@@ -1309,62 +1327,114 @@ function renderCompareTable() {
     const batteries = prods.map(p => p.battery || 0);
     const weights = prods.map(p => p.weight || 999);
     const screens = prods.map(p => p.refreshRate || 0);
-    const chips = prods.map(p => chipTier(p.chip));
-    const priceDiff = hasDiff(prices, 300);  // 價格差 ≥$300 才算有差異
-    const batteryDiff = hasDiff(batteries, 500);
-    const weightDiff = hasDiff(weights, 30);
-    const screenDiff = hasDiff(screens, 10);
-    const chipDiff = hasDiff(chips);
-    // 找出各維度「最強」的產品
-    const cheapest = prods.reduce((a, b) => a.price < b.price ? a : b);
-    const bestPerf = prods.reduce((a, b) => chipTier(a.chip) > chipTier(b.chip) ? a : chipTier(a.chip) < chipTier(b.chip) ? b : (a.price < b.price ? a : b));
-    const bestBattery = prods.reduce((a, b) => (a.battery||0) > (b.battery||0) ? a : b);
-    const lightest = prods.reduce((a, b) => (a.weight||999) < (b.weight||999) ? a : b);
-    const bestScreen = prods.reduce((a, b) => (a.refreshRate||0) > (b.refreshRate||0) ? a : b);
-    const hasCreative = prods.filter(p => p.stylus && p.keyboard);
-    const hasKids = prods.filter(p => p.id && p.id.includes('kids'));
-    // 構建推薦句子（只在有實際差異時推薦）
-    const parts = [];
-    const used = new Set();
-    if (cheapest && priceDiff && cheapest.rating >= 4.0) {
-        parts.push(`💰 性價比之選 ${cheapest.name}（便宜 HK$${Math.max(...prices) - cheapest.price}）`);
-        used.add(cheapest.id);
-    }
-    if (bestPerf && !used.has(bestPerf.id) && chipDiff && chipTier(bestPerf.chip) >= 4) {
-        parts.push(`⚡ 極致性能 ${bestPerf.name}`);
-        used.add(bestPerf.id);
-    }
-    if (bestBattery && !used.has(bestBattery.id) && batteryDiff && (bestBattery.battery||0) >= 10000) {
-        parts.push(`🔋 超長續航 ${bestBattery.name}（${bestBattery.battery}mAh）`);
-        used.add(bestBattery.id);
-    }
-    if (lightest && !used.has(lightest.id) && weightDiff && (lightest.weight||999) <= 400) {
-        parts.push(`🪶 輕薄便攜 ${lightest.name}（${lightest.weight}g）`);
-        used.add(lightest.id);
-    }
-    if (bestScreen && !used.has(bestScreen.id) && screenDiff && (bestScreen.refreshRate||0) >= 120) {
-        parts.push(`🖥️ 高刷體驗 ${bestScreen.name}（${bestScreen.refreshRate}Hz）`);
-        used.add(bestScreen.id);
-    }
-    if (hasCreative.length > 0 && !used.has(hasCreative[0].id)) {
-        parts.push(`✍️ 辦公創作 ${hasCreative[0].name}`);
-        used.add(hasCreative[0].id);
-    }
-    if (hasKids.length > 0 && !used.has(hasKids[0].id)) {
-        parts.push(`👶 兒童護眼 ${hasKids[0].name}`);
-        used.add(hasKids[0].id);
-    }
-    // 兜底：全部一樣時給中性描述
-    if (parts.length === 0) {
-        const sameChip = !chipDiff;
-        const samePrice = !priceDiff;
-        if (sameChip && samePrice) {
-            parts.push('兩款配置接近，按外觀/品牌偏好選擇即可');
-        } else if (cheapest) {
-            parts.push(`預算有限選 ${cheapest.name}`);
+    const chipScores = prods.map(p => chipTier(p.chip));
+
+    const dim = {
+        price:    hasDiff(prices, 300),
+        battery:  hasDiff(batteries, 500),
+        weight:   hasDiff(weights, 30),
+        screen:   hasDiff(screens, 10),
+        chip:     hasDiff(chipScores),
+        matte:    profiles.some(p => p._matte) && !profiles.every(p => p._matte),
+        stylus:   profiles.some(p => p.stylus) && !profiles.every(p => p.stylus),
+        keyboard: profiles.some(p => p.keyboard) && !profiles.every(p => p.keyboard),
+        size:     hasDiff(prods.map(p => parseFloat(p.sizeLabel) || 0), 0.5),
+    };
+
+    // 有差異的維度數量
+    const diffCount = Object.values(dim).filter(Boolean).length;
+
+    // ══════════════════════════════════════════════
+    // 3. 策略選擇 — 根據組合特徵選最合適的結語策略
+    // ══════════════════════════════════════════════
+    const allSameTier = profiles.every(p => p._tier === profiles[0]._tier);
+    const allSameBudget = profiles.every(p => p._budget === profiles[0]._budget);
+    const priceRange = Math.max(...prices) - Math.min(...prices);
+    const isSameModel = prods.every(p => p.id.replace(/_matte$/, '').replace(/_pro$/, '') === prods[0].id.replace(/_matte$/, '').replace(/_pro$/, ''));
+    // 同系列不同版本（如 Pad 8 Pro vs Pad 8 Pro 柔光版）
+    const isVariantPair = prods.length === 2 && (
+        prods[0].name.replace(/柔光版|兒童護眼版/g, '').trim() === prods[1].name.replace(/柔光版|兒童護眼版/g, '').trim()
+    );
+
+    // ══════════════════════════════════════════════
+    // 4. 生成結語 — 不同策略 produce 不同風格的結語
+    // ══════════════════════════════════════════════
+    let summaryText = '';
+
+    if (diffCount === 0) {
+        // ── 策略 A：幾乎完全一樣 ──
+        summaryText = '這幾款配置非常接近，按外觀顏色或品牌偏好選擇即可。';
+
+    } else if (isVariantPair) {
+        // ── 策略 B：同款機型的不同版本（如標準 vs 柔光版）──
+        const matteProd = profiles.find(p => p._matte);
+        const regularProd = profiles.find(p => !p._matte);
+        if (matteProd && regularProd) {
+            const priceGap = matteProd.price - regularProd.price;
+            summaryText = `兩款為同一系列，核心差異在屏幕：柔光版主打護眼防反光${priceGap > 0 ? `，多 HK$${priceGap}` : ''}。`;
+            if (regularProd.colors && regularProd.colors.length > (matteProd.colors || []).length) {
+                summaryText += `標準版提供 ${regularProd.colors.length} 種顏色可選。`;
+            }
+        } else {
+            summaryText = '同系列不同版本，按屏幕需求選擇。';
         }
+
+    } else if (allSameBudget && !dim.chip) {
+        // ── 策略 C：同價位段但不同定位 ──
+        const descs = profiles.map(p => {
+            const parts = [];
+            if (p._portable) parts.push('輕薄便攜');
+            if (p._productive) parts.push('生產力強');
+            if (p._matte) parts.push('護眼柔光');
+            if (parts.length === 0) parts.push(p.tag || '均衡之選');
+            return `${p.name} 偏${parts.join('+')}`;
+        });
+        summaryText = `同為 ${budgetLevel(profiles[0].price) === 'mid' ? '中階' : budgetLevel(profiles[0].price) === 'budget' ? '入門' : '旗艦'} 段位，定位各有側重：${descs.join('；')}。`;
+
+    } else if (dim.price && priceRange >= 2000) {
+        // ── 策略 D：跨價位段對比（$2000+差距）──
+        const sorted = [...profiles].sort((a, b) => a.price - b.price);
+        const cheapest = sorted[0];
+        const priciest = sorted[sorted.length - 1];
+        const upgrades = [];
+        if (dim.chip) upgrades.push('更強芯片');
+        if (dim.battery) upgrades.push('更大電池');
+        if (dim.screen) upgrades.push('更高刷新率');
+        if (dim.weight) upgrades.push('更輕機身');
+        if (dim.stylus) upgrades.push('手寫筆支持');
+        if (dim.matte) upgrades.push('護眼柔光屏');
+        const upgradeText = upgrades.length > 0 ? `多付 HK$${priciest.price - cheapest.price}，可獲得：${upgrades.join('、')}。` : '';
+        summaryText = `${cheapest.name} 是預算之選（HK$${cheapest.price.toLocaleString()}）；${priciest.name} 是旗艦體驗（HK$${priciest.price.toLocaleString()}）。${upgradeText}`;
+
+    } else {
+        // ── 策略 E：通用 — 逐款描述核心賣點 + 差異 ──
+        const perProduct = profiles.map(p => {
+            const traits = [];
+            // 性能
+            if (p._perf === 'flagship') traits.push('旗艦性能');
+            else if (p._perf === 'upper') traits.push('中高端性能');
+            else if (p._perf === 'mid') traits.push('中端性能');
+            else traits.push('入門性能');
+            // 獨特賣點
+            if (p._matte) traits.push('護眼柔光屏');
+            if (p._portable) traits.push('極致輕薄');
+            if (p._productive) traits.push('生產力套裝');
+            if (p.stylus && !p.keyboard) traits.push('支持手寫筆');
+            if (p.battery >= 10000) traits.push(`${p.battery}mAh大電池`);
+            if (p.refreshRate >= 144) traits.push(`${p.refreshRate}Hz高刷`);
+            return { name: p.name, price: p.price, traits };
+        });
+
+        // 找出每款的「獨家優勢」（其他產品沒有的）
+        const summary = perProduct.map(pp => {
+            const others = perProduct.filter(x => x.name !== pp.name);
+            const unique = pp.traits.filter(t => !others.some(o => o.traits.includes(t)));
+            const label = unique.length > 0 ? unique.slice(0, 2).join('+') : pp.traits[0];
+            return `${pp.name}（HK$${pp.price.toLocaleString()}）${label}`;
+        });
+        summaryText = summary.join(' vs ');
     }
-    const summaryText = parts.length > 0 ? parts.join('｜') : '';
+
     if (summaryEl) {
         summaryEl.innerHTML = summaryText ? `<div class="bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl px-5 py-3 text-sm text-gray-800 leading-relaxed">${summaryText}</div>` : '';
         summaryEl.classList.toggle('hidden', !summaryText);
