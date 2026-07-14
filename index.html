@@ -1109,7 +1109,7 @@ let calcAccessory = false;
 function renderCalculator() {
     const totalMax = calcBudgetMax + (calcAccessory?500:0);
     const totalMin = calcBudgetMin + (calcAccessory?500:0);
-    const matched = products.filter(p=>p.price>=calcBudgetMin && p.price<=calcBudgetMax).sort((a,b)=>b.rating-a.rating);
+    const matched = products.filter(p=>p.price>=totalMin && p.price<=totalMax).sort((a,b)=>b.rating-a.rating);
 
     // 同步雙滑桿：拖動任一側更新另一側
     function syncMin(v){
