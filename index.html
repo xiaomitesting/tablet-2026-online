@@ -1107,24 +1107,6 @@ let calcBudgetMax = 3000;
 let calcAccessory = false;
 
 function renderCalculator() {
-    const totalMax = calcBudgetMax + (calcAccessory?500:0);
-    const totalMin = calcBudgetMin + (calcAccessory?500:0);
-    const matched = products.filter(p=>p.price>=totalMin && p.price<=totalMax).sort((a,b)=>b.rating-a.rating);
-
-    // 同步雙滑桿：拖動任一側更新另一側
-    function syncMin(v){
-        calcBudgetMin = Math.min(parseInt(v), calcBudgetMax - 100);
-        document.getElementById('calc-min').value = calcBudgetMin;
-        document.getElementById('calc-max').value = calcBudgetMax;
-        renderCalculator();
-    }
-    function syncMax(v){
-        calcBudgetMax = Math.max(parseInt(v), calcBudgetMin + 100);
-        document.getElementById('calc-min').value = calcBudgetMin;
-        document.getElementById('calc-max').value = calcBudgetMax;
-        renderCalculator();
-    }
-
     const minPct = ((calcBudgetMin-800)/4200)*100;
     const maxPct = ((calcBudgetMax-800)/4200)*100;
 
@@ -1138,35 +1120,64 @@ function renderCalculator() {
             </div>
             <div class="relative h-8 mb-2">
                 <div class="absolute top-3 left-0 right-0 h-2 bg-gray-200 rounded-full"></div>
-                <div class="absolute top-3 h-2 bg-miOrange rounded-full" style="left:${minPct}%;right:${100-maxPct}%"></div>
-                <input id="calc-min" type="range" min="800" max="5000" step="100" value="${calcBudgetMin}" oninput="syncMin(this.value)" class="calc-slider absolute top-0 w-full" style="pointer-events:none;">
-                <input id="calc-max" type="range" min="800" max="5000" step="100" value="${calcBudgetMax}" oninput="syncMax(this.value)" class="calc-slider absolute top-0 w-full" style="pointer-events:none;">
+                <div id="calc-track" class="absolute top-3 h-2 bg-miOrange rounded-full" style="left:${minPct}%;right:${100-maxPct}%"></div>
+                <input id="calc-min" type="range" min="800" max="5000" step="100" value="${calcBudgetMin}" oninput="syncCalc()" class="calc-slider absolute top-0 w-full" style="pointer-events:none;">
+                <input id="calc-max" type="range" min="800" max="5000" step="100" value="${calcBudgetMax}" oninput="syncCalc()" class="calc-slider absolute top-0 w-full" style="pointer-events:none;">
             </div>
             <div class="flex justify-between text-xs text-gray-400 mt-1">
                 <span>HK$800</span>
-                <span class="text-sm font-bold text-miOrange">HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}</span>
+                <span id="calc-label" class="text-sm font-bold text-miOrange">HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}</span>
                 <span>HK$5,000</span>
             </div>
         </div>
-        ${matched.length?`
-            <p class="text-sm text-gray-500 mb-3">找到 <strong>${matched.length}</strong> 款符合條件的平板</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                ${matched.map(p=>`
-                    <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="px-2 py-0.5 ${p.series==='Xiaomi'?'bg-orange-100 text-miOrange':'bg-red-50 text-red-600'} rounded text-[10px] font-bold">${p.series}</span>
-                            <span class="text-sm font-bold text-miOrange">HK$${p.price.toLocaleString()}</span>
-                        </div>
-                        <h4 class="font-bold text-sm">${p.name}</h4>
-                        <p class="text-[11px] text-gray-500 mt-1">${p.size.split('(')[0]} · ⭐${p.rating}</p>
-                        <div class="flex gap-2 mt-3">
-                            <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-1.5 rounded-lg">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        `:`<div class="text-center py-12"><div class="text-4xl mb-4">💸</div><p class="text-gray-500">預算範圍內暫無匹配產品</p><p class="text-xs text-gray-400 mt-2">區間：HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}</p></div>`}
+        <div id="calc-results"></div>
     `;
+    updateCalcResults();
+}
+
+// 輕量更新：拖動滑桿時只更新數值和產品列表，不重建 DOM
+function syncCalc() {
+    const minEl = document.getElementById('calc-min');
+    const maxEl = document.getElementById('calc-max');
+    if (!minEl || !maxEl) return;
+    calcBudgetMin = Math.min(parseInt(minEl.value), calcBudgetMax - 100);
+    calcBudgetMax = Math.max(parseInt(maxEl.value), calcBudgetMin + 100);
+    minEl.value = calcBudgetMin;
+    maxEl.value = calcBudgetMax;
+    const minPct = ((calcBudgetMin-800)/4200)*100;
+    const maxPct = ((calcBudgetMax-800)/4200)*100;
+    const track = document.getElementById('calc-track');
+    if (track) { track.style.left = minPct+'%'; track.style.right = (100-maxPct)+'%'; }
+    const label = document.getElementById('calc-label');
+    if (label) label.textContent = `HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}`;
+    updateCalcResults();
+}
+
+// 更新產品列表
+function updateCalcResults() {
+    const el = document.getElementById('calc-results');
+    if (!el) return;
+    const totalMin = calcBudgetMin + (calcAccessory?500:0);
+    const totalMax = calcBudgetMax + (calcAccessory?500:0);
+    const matched = products.filter(p=>p.price>=totalMin && p.price<=totalMax).sort((a,b)=>b.rating-a.rating);
+    el.innerHTML = matched.length?`
+        <p class="text-sm text-gray-500 mb-3">找到 <strong>${matched.length}</strong> 款符合條件的平板</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${matched.map(p=>`
+                <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="px-2 py-0.5 ${p.series==='Xiaomi'?'bg-orange-100 text-miOrange':'bg-red-50 text-red-600'} rounded text-[10px] font-bold">${p.series}</span>
+                        <span class="text-sm font-bold text-miOrange">HK$${p.price.toLocaleString()}</span>
+                    </div>
+                    <h4 class="font-bold text-sm">${p.name}</h4>
+                    <p class="text-[11px] text-gray-500 mt-1">${p.size.split('(')[0]} · ⭐${p.rating}</p>
+                    <div class="flex gap-2 mt-3">
+                        <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-1.5 rounded-lg">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `:`<div class="text-center py-12"><div class="text-4xl mb-4">💸</div><p class="text-gray-500">預算範圍內暫無匹配產品</p><p class="text-xs text-gray-400 mt-2">區間：HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}</p></div>`;
 }
 
 // ============================================================
