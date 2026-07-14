@@ -1420,6 +1420,7 @@ function renderCompareTable() {
         if (dim.screen) upgrades.push('更高刷新率');
         if (dim.weight) upgrades.push('更輕機身');
         if (dim.stylus) upgrades.push('手寫筆支持');
+        if (dim.keyboard) upgrades.push('鍵盤支持');
         if (dim.matte) upgrades.push('護眼柔光屏');
         const upgradeText = upgrades.length > 0 ? `多付 HK$${priciest.price - cheapest.price}，可獲得：${upgrades.join('、')}。` : '';
         summaryText = `${cheapest.name} 是預算之選（HK$${cheapest.price.toLocaleString()}）；${priciest.name} 是旗艦體驗（HK$${priciest.price.toLocaleString()}）。${upgradeText}`;
@@ -1437,7 +1438,9 @@ function renderCompareTable() {
             if (p._matte) traits.push('護眼柔光屏');
             if (p._portable) traits.push('極致輕薄');
             if (p._productive) traits.push('生產力套裝');
-            if (p.stylus && !p.keyboard) traits.push('支持手寫筆');
+            if (p.stylus && !p.keyboard) traits.push('僅支持手寫筆');
+            const screenSize = parseFloat(p.sizeLabel) || 0;
+            if (screenSize > 0 && screenSize < 10) traits.push('細屏便攜');
             if (p.battery >= 10000) traits.push(`${p.battery}mAh大電池`);
             if (p.refreshRate >= 144) traits.push(`${p.refreshRate}Hz高刷`);
             return { name: p.name, price: p.price, traits };
