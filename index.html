@@ -1285,13 +1285,30 @@ function renderCompareTable() {
     // 芯片性能分級
     const chipTier = (chip) => {
         if (!chip) return 0;
-        if (chip.includes('8 Elite')) return 5;  // 頂級旗艦
-        if (chip.includes('9400')) return 4;       // 次旗艦
-        if (chip.includes('8s Gen')) return 3;     // 中高端
-        if (chip.includes('7s Gen')) return 2;     // 中端
-        return 1;                                   // 入門
+        if (chip.includes('8 Elite')) return 5;
+        if (chip.includes('9400')) return 4;
+        if (chip.includes('8s Gen')) return 3;
+        if (chip.includes('7s Gen')) return 2;
+        return 1;
     };
-    // 找出各維度最強的產品（僅在有差異時推薦）
+    // 工具函數：判斷數值是否有差異
+    const hasDiff = (vals, threshold) => {
+        const nums = vals.filter(v => typeof v === 'number' && !isNaN(v));
+        if (nums.length < 2) return false;
+        const min = Math.min(...nums), max = Math.max(...nums);
+        return threshold ? (max - min) >= threshold : max !== min;
+    };
+    const prices = prods.map(p => p.price);
+    const batteries = prods.map(p => p.battery || 0);
+    const weights = prods.map(p => p.weight || 999);
+    const screens = prods.map(p => p.refreshRate || 0);
+    const chips = prods.map(p => chipTier(p.chip));
+    const priceDiff = hasDiff(prices, 300);  // 價格差 ≥$300 才算有差異
+    const batteryDiff = hasDiff(batteries, 500);
+    const weightDiff = hasDiff(weights, 30);
+    const screenDiff = hasDiff(screens, 10);
+    const chipDiff = hasDiff(chips);
+    // 找出各維度「最強」的產品
     const cheapest = prods.reduce((a, b) => a.price < b.price ? a : b);
     const bestPerf = prods.reduce((a, b) => chipTier(a.chip) > chipTier(b.chip) ? a : chipTier(a.chip) < chipTier(b.chip) ? b : (a.price < b.price ? a : b));
     const bestBattery = prods.reduce((a, b) => (a.battery||0) > (b.battery||0) ? a : b);
@@ -1299,51 +1316,50 @@ function renderCompareTable() {
     const bestScreen = prods.reduce((a, b) => (a.refreshRate||0) > (b.refreshRate||0) ? a : b);
     const hasCreative = prods.filter(p => p.stylus && p.keyboard);
     const hasKids = prods.filter(p => p.id && p.id.includes('kids'));
-    // 構建推薦句子
+    // 構建推薦句子（只在有實際差異時推薦）
     const parts = [];
     const used = new Set();
-    // 優先級1：性價比之王（最便宜 + 評分不低）
-    if (cheapest && cheapest.rating >= 4.0) {
-        parts.push(`性價比首選 ${cheapest.name}`);
+    if (cheapest && priceDiff && cheapest.rating >= 4.0) {
+        parts.push(`💰 性價比之選 ${cheapest.name}（便宜 HK$${Math.max(...prices) - cheapest.price}）`);
         used.add(cheapest.id);
     }
-    // 優先級2：旗艦性能（最高性能且不是最便宜的）
-    if (bestPerf && !used.has(bestPerf.id) && chipTier(bestPerf.chip) >= 4) {
-        parts.push(`追求極致性能選 ${bestPerf.name}`);
+    if (bestPerf && !used.has(bestPerf.id) && chipDiff && chipTier(bestPerf.chip) >= 4) {
+        parts.push(`⚡ 極致性能 ${bestPerf.name}`);
         used.add(bestPerf.id);
     }
-    // 優先級3：續航怪獸（電池最大且差異明顯）
-    if (bestBattery && !used.has(bestBattery.id) && (bestBattery.battery||0) >= 10000) {
-        parts.push(`超長續航選 ${bestBattery.name}`);
+    if (bestBattery && !used.has(bestBattery.id) && batteryDiff && (bestBattery.battery||0) >= 10000) {
+        parts.push(`🔋 超長續航 ${bestBattery.name}（${bestBattery.battery}mAh）`);
         used.add(bestBattery.id);
     }
-    // 優先級4：輕薄便攜（最輕且差異明顯）
-    if (lightest && !used.has(lightest.id) && (lightest.weight||999) <= 350) {
-        parts.push(`輕薄便攜選 ${lightest.name}`);
+    if (lightest && !used.has(lightest.id) && weightDiff && (lightest.weight||999) <= 400) {
+        parts.push(`🪶 輕薄便攜 ${lightest.name}（${lightest.weight}g）`);
         used.add(lightest.id);
     }
-    // 優先級5：高刷螢幕
-    if (bestScreen && !used.has(bestScreen.id) && (bestScreen.refreshRate||0) >= 144) {
-        parts.push(`高刷體驗選 ${bestScreen.name}`);
+    if (bestScreen && !used.has(bestScreen.id) && screenDiff && (bestScreen.refreshRate||0) >= 120) {
+        parts.push(`🖥️ 高刷體驗 ${bestScreen.name}（${bestScreen.refreshRate}Hz）`);
         used.add(bestScreen.id);
     }
-    // 優先級6：生產力套裝
     if (hasCreative.length > 0 && !used.has(hasCreative[0].id)) {
-        parts.push(`辦公創作選 ${hasCreative[0].name}`);
+        parts.push(`✍️ 辦公創作 ${hasCreative[0].name}`);
         used.add(hasCreative[0].id);
     }
-    // 優先級7：兒童護眼
     if (hasKids.length > 0 && !used.has(hasKids[0].id)) {
-        parts.push(`小朋友用選 ${hasKids[0].name}`);
+        parts.push(`👶 兒童護眼 ${hasKids[0].name}`);
         used.add(hasKids[0].id);
     }
-    // 如果以上都沒命中（極端情況），用最便宜的兜底
-    if (parts.length === 0 && cheapest) {
-        parts.push(`預算有限選 ${cheapest.name}`);
+    // 兜底：全部一樣時給中性描述
+    if (parts.length === 0) {
+        const sameChip = !chipDiff;
+        const samePrice = !priceDiff;
+        if (sameChip && samePrice) {
+            parts.push('兩款配置接近，按外觀/品牌偏好選擇即可');
+        } else if (cheapest) {
+            parts.push(`預算有限選 ${cheapest.name}`);
+        }
     }
-    const summaryText = parts.length > 0 ? parts.join('，') + '！' : '';
+    const summaryText = parts.length > 0 ? parts.join('｜') : '';
     if (summaryEl) {
-        summaryEl.innerHTML = summaryText ? `<div class="bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl px-5 py-3 text-sm text-gray-800">${summaryText}</div>` : '';
+        summaryEl.innerHTML = summaryText ? `<div class="bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl px-5 py-3 text-sm text-gray-800 leading-relaxed">${summaryText}</div>` : '';
         summaryEl.classList.toggle('hidden', !summaryText);
     }
 
@@ -1396,20 +1412,30 @@ function renderCompareTable() {
             <div class="text-miOrange font-bold">${p.name}</div>
             <div class="text-xs text-gray-500">HK$${p.price.toLocaleString()}</div>
         </th>`).join('')}`;
-    // 計算每行最佳值並高亮（柔和綠色）
+    // 計算每行最佳值並高亮（只在有差異時標記）
     const bestValues = {};
     fields.forEach(f => {
         const vals = prods.map(p => f.compute ? f.compute(p) : p[f.key]);
         if (f.key === 'price' || f.key === 'weight' || f.key.startsWith('variant_')) {
             const numVals = vals.map(v => typeof v === 'number' ? v : Infinity);
             const minVal = Math.min(...numVals);
-            bestValues[f.key] = prods.map(p => { const v = f.compute ? f.compute(p) : p[f.key]; return typeof v === 'number' && v === minVal; });
+            const maxVal = Math.max(...numVals);
+            const hasVariation = minVal !== maxVal && minVal !== Infinity;
+            bestValues[f.key] = prods.map(p => { const v = f.compute ? f.compute(p) : p[f.key]; return hasVariation && typeof v === 'number' && v === minVal; });
         } else if (f.key === 'refreshRate' || f.key === 'battery' || f.key === 'rating' || f.key === 'storage' || f.key === 'ram') {
             const numVals = vals.map(v => typeof v === 'number' ? v : -Infinity);
+            const minVal = Math.min(...numVals);
             const maxVal = Math.max(...numVals);
-            bestValues[f.key] = prods.map(p => { const v = f.compute ? f.compute(p) : p[f.key]; return typeof v === 'number' && v === maxVal; });
+            const hasVariation = minVal !== maxVal && maxVal !== -Infinity;
+            bestValues[f.key] = prods.map(p => { const v = f.compute ? f.compute(p) : p[f.key]; return hasVariation && typeof v === 'number' && v === maxVal; });
         } else if (f.key === 'stylus' || f.key === 'keyboard') {
-            bestValues[f.key] = prods.map(p => p[f.key] === true);
+            const hasAny = prods.some(p => p[f.key] === true);
+            const hasAll = prods.every(p => p[f.key] === true);
+            bestValues[f.key] = prods.map(p => hasAny && !hasAll && p[f.key] === true);
+        } else if (f.key === 'matte') {
+            const hasAny = prods.some(p => f.compute(p) === true);
+            const hasAll = prods.every(p => f.compute(p) === true);
+            bestValues[f.key] = prods.map(p => hasAny && !hasAll && f.compute(p) === true);
         } else {
             bestValues[f.key] = prods.map(() => false);
         }
