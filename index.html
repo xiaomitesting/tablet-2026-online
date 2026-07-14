@@ -545,7 +545,8 @@ const stepsData = {
     ]},
     4: { title:"📏 第四步：您偏好的螢幕尺寸？", options:[
         {value:"compact",label:"🎒 輕巧便攜 (10吋以下)",desc:"單手好拿，適合隨身攜帶。"},
-        {value:"large",label:"🖥️ 寬廣視野 (10吋以上)",desc:"大視野利於多工作業與追劇。"}
+        {value:"large",label:"🖥️ 寬廣視野 (10吋以上)",desc:"大視野利於多工作業與追劇。"},
+        {value:"no_preference",label:"🤷 無尺寸偏好",desc:"大小都行，看最適合的。"}
     ]},
     5: { title:"📶 第五步：需要插SIM卡嗎？", options:[
         {value:"wifi_only",label:"📶 純Wi-Fi",desc:"主要在有Wi-Fi的環境使用。"},
@@ -686,7 +687,7 @@ function calculateMatches() {
             } else { warnings.push('場景不完全匹配'); }
         }
         // 交叉加分：場景+尺寸同時匹配
-        if (answers.size && answers.scenario && answers.scenario.length > 0) {
+        if (answers.size && answers.size !== 'no_preference' && answers.scenario && answers.scenario.length > 0) {
             if (p.screenType === answers.size && (p.scenario || []).some(s => answers.scenario.includes(s))) {
                 score += 5; reasons.push('場景+尺寸完美匹配');
             }
@@ -710,7 +711,7 @@ function calculateMatches() {
         }
 
         // ── 尺寸 (15分) ──
-        if (answers.size) {
+        if (answers.size && answers.size !== 'no_preference') {
             if (p.screenType === answers.size) { score += WEIGHT.size; reasons.push('尺寸匹配'); }
             else { penalty += 10; warnings.push('尺寸與需求不符'); }
         }
@@ -792,7 +793,7 @@ function showRecommendation() {
                         <div class="flex flex-wrap gap-2">
                             ${answers.scenario?.length ? answers.scenario.map(s => `<span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">${SCENARIOS.find(x=>x.id===s)?.label||s}</span>`).join('') : ''}
                             ${answers.budget && answers.budget!=='no_budget' ? `<span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs">${BUDGETS.find(x=>x.id===answers.budget)?.label||answers.budget}</span>` : ''}
-                            ${answers.size ? `<span class="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">${answers.size==='compact'?'輕巧便攜':'寬廣視野'}</span>` : ''}
+                            ${answers.size && answers.size!=='no_preference' ? `<span class="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">${answers.size==='compact'?'輕巧便攜':'寬廣視野'}</span>` : ''}
                         </div>
                     </div>
                 </div>
