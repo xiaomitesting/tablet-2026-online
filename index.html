@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF6700">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -1491,15 +1493,50 @@ function renderCompareTable() {
 
     } else if (allSameBudget && !dim.chip) {
         // ── 策略 C：同價位段但不同定位 ──
-        const descs = profiles.map(p => {
-            const parts = [];
-            if (p._portable) parts.push('輕薄便攜');
-            if (p._productive) parts.push('生產力強');
-            if (p._matte) parts.push('護眼柔光');
-            if (parts.length === 0) parts.push(p.tag || '均衡之選');
-            return `${p.name} 偏${parts.join('+')}`;
-        });
-        summaryText = `同為 ${budgetLevel(profiles[0].price) === 'mid' ? '中階' : budgetLevel(profiles[0].price) === 'budget' ? '入門' : '旗艦'} 段位，定位各有側重：${descs.join('；')}。`;
+        // 同系列产品检测：去除 5G/LTE/柔光版/儿童护眼版等后缀比较基础名
+        const stripVariant = n => n.replace(/\s*(5G|LTE|柔光版|兒童護眼版)\s*/g, '').trim();
+        const baseNames = profiles.map(p => stripVariant(p.name));
+        const isSameSeries = baseNames.every(n => n === baseNames[0]) && profiles.length >= 2;
+
+        if (isSameSeries) {
+            // 同系列：找实际差异点
+            const diffs = [];
+            const priceGap = Math.max(...profiles.map(p=>p.price)) - Math.min(...profiles.map(p=>p.price));
+            // 连接方式差异
+            const has5G = profiles.some(p => /5G/i.test(p.name));
+            const hasLTE = profiles.some(p => /LTE/i.test(p.name));
+            if (has5G || hasLTE) diffs.push('連接方式（' + profiles.map(p => /5G/i.test(p.name) ? p.name.replace(/^.*?(REDMI|Xiaomi|Redmi)\s*/,'') + '支援5G' : p.name.replace(/^.*?(REDMI|Xiaomi|Redmi)\s*/,'') + '僅WiFi').join('、') + '）');
+            // 价格差异
+            if (priceGap > 0) diffs.push(`價差 HK$${priceGap.toLocaleString()}`);
+            // 重量差异
+            const weights = profiles.map(p => p.weight || 0).filter(Boolean);
+            if (weights.length >= 2 && Math.max(...weights) - Math.min(...weights) > 20) {
+                const light = profiles.find(p => p.weight === Math.min(...weights));
+                const heavy = profiles.find(p => p.weight === Math.max(...weights));
+                diffs.push(`${light.name.replace(/^.*?\s/, '')}更輕（${light.weight}g vs ${heavy.weight}g）`);
+            }
+            // 标签/定位差异
+            const tags = profiles.map(p => p.tag).filter(Boolean);
+            const uniqueTags = [...new Set(tags)];
+            if (uniqueTags.length > 1) diffs.push('定位不同：' + profiles.map(p => `${p.name.replace(/^.*?\s/, '')}主打「${p.tag}」`).join('、'));
+
+            if (diffs.length > 0) {
+                summaryText = `同系列差異：${diffs.join('；')}。`;
+            } else {
+                summaryText = `兩款為同系列，配置基本一致，按個人偏好選擇即可。`;
+            }
+        } else {
+            // 不同系列：按特征描述
+            const descs = profiles.map(p => {
+                const parts = [];
+                if (p._portable) parts.push('輕薄便攜');
+                if (p._productive) parts.push('生產力強');
+                if (p._matte) parts.push('護眼柔光');
+                if (parts.length === 0) parts.push(p.tag || '均衡之選');
+                return `${p.name} 偏${parts.join('+')}`;
+            });
+            summaryText = `同為 ${budgetLevel(profiles[0].price) === 'mid' ? '中階' : budgetLevel(profiles[0].price) === 'budget' ? '入門' : '旗艦'} 段位，定位各有側重：${descs.join('；')}。`;
+        }
 
     } else if (dim.price && priceRange >= 2000) {
         // ── 策略 D：跨價位段對比 — 兩邊都说清楚适合谁 ──
@@ -1856,5 +1893,14 @@ document.addEventListener('keydown', function(e) {
     }
 });
 </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW registered:', reg.scope))
+                    .catch(err => console.log('SW failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>
