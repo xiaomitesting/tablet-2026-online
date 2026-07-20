@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小米之家專用平板選購助手</title>
+    <title>小米官網 - 平板選購助手</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -110,7 +110,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 mobile-header flex items-center justify-between">
             <div class="flex items-center space-x-2 sm:space-x-3 shrink-0 cursor-pointer" onclick="switchTab('home')">
                 <img src="assets/xiaomi-logo-square.png" alt="MI Logo" class="w-7 h-7 sm:w-8 sm:h-8 rounded shrink-0" />
-                <span class="text-sm sm:text-xl font-bold tracking-tight text-gray-900 whitespace-nowrap">小米之家專用<span class="text-miOrange font-bold">平板選購助手</span></span>
+                <span class="text-sm sm:text-xl font-bold tracking-tight text-gray-900 whitespace-nowrap">小米官網<span class="text-miOrange font-bold">平板選購助手</span></span>
             </div>
             <!-- 桌面端 Tab -->
             <div class="desktop-tabs flex space-x-1 bg-gray-100 p-1 rounded-full">
@@ -158,11 +158,11 @@
                 <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20"></div>
                 <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-16 -mb-16"></div>
                 <div class="relative z-10">
-                    <p class="text-orange-100 text-sm mb-2">${t('home.welcome')}</p>
-                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi 平板電腦<br class="sm:hidden">${t('home.heroTitle')}</h1>
-                    <p class="text-orange-100 text-sm sm:text-base mb-6">${t('home.heroDesc')}</p>
-                    <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base">
-                        🎯 ${t('home.heroBtn')}
+                    <p class="text-orange-100 text-sm mb-2" data-i18n="home.welcome">👋 歡迎使用</p>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi 平板電腦<br class="sm:hidden" data-i18n="home.heroTitle">智能選購助手</h1>
+                    <p class="text-orange-100 text-sm sm:text-base mb-6" data-i18n="home.heroDesc">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
+                    <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base" data-i18n="home.heroBtn">
+                        🎯 開始智能推薦
                     </button>
                 </div>
             </div>
@@ -638,6 +638,12 @@ window.onload = async function() {
 // 3.5 首頁渲染
 // ============================================================
 function renderHome() {
+    // Update hero i18n elements
+    document.querySelectorAll('#section-home [data-i18n]').forEach(function(el) {
+        var k = el.getAttribute('data-i18n');
+        var v = t(k);
+        if (v !== k) el.textContent = v;
+    });
     // 渲染人氣推薦 Top 3（按評分排序）
     const top3 = [...products].sort((a, b) => b.rating - a.rating).slice(0, 3);
     const recContainer = document.getElementById('home-recommendations');
