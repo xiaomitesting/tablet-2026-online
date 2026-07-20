@@ -159,7 +159,7 @@
                 <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-16 -mb-16"></div>
                 <div class="relative z-10">
                     <p class="text-orange-100 text-sm mb-2" data-i18n="home.welcome">👋 歡迎使用</p>
-                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi 平板電腦<br class="sm:hidden" data-i18n="home.heroTitle">智能選購助手</h1>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">平板電腦</span><br class="sm:hidden" data-i18n="home.heroTitle">智能選購助手</h1>
                     <p class="text-orange-100 text-sm sm:text-base mb-6" data-i18n="home.heroDesc">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
                     <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base" data-i18n="home.heroBtn">
                         🎯 開始智能推薦
@@ -426,7 +426,7 @@ en: {
 'nav.home':'🏠 Home','nav.quiz':'🎯 Smart Pick','nav.catalog':'📱 All Models','nav.guide':'📖 Guide','nav.calculator':'🧮 Budget','nav.favorites':'❤️ Favs','nav.compare':'⚖️ Compare',
 'mob.home':'🏠 Home','mob.quiz':'🎯 Pick','mob.catalog':'📱 Models','mob.guide':'📖 Guide','mob.calculator':'🧮 Calc','mob.favorites':'❤️ Favs','mob.compare':'⚖️ Compare',
 'home.findTitle':'Find Your Perfect Xiaomi Tablet','home.findSubtitle':'Answer 7 quick questions and get the best recommendation.',
-'home.welcome':'👋 Welcome to','home.heroTitle':'Smart Tablet Finder',
+'home.welcome':'👋 Welcome to','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
 'home.heroDesc':'Answer a few simple questions to find your ideal Xiaomi tablet. Covers the full Xiaomi Pad lineup and Redmi Pad, from entry-level to flagship.',
 'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Top',
 'home.heroBtn':'🎯 Start Smart Recommendation',
@@ -642,7 +642,7 @@ function renderHome() {
     document.querySelectorAll('#section-home [data-i18n]').forEach(function(el) {
         var k = el.getAttribute('data-i18n');
         var v = t(k);
-        if (v !== k) el.textContent = v;
+        if (v !== k) { if (el.querySelector("br") || v.includes("<br>")) el.innerHTML = v; else el.textContent = v; }
     });
     // 渲染人氣推薦 Top 3（按評分排序）
     const top3 = [...products].sort((a, b) => b.rating - a.rating).slice(0, 3);
