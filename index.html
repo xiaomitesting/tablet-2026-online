@@ -110,7 +110,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 mobile-header flex items-center justify-between">
             <div class="flex items-center space-x-2 sm:space-x-3 shrink-0 cursor-pointer" onclick="switchTab('home')">
                 <img src="assets/xiaomi-logo-square.png" alt="MI Logo" class="w-7 h-7 sm:w-8 sm:h-8 rounded shrink-0" />
-                <span class="text-sm sm:text-xl font-bold tracking-tight text-gray-900 whitespace-nowrap">小米官網<span class="text-miOrange font-bold">平板選購助手</span></span>
+                <span class="text-sm sm:text-xl font-bold tracking-tight text-gray-900 whitespace-nowrap"><span data-i18n="home.headerBrand">小米官網</span><span class="text-miOrange font-bold" data-i18n="home.headerTitle">平板選購助手</span></span>
             </div>
             <!-- 桌面端 Tab -->
             <div class="desktop-tabs flex space-x-1 bg-gray-100 p-1 rounded-full">
@@ -123,7 +123,7 @@
                     ❤️ <span data-i18n="nav.favorites">收藏</span> <span id="fav-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
                 <button onclick="openCompareModal()" id="tab-btn-compare" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.compare">⚖️ 橫向對比</button>
-                <button onclick="toggleDarkMode()" id="dark-toggle" class="nav-pill px-2 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" title="切換暗黑模式">🌙</button>
+                <button onclick="toggleDarkMode()" id="dark-toggle" class="nav-pill px-2 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n-title="darkMode.toggle" title="切換暗黑模式">🌙</button>
                 <button onclick="toggleLang()" class="nav-pill px-3 py-1.5 text-sm rounded-full border border-white/20 hover:bg-white/10"><span id="lang-label">EN</span></button>
             </div>
             <!-- 手機端 Tab（橫向滾動） -->
@@ -159,7 +159,7 @@
                 <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-16 -mb-16"></div>
                 <div class="relative z-10">
                     <p class="text-orange-100 text-sm mb-2" data-i18n="home.welcome">👋 歡迎使用</p>
-                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">平板電腦</span><span data-i18n="home.heroTitle"></span><br class="sm:hidden" data-i18n="home.heroTitle">智能選購助手</h1>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">Tablet</span><span data-i18n="home.heroTitle">Smart Finder</span><br class="sm:hidden" data-i18n="home.heroTitle">智能選購助手</h1>
                     <p class="text-orange-100 text-sm sm:text-base mb-6" data-i18n="home.heroDesc">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
                     <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base" data-i18n="home.heroBtn">
                         🎯 開始智能推薦
@@ -215,7 +215,7 @@
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-3 sm:p-4 mb-4 sm:mb-6 flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-between gap-3">
                 <div class="flex flex-wrap items-center gap-2">
                     <span class="text-xs sm:text-sm font-medium text-gray-500" data-i18n="catalog.filterLabel">篩選：</span>
-                    <button onclick="filterCatalog('all')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-miOrange text-white">全部</button>
+                    <button onclick="filterCatalog('all')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-miOrange text-white" data-i18n="catalog.filterAll">全部</button>
                     <button onclick="filterCatalog('Xiaomi')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Xiaomi</button>
                     <button onclick="filterCatalog('Redmi')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Redmi</button>
                 </div>
@@ -259,8 +259,8 @@
                     ⚖️ <span data-i18n="nav.compare">對比</span> <span id="compare-count" class="bg-miOrange text-white text-xs px-2 py-0.5 rounded-full">0</span>
                 </h3>
                 <div class="flex gap-2">
-                    <button onclick="openCompareModal()" class="px-3 sm:px-5 py-2 bg-miOrange text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-opacity-90 transition-all">對比</button>
-                    <button onclick="clearCompare()" class="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg text-xs sm:text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all">清空</button>
+                    <button onclick="openCompareModal()" class="px-3 sm:px-5 py-2 bg-miOrange text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-opacity-90 transition-all" data-i18n="compare.goBtn">對比</button>
+                    <button onclick="clearCompare()" class="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg text-xs sm:text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all" data-i18n="compare.clearBtn">清空</button>
                 </div>
             </div>
             <div id="compare-chips" class="flex flex-wrap gap-3"></div>
@@ -405,7 +405,7 @@ zh: {
 'guide.budget1':'💰 入門級 (HK$1,500以下)','guide.budget2':'💰💰 中階 (HK$1,500-$3,000)','guide.budget3':'💰💰💰 旗艦 (HK$3,000以上)',
 'guide.altLabel':'備選：',
 'calc.budgetLabel':'平板預算區間','calc.accessoryLabel':'預算配件（+HK$500）',
-'fav.emptyTitle':'還沒有收藏任何平板','fav.emptyDesc':'在產品目錄中點擊 🤍 即可收藏',
+'darkMode.toggle':'Toggle dark mode','fav.emptyTitle':'還沒有收藏任何平板','fav.emptyDesc':'在產品目錄中點擊 🤍 即可收藏',
 'promo.title':'限時優惠：購買任意平板即送保護殼','promo.desc':'<span data-i18n="promo.desc">額外加購手寫筆或鍵盤再減 HK$100</span>','promo.note':'詳情請參考門市',
 'footer':'© 2026 小米之家香港 · 數據僅供參考',
 'detail.screen':'螢幕','detail.chip':'芯片','detail.batteryCharging':'電池/充電','detail.storage':'存儲',
@@ -418,7 +418,7 @@ zh: {
 'persona.kids':'送小朋友','persona.commute':'通勤族','persona.sim':'需要電話卡功能','persona.senior':'送長輩',
 'cs.productivity':'辦公/學習','cs.gaming':'遊戲電競','cs.media':'影音娛樂','cs.creative':'創意設計',
 'cs.reading':'閱讀','cs.portable':'便攜出行','cs.kids':'兒童教育','cs.outdoor':'戶外辦公',
-'compare.maxAlert':'最多同時對比3款','compare.selectCount':function(n){return '已選 '+n+' 款'},'compare.minHint':'請至少選擇2款機型開始對比',
+'compare.maxAlert':'最多同時對比3款','compare.selectCount':function(n){return '已選 '+n+' 款'},'compare.goBtn':'Compare','compare.clearBtn':'Clear','compare.minHint':'請至少選擇2款機型開始對比',
 'import.title':'📥 匯入收藏','import.pasteHint':'貼上之前匯出的 JSON 數據：','import.confirm':'確認匯入','import.cancel':'取消','import.success':function(n){return '✅ 成功匯入 '+n+' 款收藏'},'export.btn':'📥 匯出收藏','import.btn':'📤 匯入收藏','export.jsonBtn':'📥 匯出 JSON',
 'sync.synced':function(n){return '✅ 已同步 '+n+' 條記錄'},'sync.nothing':'✅ 沒有需要同步的記錄','sync.stats':function(t,s){return '已收集 '+t+' 份問答 · '+s+' 份已同步'},
 },
@@ -428,7 +428,7 @@ en: {
 'home.findTitle':'Find Your Perfect Xiaomi Tablet','home.findSubtitle':'Answer 7 quick questions and get the best recommendation.',
 'home.welcome':'👋 Welcome to','home.heroTablet':'Tablet','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
 'home.heroDesc':'Answer a few simple questions to find your ideal Xiaomi tablet. Covers the full Xiaomi Pad lineup and Redmi Pad, from entry-level to flagship.',
-'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Hot',
+'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Hot','home.headerBrand':'Xiaomi Store','home.headerTitle':'Tablet Finder','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
 'home.heroBtn':'🎯 Start Smart Recommendation',
 'home.featureQuiz':'Smart Pick','home.featureCatalog':'All Models','home.featureGuide':'Buying Guide','home.featureCalc':'Budget Calc','home.featureCompare':'Compare',
 'home.featureQuizDesc':'7-step quiz<br>Multi-select','home.featureCatalogDesc':'Browse all tablets<br>Filter, sort & compare','home.featureGuideDesc':'By budget & scenario<br>Quick picks','home.featureCalcDesc':'Drag the slider<br>Instant match','home.featureCompareDesc':'Side-by-side specs<br>At a glance',
@@ -479,7 +479,7 @@ en: {
 'guide.budget1':'💰 Entry (Under HK$1,500)','guide.budget2':'💰💰 Mid-range (HK$1,500–$3,000)','guide.budget3':'💰💰💰 Flagship (HK$3,000+)',
 'guide.altLabel':'Alt:',
 'calc.budgetLabel':'Tablet Budget Range','calc.accessoryLabel':'Include Accessories (+HK$500)',
-'fav.emptyTitle':'No favorites yet','fav.emptyDesc':'Tap 🤍 on any product to add it here',
+'darkMode.toggle':'Toggle dark mode','fav.emptyTitle':'No favorites yet','fav.emptyDesc':'Tap 🤍 on any product to add it here',
 'promo.title':'Limited Offer: Free case with any tablet','promo.desc':'Add a stylus or keyboard and save HK$100','promo.note':'See in-store for details',
 'footer':'© 2026 Xiaomi HK · Data for reference only.',
 'detail.screen':'Display','detail.chip':'Processor','detail.batteryCharging':'Battery / Charging','detail.storage':'Storage',
@@ -492,7 +492,7 @@ en: {
 'persona.kids':'Gift for Kids','persona.commute':'Commuter','persona.sim':'Needs SIM Card','persona.senior':'Gift for Seniors',
 'cs.productivity':'Office / Study','cs.gaming':'Gaming','cs.media':'Media & Video','cs.creative':'Creative',
 'cs.reading':'Reading','cs.portable':'Portable','cs.kids':'Kids Education','cs.outdoor':'Outdoor',
-'compare.maxAlert':'Max 3 models for comparison','compare.selectCount':function(n){return n+' selected'},'compare.minHint':'Select at least 2 models to compare',
+'compare.maxAlert':'Max 3 models for comparison','compare.selectCount':function(n){return n+' selected'},'compare.goBtn':'Compare','compare.clearBtn':'Clear','compare.minHint':'Select at least 2 models to compare',
 'import.title':'📥 Import Favorites','import.pasteHint':'Paste your exported JSON data:','import.confirm':'Confirm Import','import.cancel':'Cancel','import.success':function(n){return '✅ Imported '+n+' favorites'},'export.btn':'📥 Export Favs','import.btn':'📤 Import Favs','export.jsonBtn':'📥 Export JSON',
 'sync.synced':function(n){return '✅ Synced '+n+' records'},'sync.nothing':'✅ Nothing to sync','sync.stats':function(t,s){return t+' quiz responses collected · '+s+' synced'},
 }
