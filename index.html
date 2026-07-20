@@ -120,7 +120,7 @@
                 <button onclick="switchTab('guide')" id="tab-btn-guide" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.guide">📖 選購指南</button>
                 <button onclick="switchTab('calculator')" id="tab-btn-calculator" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.calculator">🧮 預算計算</button>
                 <button onclick="switchTab('favorites')" id="tab-btn-favorites" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all relative">
-                    ❤️ 收藏 <span id="fav-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                    ❤️ <span data-i18n="nav.favorites">收藏</span> <span id="fav-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
                 <button onclick="openCompareModal()" id="tab-btn-compare" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.compare">⚖️ 橫向對比</button>
                 <button onclick="toggleDarkMode()" id="dark-toggle" class="nav-pill px-2 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" title="切換暗黑模式">🌙</button>
@@ -172,28 +172,28 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8">
                 <div onclick="switchTab('quiz')" class="bg-white rounded-xl border border-gray-200 p-4 cursor-pointer hover:shadow-md hover:border-orange-300 transition-all group">
                     <div class="text-2xl mb-2">🎯</div>
-                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600">智能推薦</div>
-                    <div class="text-[11px] text-gray-500 mt-1">7 步問答<br>支持多選</div>
+                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600" data-i18n="home.featureQuiz">智能推薦</div>
+                    <div class="text-[11px] text-gray-500 mt-1" data-i18n="home.featureQuizDesc">7 步問答<br>支持多選</div>
                 </div>
                 <div onclick="switchTab('catalog')" class="bg-white rounded-xl border border-gray-200 p-4 cursor-pointer hover:shadow-md hover:border-orange-300 transition-all group">
                     <div class="text-2xl mb-2">📱</div>
-                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600">全部機型</div>
-                    <div class="text-[11px] text-gray-500 mt-1">瀏覽所有平板<br>篩選排序對比</div>
+                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600" data-i18n="home.featureCatalog">全部機型</div>
+                    <div class="text-[11px] text-gray-500 mt-1" data-i18n="home.featureCatalogDesc">瀏覽所有平板<br>篩選排序對比</div>
                 </div>
                 <div onclick="switchTab('guide')" class="bg-white rounded-xl border border-gray-200 p-4 cursor-pointer hover:shadow-md hover:border-orange-300 transition-all group">
                     <div class="text-2xl mb-2">📖</div>
-                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600">選購指南</div>
-                    <div class="text-[11px] text-gray-500 mt-1">按預算、場景<br>快速選機</div>
+                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600" data-i18n="home.featureGuide">選購指南</div>
+                    <div class="text-[11px] text-gray-500 mt-1" data-i18n="home.featureGuideDesc">按預算、場景<br>快速選機</div>
                 </div>
                 <div onclick="switchTab('calculator')" class="bg-white rounded-xl border border-gray-200 p-4 cursor-pointer hover:shadow-md hover:border-orange-300 transition-all group">
                     <div class="text-2xl mb-2">🧮</div>
-                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600">預算計算</div>
-                    <div class="text-[11px] text-gray-500 mt-1">拖動滑桿<br>即時匹配機型</div>
+                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600" data-i18n="home.featureCalc">預算計算</div>
+                    <div class="text-[11px] text-gray-500 mt-1" data-i18n="home.featureCalcDesc">拖動滑桿<br>即時匹配機型</div>
                 </div>
                 <div onclick="openCompareModal()" class="bg-white rounded-xl border border-gray-200 p-4 cursor-pointer hover:shadow-md hover:border-orange-300 transition-all group">
                     <div class="text-2xl mb-2">⚖️</div>
-                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600">橫向對比</div>
-                    <div class="text-[11px] text-gray-500 mt-1">多機型規格<br>一目了然</div>
+                    <div class="font-bold text-sm text-gray-900 group-hover:text-orange-600" data-i18n="home.featureCompare">橫向對比</div>
+                    <div class="text-[11px] text-gray-500 mt-1" data-i18n="home.featureCompareDesc">多機型規格<br>一目了然</div>
                 </div>
             </div>
 
@@ -256,7 +256,7 @@
         <div class="max-w-7xl mx-auto px-3 py-3 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-base sm:text-lg font-bold text-gray-900 flex items-center gap-2">
-                    ⚖️ 對比 <span id="compare-count" class="bg-miOrange text-white text-xs px-2 py-0.5 rounded-full">0</span>
+                    ⚖️ <span data-i18n="nav.compare">對比</span> <span id="compare-count" class="bg-miOrange text-white text-xs px-2 py-0.5 rounded-full">0</span>
                 </h3>
                 <div class="flex gap-2">
                     <button onclick="openCompareModal()" class="px-3 sm:px-5 py-2 bg-miOrange text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-opacity-90 transition-all">對比</button>
@@ -271,7 +271,7 @@
     <div id="compare-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-2 sm:p-4">
         <div class="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-4 sm:p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
-                <h3 class="text-lg sm:text-xl font-bold text-gray-900">⚖️ 橫向對比</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-gray-900">⚖️ <span data-i18n="nav.compare">橫向對比</span></h3>
                 <button onclick="closeCompareModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-semibold">&times;</button>
             </div>
             <!-- 機型選擇器 -->
@@ -505,7 +505,7 @@ function pHighlight(p){return currentLang==='en'&&p.highlightEn?p.highlightEn:p.
 function pSalesMsg(p){return currentLang==='en'&&p.salesMsgEn?p.salesMsgEn:p.salesMsg;}
 function pTargetUser(p){return currentLang==='en'&&p.targetUserEn?p.targetUserEn:p.targetUser;}
 function scenarioLabel(id){return t('cs.'+id);}
-function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';localStorage.setItem('mi_tablet_lang',currentLang);document.documentElement.setAttribute('data-lang',currentLang);document.getElementById('lang-label').textContent=currentLang==='zh'?'EN':'中';applyI18n();if(currentTab==='home')renderHome();if(currentTab==='quiz'){if(!document.getElementById('quiz-card').classList.contains('hidden'))renderQuiz();else if(currentQuizResults)showRecommendationFromCache();}if(currentTab==='catalog')renderCatalog(currentCatalogFilter);if(currentTab==='guide')renderGuide();if(currentTab==='calculator')renderCalculator();if(currentTab==='favorites')renderFavorites();if(!document.getElementById('compare-modal').classList.contains('hidden')){renderCompareSelector();renderCompareTable();}updateCompareDrawer();}
+function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';localStorage.setItem('mi_tablet_lang',currentLang);document.documentElement.setAttribute('data-lang',currentLang);document.getElementById('lang-label').textContent=currentLang==='zh'?'EN':'中';applyI18n();if(currentTab==='home'){renderHome();renderHeroAndFeatures();}if(currentTab==='quiz'){if(!document.getElementById('quiz-card').classList.contains('hidden'))renderQuiz();else if(currentQuizResults)showRecommendationFromCache();}if(currentTab==='catalog')renderCatalog(currentCatalogFilter);if(currentTab==='guide')renderGuide();if(currentTab==='calculator')renderCalculator();if(currentTab==='favorites')renderFavorites();if(!document.getElementById('compare-modal').classList.contains('hidden')){renderCompareSelector();renderCompareTable();}updateCompareDrawer();}
 function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');var v=t(k);if(v!==k)el.textContent=v;});var cc=document.getElementById('compare-select-count');if(cc)cc.textContent=t('compare.selectCount',selectedForCompare.length);applyI18nMobile();}
 function applyI18nMobile(){var mobMap={};document.querySelectorAll('[data-i18n-mob]').forEach(function(el){var k=el.getAttribute('data-i18n-mob');var v=t(k);if(v!==k)el.textContent=v;});}
 
