@@ -24,26 +24,66 @@
     "weight": 590,
     "stylus": true,
     "keyboard": true,
-    "colors": ["灰色", "綠色", "藍色"],
+    "colors": [
+      "灰色",
+      "綠色",
+      "藍色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/xiaomi-pad-8-pro",
     "salesBadge": "🔥 熱銷",
     "salesMsg": "生產力旗艦，办公創作兩不誤",
     "salesMsgEn": "Productivity flagship — work and create without limits",
     "targetUser": "辦公族、創意設計師、追求極致性能的用戶",
     "targetUserEn": "Professionals, creatives, and power users",
-    "scenario": ["productivity", "gaming", "creative"],
-    "scenarioEn": ["productivity", "gaming", "creative"],
-    "image": "assets/pad8pro.png",
+    "scenario": [
+      "productivity",
+      "gaming",
+      "creative"
+    ],
+    "scenarioEn": [
+      "productivity",
+      "gaming",
+      "creative"
+    ],
+    "image": "https://i02.appmifile.com/65_item_hk/02/03/2026/225af62e688c00daca8b5c521cabe9bd.png",
     "spec": "12GB+256GB",
     "variants": [
-      {"label": "", "ram": 8, "storage": 256, "price": 3999},
-      {"label": "頂配", "ram": 12, "storage": 512, "price": 4499}
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 256,
+        "price": 3999
+      },
+      {
+        "label": "頂配",
+        "ram": 12,
+        "storage": 512,
+        "price": 4499
+      }
     ],
-    "extraVersions": ["Xiaomi Pad 8 Pro 柔光版"],
-    "pros": ["旗艦芯片性能頂級", "144Hz高刷大屏", "手寫筆+鍵盤全配", "120W超快充"],
-    "prosEn": ["Flagship chip, top performance", "144Hz high-refresh display", "Full stylus & keyboard support", "120W ultra-fast charging"],
-    "cons": ["機身較重", "價格偏高"],
-    "consEn": ["Heavier body", "Higher price point"]
+    "extraVersions": [
+      "Xiaomi Pad 8 Pro 柔光版"
+    ],
+    "pros": [
+      "旗艦芯片性能頂級",
+      "144Hz高刷大屏",
+      "手寫筆+鍵盤全配",
+      "120W超快充"
+    ],
+    "prosEn": [
+      "Flagship chip, top performance",
+      "144Hz high-refresh display",
+      "Full stylus & keyboard support",
+      "120W ultra-fast charging"
+    ],
+    "cons": [
+      "機身較重",
+      "價格偏高"
+    ],
+    "consEn": [
+      "Heavier body",
+      "Higher price point"
+    ]
   },
   {
     "id": "pad_8_pro_matte",
@@ -70,26 +110,65 @@
     "weight": 595,
     "stylus": true,
     "keyboard": true,
-    "colors": ["灰色", "綠色"],
+    "colors": [
+      "灰色",
+      "綠色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/xiaomi-pad-8-pro-matte",
     "salesBadge": "✨ 新品",
     "salesMsg": "護眼旗艦，長時間使用不疲勞",
     "salesMsgEn": "Eye-care flagship — comfortable for extended use",
     "targetUser": "長時間辦公、閱讀、繪畫用戶",
     "targetUserEn": "Heavy readers, long-session workers, and artists",
-    "scenario": ["productivity", "creative", "reading"],
-    "scenarioEn": ["productivity", "creative", "reading"],
-    "image": "assets/pad8pro_matte.png",
+    "scenario": [
+      "productivity",
+      "creative",
+      "reading"
+    ],
+    "scenarioEn": [
+      "productivity",
+      "creative",
+      "reading"
+    ],
+    "image": "https://i02.appmifile.com/65_item_hk/02/03/2026/225af62e688c00daca8b5c521cabe9bd.png",
     "spec": "12GB+256GB",
     "variants": [
-      {"label": "", "ram": 12, "storage": 256, "price": 4299},
-      {"label": "頂配", "ram": 12, "storage": 512, "price": 4799}
+      {
+        "label": "",
+        "ram": 12,
+        "storage": 256,
+        "price": 4299
+      },
+      {
+        "label": "頂配",
+        "ram": 12,
+        "storage": 512,
+        "price": 4799
+      }
     ],
     "extraVersions": [],
-    "pros": ["柔光護眼屏", "旗艦芯片", "手寫筆+鍵盤全配", "120W快充"],
-    "prosEn": ["Matte anti-glare display", "Flagship processor", "Full stylus & keyboard", "120W fast charging"],
-    "cons": ["機身較重", "價格偏高", "顏色選擇較少"],
-    "consEn": ["Heavier body", "Higher price", "Fewer color options"]
+    "pros": [
+      "柔光護眼屏",
+      "旗艦芯片",
+      "手寫筆+鍵盤全配",
+      "120W快充"
+    ],
+    "prosEn": [
+      "Matte anti-glare display",
+      "Flagship processor",
+      "Full stylus & keyboard",
+      "120W fast charging"
+    ],
+    "cons": [
+      "機身較重",
+      "價格偏高",
+      "顏色選擇較少"
+    ],
+    "consEn": [
+      "Heavier body",
+      "Higher price",
+      "Fewer color options"
+    ]
   },
   {
     "id": "pad_8",
@@ -116,26 +195,64 @@
     "weight": 480,
     "stylus": false,
     "keyboard": false,
-    "colors": ["灰色", "紫色", "藍色"],
+    "colors": [
+      "灰色",
+      "紫色",
+      "藍色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/xiaomi-pad-8",
     "salesBadge": "👍 口碑",
     "salesMsg": "均衡全能，影音體驗出色",
     "salesMsgEn": "All-rounder with great media experience",
     "targetUser": "影音愛好者、日常辦公、追劇用戶",
     "targetUserEn": "Media lovers, daily users, and binge-watchers",
-    "scenario": ["media", "gaming", "productivity"],
-    "scenarioEn": ["media", "gaming", "productivity"],
-    "image": "assets/pad8.png",
+    "scenario": [
+      "media",
+      "gaming",
+      "productivity"
+    ],
+    "scenarioEn": [
+      "media",
+      "gaming",
+      "productivity"
+    ],
+    "image": "https://i02.appmifile.com/127_item_hk/11/02/2026/e6f1467f4979f3d6b7ef22120ef206b5.png",
     "spec": "8GB+256GB",
     "variants": [
-      {"label": "", "ram": 8, "storage": 128, "price": 2199},
-      {"label": "", "ram": 8, "storage": 256, "price": 2499}
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 128,
+        "price": 2199
+      },
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 256,
+        "price": 2499
+      }
     ],
     "extraVersions": [],
-    "pros": ["性價比高", "四揚聲器", "120Hz流暢", "輕薄機身"],
-    "prosEn": ["Great value", "Quad speakers", "Smooth 120Hz", "Slim and light"],
-    "cons": ["不支持手寫筆", "不支持鍵盤"],
-    "consEn": ["No stylus support", "No keyboard support"]
+    "pros": [
+      "性價比高",
+      "四揚聲器",
+      "120Hz流暢",
+      "輕薄機身"
+    ],
+    "prosEn": [
+      "Great value",
+      "Quad speakers",
+      "Smooth 120Hz",
+      "Slim and light"
+    ],
+    "cons": [
+      "不支持手寫筆",
+      "不支持鍵盤"
+    ],
+    "consEn": [
+      "No stylus support",
+      "No keyboard support"
+    ]
   },
   {
     "id": "pad_mini",
@@ -162,26 +279,66 @@
     "weight": 270,
     "stylus": false,
     "keyboard": false,
-    "colors": ["灰色", "藍色", "綠色"],
+    "colors": [
+      "灰色",
+      "藍色",
+      "綠色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/xiaomi-pad-mini",
     "salesBadge": "🎮 電競",
     "salesMsg": "小屏旗艦，隨身電競利器",
     "salesMsgEn": "Compact flagship — your portable gaming weapon",
     "targetUser": "手遊玩家、通勤族、追求便攜的用戶",
     "targetUserEn": "Gamers, commuters, and portable device lovers",
-    "scenario": ["gaming", "portable", "media"],
-    "scenarioEn": ["gaming", "portable", "media"],
-    "image": "assets/padmini.png",
+    "scenario": [
+      "gaming",
+      "portable",
+      "media"
+    ],
+    "scenarioEn": [
+      "gaming",
+      "portable",
+      "media"
+    ],
+    "image": "https://i02.appmifile.com/976_item_hk/17/09/2025/6920f9954597030f76579b31a0501e56.png",
     "spec": "8GB+128GB",
     "variants": [
-      {"label": "", "ram": 8, "storage": 128, "price": 1799},
-      {"label": "", "ram": 8, "storage": 256, "price": 1999}
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 128,
+        "price": 1799
+      },
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 256,
+        "price": 1999
+      }
     ],
     "extraVersions": [],
-    "pros": ["165Hz電競屏", "270g超輕便攜", "旗艦芯片", "性價比高"],
-    "prosEn": ["165Hz gaming display", "270g ultra-light", "Flagship chip", "Great value"],
-    "cons": ["不支持手寫筆", "電池容量較小", "螢幕較小"],
-    "consEn": ["No stylus", "Smaller battery", "Smaller screen"]
+    "pros": [
+      "165Hz電競屏",
+      "270g超輕便攜",
+      "旗艦芯片",
+      "性價比高"
+    ],
+    "prosEn": [
+      "165Hz gaming display",
+      "270g ultra-light",
+      "Flagship chip",
+      "Great value"
+    ],
+    "cons": [
+      "不支持手寫筆",
+      "電池容量較小",
+      "螢幕較小"
+    ],
+    "consEn": [
+      "No stylus",
+      "Smaller battery",
+      "Smaller screen"
+    ]
   },
   {
     "id": "redmi_pad_2_pro",
@@ -208,26 +365,63 @@
     "weight": 520,
     "stylus": true,
     "keyboard": true,
-    "colors": ["灰色", "藍色"],
+    "colors": [
+      "灰色",
+      "藍色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-pro",
     "salesBadge": "🔋 續航",
     "salesMsg": "超大電池，一整天不用充電",
     "salesMsgEn": "Massive battery — all-day use without charging",
     "targetUser": "學生、長途旅行者、注重續航的用戶",
     "targetUserEn": "Students, travelers, and battery-conscious users",
-    "scenario": ["media", "reading", "productivity"],
-    "scenarioEn": ["media", "reading", "productivity"],
-    "image": "assets/redmipad2pro.png",
+    "scenario": [
+      "media",
+      "reading",
+      "productivity"
+    ],
+    "scenarioEn": [
+      "media",
+      "reading",
+      "productivity"
+    ],
+    "image": "https://i02.appmifile.com/564_item_hk/17/09/2025/296160627fa569f2966561591ea51d45.png",
     "spec": "8GB+256GB",
     "variants": [
-      {"label": "", "ram": 8, "storage": 128, "price": 1999},
-      {"label": "", "ram": 8, "storage": 256, "price": 2199}
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 128,
+        "price": 1999
+      },
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 256,
+        "price": 2199
+      }
     ],
-    "extraVersions": ["Redmi Pad 2 Pro 柔光版"],
-    "pros": ["12000mAh超大電池", "支持手寫筆+鍵盤", "12.1吋大屏", "性價比高"],
-    "prosEn": ["12000mAh massive battery", "Stylus & keyboard support", "12.1\" large display", "Great value"],
-    "cons": ["機身偏重"],
-    "consEn": ["Heavier body"]
+    "extraVersions": [
+      "Redmi Pad 2 Pro 柔光版"
+    ],
+    "pros": [
+      "12000mAh超大電池",
+      "支持手寫筆+鍵盤",
+      "12.1吋大屏",
+      "性價比高"
+    ],
+    "prosEn": [
+      "12000mAh massive battery",
+      "Stylus & keyboard support",
+      "12.1\" large display",
+      "Great value"
+    ],
+    "cons": [
+      "機身偏重"
+    ],
+    "consEn": [
+      "Heavier body"
+    ]
   },
   {
     "id": "redmi_pad_2_pro_matte",
@@ -254,25 +448,56 @@
     "weight": 525,
     "stylus": true,
     "keyboard": true,
-    "colors": ["灰色"],
+    "colors": [
+      "灰色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-pro-matte",
     "salesBadge": "👁️ 護眼",
     "salesMsg": "柔光護眼，長時間使用不疲勞",
     "salesMsgEn": "Matte eye-care display — comfortable for all-day use",
     "targetUser": "學生、長時間閱讀用戶、送小朋友",
     "targetUserEn": "Students, avid readers, and gift for kids",
-    "scenario": ["reading", "productivity", "kids"],
-    "scenarioEn": ["reading", "productivity", "kids"],
-    "image": "assets/redmipad2pro_matte.png",
+    "scenario": [
+      "reading",
+      "productivity",
+      "kids"
+    ],
+    "scenarioEn": [
+      "reading",
+      "productivity",
+      "kids"
+    ],
+    "image": "https://i02.appmifile.com/564_item_hk/17/09/2025/296160627fa569f2966561591ea51d45.png",
     "spec": "8GB+256GB",
     "variants": [
-      {"label": "", "ram": 8, "storage": 256, "price": 2399}
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 256,
+        "price": 2399
+      }
     ],
     "extraVersions": [],
-    "pros": ["柔光護眼屏", "12000mAh大電池", "支持手寫筆+鍵盤", "性價比高"],
-    "prosEn": ["Matte anti-glare display", "12000mAh battery", "Stylus & keyboard support", "Great value"],
-    "cons": ["機身偏重", "顏色選擇少"],
-    "consEn": ["Heavier body", "Limited colors"]
+    "pros": [
+      "柔光護眼屏",
+      "12000mAh大電池",
+      "支持手寫筆+鍵盤",
+      "性價比高"
+    ],
+    "prosEn": [
+      "Matte anti-glare display",
+      "12000mAh battery",
+      "Stylus & keyboard support",
+      "Great value"
+    ],
+    "cons": [
+      "機身偏重",
+      "顏色選擇少"
+    ],
+    "consEn": [
+      "Heavier body",
+      "Limited colors"
+    ]
   },
   {
     "id": "redmi_pad_2_pro_5g",
@@ -299,25 +524,57 @@
     "weight": 530,
     "stylus": true,
     "keyboard": true,
-    "colors": ["灰色", "藍色"],
+    "colors": [
+      "灰色",
+      "藍色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-pro-5g",
     "salesBadge": "📶 5G",
     "salesMsg": "5G高速上網，移動辦公無憂",
     "salesMsgEn": "5G high-speed — work anywhere without limits",
     "targetUser": "戶外辦公者、需要隨時上網的用戶",
     "targetUserEn": "Remote workers and always-connected users",
-    "scenario": ["outdoor", "productivity", "media"],
-    "scenarioEn": ["outdoor", "productivity", "media"],
-    "image": "assets/redmipad2pro_5g.png",
+    "scenario": [
+      "outdoor",
+      "productivity",
+      "media"
+    ],
+    "scenarioEn": [
+      "outdoor",
+      "productivity",
+      "media"
+    ],
+    "image": "https://i02.appmifile.com/564_item_hk/17/09/2025/296160627fa569f2966561591ea51d45.png",
     "spec": "8GB+256GB",
     "variants": [
-      {"label": "", "ram": 8, "storage": 256, "price": 2699}
+      {
+        "label": "",
+        "ram": 8,
+        "storage": 256,
+        "price": 2699
+      }
     ],
     "extraVersions": [],
-    "pros": ["5G插卡", "12000mAh大電池", "支持手寫筆+鍵盤", "隨時上網"],
-    "prosEn": ["5G cellular", "12000mAh battery", "Stylus & keyboard support", "Always connected"],
-    "cons": ["機身偏重", "價格較高"],
-    "consEn": ["Heavier body", "Higher price"]
+    "pros": [
+      "5G插卡",
+      "12000mAh大電池",
+      "支持手寫筆+鍵盤",
+      "隨時上網"
+    ],
+    "prosEn": [
+      "5G cellular",
+      "12000mAh battery",
+      "Stylus & keyboard support",
+      "Always connected"
+    ],
+    "cons": [
+      "機身偏重",
+      "價格較高"
+    ],
+    "consEn": [
+      "Heavier body",
+      "Higher price"
+    ]
   },
   {
     "id": "redmi_pad_2",
@@ -344,26 +601,63 @@
     "weight": 465,
     "stylus": false,
     "keyboard": false,
-    "colors": ["灰色", "綠色"],
+    "colors": [
+      "灰色",
+      "綠色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2",
     "salesBadge": "💰 超值",
     "salesMsg": "千元級別最佳選擇",
     "salesMsgEn": "Best pick under HK$1,500",
     "targetUser": "預算有限的用戶、學生、長輩",
     "targetUserEn": "Budget-conscious users, students, and seniors",
-    "scenario": ["media", "reading", "kids"],
-    "scenarioEn": ["media", "reading", "kids"],
-    "image": "assets/redmipad2.png",
+    "scenario": [
+      "media",
+      "reading",
+      "kids"
+    ],
+    "scenarioEn": [
+      "media",
+      "reading",
+      "kids"
+    ],
+    "image": "https://i02.appmifile.com/249_item_hk/30/05/2025/a1d23ee876cababbd4deed1dfa682ce3.png",
     "spec": "4GB+128GB",
     "variants": [
-      {"label": "", "ram": 4, "storage": 128, "price": 1199},
-      {"label": "", "ram": 6, "storage": 128, "price": 1299}
+      {
+        "label": "",
+        "ram": 4,
+        "storage": 128,
+        "price": 1199
+      },
+      {
+        "label": "",
+        "ram": 6,
+        "storage": 128,
+        "price": 1299
+      }
     ],
     "extraVersions": [],
-    "pros": ["價格實惠", "10.6吋大屏", "7000mAh續航"],
-    "prosEn": ["Affordable price", "10.6\" large display", "7000mAh battery life"],
-    "cons": ["不支持手寫筆", "不支持鍵盤", "刷新率較低"],
-    "consEn": ["No stylus", "No keyboard", "Lower refresh rate"]
+    "pros": [
+      "價格實惠",
+      "10.6吋大屏",
+      "7000mAh續航"
+    ],
+    "prosEn": [
+      "Affordable price",
+      "10.6\" large display",
+      "7000mAh battery life"
+    ],
+    "cons": [
+      "不支持手寫筆",
+      "不支持鍵盤",
+      "刷新率較低"
+    ],
+    "consEn": [
+      "No stylus",
+      "No keyboard",
+      "Lower refresh rate"
+    ]
   },
   {
     "id": "redmi_pad_2_97",
@@ -390,26 +684,63 @@
     "weight": 370,
     "stylus": false,
     "keyboard": false,
-    "colors": ["灰色", "銀色"],
+    "colors": [
+      "灰色",
+      "銀色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-97",
     "salesBadge": "🏃 便攜",
     "salesMsg": "輕巧隨行，通勤好夥伴",
     "salesMsgEn": "Lightweight companion for your daily commute",
     "targetUser": "通勤族、追劇黨、給長輩使用",
     "targetUserEn": "Commuters, binge-watchers, and gift for seniors",
-    "scenario": ["reading", "media", "portable"],
-    "scenarioEn": ["reading", "media", "portable"],
-    "image": "assets/redmipad2_97.png",
+    "scenario": [
+      "reading",
+      "media",
+      "portable"
+    ],
+    "scenarioEn": [
+      "reading",
+      "media",
+      "portable"
+    ],
+    "image": "https://i02.appmifile.com/249_item_hk/30/05/2025/a1d23ee876cababbd4deed1dfa682ce3.png",
     "spec": "4GB+64GB",
     "variants": [
-      {"label": "", "ram": 4, "storage": 64, "price": 999},
-      {"label": "", "ram": 4, "storage": 128, "price": 1099}
+      {
+        "label": "",
+        "ram": 4,
+        "storage": 64,
+        "price": 999
+      },
+      {
+        "label": "",
+        "ram": 4,
+        "storage": 128,
+        "price": 1099
+      }
     ],
     "extraVersions": [],
-    "pros": ["370g超輕", "9.7吋便攜", "價格實惠"],
-    "prosEn": ["370g ultra-light", "9.7\" portable", "Affordable price"],
-    "cons": ["不支持手寫筆", "不支持鍵盤", "電池較小"],
-    "consEn": ["No stylus", "No keyboard", "Smaller battery"]
+    "pros": [
+      "370g超輕",
+      "9.7吋便攜",
+      "價格實惠"
+    ],
+    "prosEn": [
+      "370g ultra-light",
+      "9.7\" portable",
+      "Affordable price"
+    ],
+    "cons": [
+      "不支持手寫筆",
+      "不支持鍵盤",
+      "電池較小"
+    ],
+    "consEn": [
+      "No stylus",
+      "No keyboard",
+      "Smaller battery"
+    ]
   },
   {
     "id": "redmi_pad_2_kids",
@@ -436,24 +767,58 @@
     "weight": 470,
     "stylus": false,
     "keyboard": false,
-    "colors": ["紫色", "綠色"],
+    "colors": [
+      "紫色",
+      "綠色"
+    ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-kids",
     "salesBadge": "👶 兒童",
     "salesMsg": "守護孩子視力的學習好夥伴",
     "salesMsgEn": "A learning companion that protects kids' eyes",
     "targetUser": "送小朋友、家庭教育、早教學習",
     "targetUserEn": "Kids, family education, and early learning",
-    "scenario": ["kids", "reading", "media"],
-    "scenarioEn": ["kids", "reading", "media"],
-    "image": "assets/redmipad2_kids.png",
+    "scenario": [
+      "kids",
+      "reading",
+      "media"
+    ],
+    "scenarioEn": [
+      "kids",
+      "reading",
+      "media"
+    ],
+    "image": "https://i02.appmifile.com/249_item_hk/30/05/2025/a1d23ee876cababbd4deed1dfa682ce3.png",
     "spec": "4GB+128GB",
     "variants": [
-      {"label": "", "ram": 4, "storage": 128, "price": 1399}
+      {
+        "label": "",
+        "ram": 4,
+        "storage": 128,
+        "price": 1399
+      }
     ],
     "extraVersions": [],
-    "pros": ["柔光護眼屏", "含保護殼+繪畫筆", "8000mAh大電池", "兒童模式"],
-    "prosEn": ["Matte eye-care display", "Case + drawing pen included", "8000mAh battery", "Kids mode"],
-    "cons": ["不支持手寫筆", "不支持鍵盤", "性能入門級"],
-    "consEn": ["No stylus", "No keyboard", "Entry-level performance"]
+    "pros": [
+      "柔光護眼屏",
+      "含保護殼+繪畫筆",
+      "8000mAh大電池",
+      "兒童模式"
+    ],
+    "prosEn": [
+      "Matte eye-care display",
+      "Case + drawing pen included",
+      "8000mAh battery",
+      "Kids mode"
+    ],
+    "cons": [
+      "不支持手寫筆",
+      "不支持鍵盤",
+      "性能入門級"
+    ],
+    "consEn": [
+      "No stylus",
+      "No keyboard",
+      "Entry-level performance"
+    ]
   }
 ]
