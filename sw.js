@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tablet-2026-v3';
+const CACHE_NAME = 'tablet-2026-v4';
 
 // 需要缓存的核心资源
 const CORE_ASSETS = [
