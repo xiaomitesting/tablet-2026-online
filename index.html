@@ -159,7 +159,7 @@
                 <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-16 -mb-16"></div>
                 <div class="relative z-10">
                     <p class="text-orange-100 text-sm mb-2" data-i18n="home.welcome">👋 歡迎使用</p>
-                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">平板電腦</span><br class="sm:hidden" data-i18n="home.heroTitle">智能選購助手</h1>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">平板電腦</span><span data-i18n="home.heroTitle"></span><br class="sm:hidden" data-i18n="home.heroTitle">智能選購助手</h1>
                     <p class="text-orange-100 text-sm sm:text-base mb-6" data-i18n="home.heroDesc">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
                     <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base" data-i18n="home.heroBtn">
                         🎯 開始智能推薦
@@ -323,7 +323,7 @@
                 <span class="text-3xl">🎁</span>
                 <div>
                     <div class="font-bold text-sm sm:text-base" data-i18n="promo.title">限時優惠：購買任意平板即送保護殼</div>
-                    <div class="text-xs sm:text-sm text-white/80">額外加購手寫筆或鍵盤再減 HK$100</div>
+                    <div class="text-xs sm:text-sm text-white/80"><span data-i18n="promo.desc">額外加購手寫筆或鍵盤再減 HK$100</span></div>
                 </div>
             </div>
             <span class="text-xs bg-white/20 px-3 py-1 rounded-full whitespace-nowrap" data-i18n="promo.note">價錢優惠詳情請參考官網</span>
@@ -399,20 +399,20 @@ zh: {
 'catalog.filterLabel':'篩選：','catalog.filterAll':'全部',
 'catalog.sortPriceAsc':'價格 低→高','catalog.sortPriceDesc':'價格 高→低','catalog.sortRating':'評分最高','catalog.sortScreen':'螢幕最大',
 'catalog.screen':'螢幕:','catalog.chip':'芯片:','catalog.storage':'存儲:','catalog.battery':'電池:',
-'catalog.colorsLabel':'顏色：','catalog.compareLabel':'橫向對比',
+'catalog.colorsLabel':'<span data-i18n="catalog.colorsLabel">顏色：</span>','catalog.compareLabel':'橫向對比',
 'compare.selectLabel':'選擇機型（最多3款，至少2款）',
 'guide.budgetTitle':'📌 按預算選','guide.personaTitle':'👤 你是哪種人？選這款！','guide.tipsTitle':'📌 購買小貼士',
 'guide.budget1':'💰 入門級 (HK$1,500以下)','guide.budget2':'💰💰 中階 (HK$1,500-$3,000)','guide.budget3':'💰💰💰 旗艦 (HK$3,000以上)',
 'guide.altLabel':'備選：',
 'calc.budgetLabel':'平板預算區間','calc.accessoryLabel':'預算配件（+HK$500）',
 'fav.emptyTitle':'還沒有收藏任何平板','fav.emptyDesc':'在產品目錄中點擊 🤍 即可收藏',
-'promo.title':'限時優惠：購買任意平板即送保護殼','promo.desc':'額外加購手寫筆或鍵盤再減 HK$100','promo.note':'詳情請參考門市',
+'promo.title':'限時優惠：購買任意平板即送保護殼','promo.desc':'<span data-i18n="promo.desc">額外加購手寫筆或鍵盤再減 HK$100</span>','promo.note':'詳情請參考門市',
 'footer':'© 2026 小米之家香港 · 數據僅供參考',
 'detail.screen':'螢幕','detail.chip':'芯片','detail.batteryCharging':'電池/充電','detail.storage':'存儲',
 'detail.weight':'重量','detail.rating':'評分','detail.configSelect':'配置選擇','detail.colorSelect':'可選顏色',
 'detail.pros':'✅ 優點','detail.cons':'⚠️ 注意','detail.suitable':'適合：',
 'detail.promoTitle':'🎁 限時優惠',
-'detail.promoDesc':'購買即送保護殼 · 額外加購手寫筆或鍵盤再減 HK$100',
+'detail.promoDesc':'購買即送保護殼 · <span data-i18n="promo.desc">額外加購手寫筆或鍵盤再減 HK$100</span>',
 'detail.promoNote':'詳情請參考門市','detail.backBtn':'返回瀏覽',
 'persona.office':'辦公族','persona.gamer':'手遊玩家','persona.mediaFan':'追劇達人','persona.student':'學生黨',
 'persona.kids':'送小朋友','persona.commute':'通勤族','persona.sim':'需要電話卡功能','persona.senior':'送長輩',
@@ -426,9 +426,9 @@ en: {
 'nav.home':'🏠 Home','nav.quiz':'🎯 Smart Pick','nav.catalog':'📱 All Models','nav.guide':'📖 Guide','nav.calculator':'🧮 Budget','nav.favorites':'❤️ Favs','nav.compare':'⚖️ Compare',
 'mob.home':'🏠 Home','mob.quiz':'🎯 Pick','mob.catalog':'📱 Models','mob.guide':'📖 Guide','mob.calculator':'🧮 Calc','mob.favorites':'❤️ Favs','mob.compare':'⚖️ Compare',
 'home.findTitle':'Find Your Perfect Xiaomi Tablet','home.findSubtitle':'Answer 7 quick questions and get the best recommendation.',
-'home.welcome':'👋 Welcome to','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
+'home.welcome':'👋 Welcome to','home.heroTablet':'Tablet','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
 'home.heroDesc':'Answer a few simple questions to find your ideal Xiaomi tablet. Covers the full Xiaomi Pad lineup and Redmi Pad, from entry-level to flagship.',
-'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Top',
+'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Hot',
 'home.heroBtn':'🎯 Start Smart Recommendation',
 'home.featureQuiz':'Smart Pick','home.featureCatalog':'All Models','home.featureGuide':'Buying Guide','home.featureCalc':'Budget Calc','home.featureCompare':'Compare',
 'home.featureQuizDesc':'7-step quiz<br>Multi-select','home.featureCatalogDesc':'Browse all tablets<br>Filter, sort & compare','home.featureGuideDesc':'By budget & scenario<br>Quick picks','home.featureCalcDesc':'Drag the slider<br>Instant match','home.featureCompareDesc':'Side-by-side specs<br>At a glance',
@@ -650,7 +650,7 @@ function renderHome() {
     if (recContainer) {
         recContainer.innerHTML = top3.map((p, i) => `
             <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all cursor-pointer relative overflow-hidden" onclick="openDetailModal('${p.id}')">
-                <div class="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">#${i+1} 熱門</div>
+                <div class="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">#${i+1} <span data-i18n="home.topBadge">熱門</span></div>
                 <div class="p-4">
                     ${p.image ? `<img src="${p.image}" alt="${pName(p)}" class="product-img mb-3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
                     <div class="product-img-fallback mb-3 ${p.image ? 'hidden' : ''}" style="background:linear-gradient(135deg,${p.series==='Xiaomi'?'#FF6700,#FF8533':'#EF4444,#F87171'})">${p.name.replace(/Xiaomi |REDMI /i,'')}</div>
@@ -666,7 +666,7 @@ function renderHome() {
                     <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${chipLabel(p.chip)}</span>
                     <span class="text-[10px] bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
-                ${p.colors ? `<div class="flex items-center gap-1.5 mt-2"><span class="text-[10px] text-gray-400">顏色：</span>${p.colors.map(c=>{const m={'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${m[c]||'#CCC'}"></span>${c}</span>`}).join('')}</div>` : ''}
+                ${p.colors ? `<div class="flex items-center gap-1.5 mt-2"><span class="text-[10px] text-gray-400"><span data-i18n="catalog.colorsLabel">顏色：</span></span>${p.colors.map(c=>{const m={'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${m[c]||'#CCC'}"></span>${c}</span>`}).join('')}</div>` : ''}
                 </div>
             </div>
         `).join('');
@@ -1287,7 +1287,7 @@ function renderCatalog(filter='all') {
                 </div>
                 ${p.colors ? `
                 <div class="flex items-center gap-2 mt-2.5">
-                    <span class="text-[10px] text-gray-400">顏色：</span>
+                    <span class="text-[10px] text-gray-400"><span data-i18n="catalog.colorsLabel">顏色：</span></span>
                     <div class="flex flex-wrap gap-1">
                         ${p.colors.map(c => {
                             const colorMap = {'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};
@@ -2060,7 +2060,7 @@ function openDetailModal(id) {
                         <span class="text-lg">🎁</span>
                         <span class="font-bold text-sm text-red-600">限時優惠</span>
                     </div>
-                    <p class="text-xs text-gray-600">購買即送保護殼 · 額外加購手寫筆或鍵盤再減 HK$100</p>
+                    <p class="text-xs text-gray-600">購買即送保護殼 · <span data-i18n="promo.desc">額外加購手寫筆或鍵盤再減 HK$100</span></p>
                     <p class="text-[10px] text-gray-400 mt-1">價錢優惠詳情請參考官網</p>
                 </div>
 
