@@ -643,12 +643,10 @@ window.onload = async function() {
 // 3.5 首頁渲染
 // ============================================================
 function renderHome() {
-    // Update hero i18n elements
-    document.querySelectorAll('#section-home [data-i18n]').forEach(function(el) {
-        var k = el.getAttribute('data-i18n');
-        var v = t(k);
-        if (v !== k) { if (el.querySelector("br") || v.includes("<br>")) el.innerHTML = v; else el.textContent = v; }
-    });
+    // NOTE: Do NOT translate #section-home [data-i18n] here.
+    // Using textContent on a parent element destroys child <span data-i18n> nodes,
+    // so applyI18n() at the end of this function can no longer find them.
+    // All i18n is handled by the applyI18n() call at the bottom of this function.
     // 渲染人氣推薦 Top 3（按評分排序）
     const top3 = [...products].sort((a, b) => b.rating - a.rating).slice(0, 3);
     const recContainer = document.getElementById('home-recommendations');
