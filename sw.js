@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tablet-2026-v10';
+const CACHE_NAME = 'tablet-2026-v11';
 
 const CORE_ASSETS = [
   './',
@@ -25,6 +25,8 @@ self.addEventListener('install', event => {
       .then(cache => cache.addAll(CORE_ASSETS))
       .then(() => self.skipWaiting())
   );
+  // 強制立即跳過等待，激活新 SW
+  self.skipWaiting();
 });
 
 // ─── 激活：清舊緩存 + 強制所有頁面刷新 ───
@@ -37,6 +39,7 @@ self.addEventListener('activate', event => {
       )
     ).then(() => self.clients.claim())
   );
+
   // 通知所有已打開的頁面：有新版，請刷新
   event.waitUntil(
     self.clients.matchAll({ type: 'window' }).then(clients => {

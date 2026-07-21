@@ -1173,21 +1173,21 @@ function showRecommendation() {
         <div class="slide-up">
             <h3 class="text-xl font-bold text-gray-900 mb-4">💡 ${t('rec.alts')}</h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                ${runnerUps.map(r=>`
+                ${runnerUps.filter(r=>r&&r.product).map(r=>`
                     <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="px-2 py-0.5 bg-red-50 text-red-600 rounded text-xs font-bold">${r.product.salesBadge}</span>
-                            <span class="text-sm font-bold text-miOrange">HK$${r.product.price.toLocaleString()}</span>
+                            <span class="px-2 py-0.5 bg-red-50 text-red-600 rounded text-xs font-bold">${r.product.salesBadge||''}</span>
+                            <span class="text-sm font-bold text-miOrange">HK$${(r.product.price||0).toLocaleString()}</span>
                         </div>
-                        <h4 class="font-bold text-gray-900 mb-1">${r.product.name}</h4>
-                        <p class="text-xs text-gray-400 mb-1">${r.product.tag}</p>
-                        <p class="text-xs text-miOrange font-semibold mb-2">「${r.product.salesMsg}」</p>
-                        <p class="text-xs text-gray-600 line-clamp-2 mb-2">${r.product.desc}</p>
+                        <h4 class="font-bold text-gray-900 mb-1">${r.product.name||''}</h4>
+                        <p class="text-xs text-gray-400 mb-1">${r.product.tag||''}</p>
+                        <p class="text-xs text-miOrange font-semibold mb-2">「${r.product.salesMsg||''}」</p>
+                        <p class="text-xs text-gray-600 line-clamp-2 mb-2">${r.product.desc||''}</p>
                         ${r.product.targetUser ? `<p class="text-[11px] text-orange-600 mb-2">👤 ${r.product.targetUser}</p>` : ''}
                         <div class="flex justify-between items-center border-t border-gray-100 pt-3">
-                            <span class="text-xs text-gray-500">${r.product.size.split('(')[0]}</span>
+                            <span class="text-xs text-gray-500">${(r.product.size||'').split('(')[0]}</span>
                             <div class="flex gap-2">
-                                <button onclick="toggleFav('${r.product.id}')" class="text-sm">${favorites.includes(r.product.id)?'❤️':'🤍'}</button>
+                                <button onclick="toggleFav('${r.product.id||''}')" class="text-sm">${favorites.includes(r.product.id)?'❤️':'🤍'}</button>
                             </div>
                         </div>
                     </div>
@@ -2186,6 +2186,6 @@ document.addEventListener('keydown', function(e) {
         }
     </script>
     <!-- 版本标记：用于调试部署是否生效 -->
-    <meta name="app-version" content="v10-debug">
+    <meta name="app-version" content="v11-fix">
 </body>
 </html>
