@@ -2,7 +2,6 @@ const CACHE_NAME = 'tablet-2026-v11';
 
 const CORE_ASSETS = [
   './',
-  './index.html',
   './style.css',
   './css/style.css',
   './js/data/products.json',
