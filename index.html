@@ -555,6 +555,18 @@ const BUDGETS = [
 ];
 
 // ============================================================
+// 1.5 芯片分級（全局可用）
+// ============================================================
+function chipTier(chip) {
+    if (!chip) return 0;
+    if (chip.includes('8 Elite')) return 5;
+    if (chip.includes('9400')) return 4;
+    if (chip.includes('8s Gen')) return 3;
+    if (chip.includes('7s Gen')) return 2;
+    return 1;
+}
+
+// ============================================================
 // 2. 狀態管理
 // ============================================================
 let currentTab = 'home';
@@ -1666,14 +1678,6 @@ function renderCompareTable() {
     // ══════════════════════════════════════════════
     // 1. 產品畫像 — 每款產品提取關鍵特徵
     // ══════════════════════════════════════════════
-    const chipTier = (chip) => {
-        if (!chip) return 0;
-        if (chip.includes('8 Elite')) return 5;
-        if (chip.includes('9400')) return 4;
-        if (chip.includes('8s Gen')) return 3;
-        if (chip.includes('7s Gen')) return 2;
-        return 1;
-    };
     const budgetLevel = (price) => price < 1600 ? 'budget' : price < 3000 ? 'mid' : 'premium';
     const perfLevel = (chip) => { const t = chipTier(chip); return t >= 4 ? 'flagship' : t >= 3 ? 'upper' : t >= 2 ? 'mid' : 'entry'; };
 
