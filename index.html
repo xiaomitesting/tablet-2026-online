@@ -693,6 +693,7 @@ function switchTab(tab) {
         }
     });
     if (tab === 'home') renderHome();
+    if (tab === 'quiz') renderQuiz();
     if (tab === 'catalog') renderCatalog(currentCatalogFilter);
     if (tab === 'guide') renderGuide();
     if (tab === 'calculator') renderCalculator();
@@ -1088,6 +1089,21 @@ function showRecommendation() {
         console.error('❌ QuizData 模組未載入！');
     }
 
+    // 防禦：products 為空或無結果時顯示錯誤提示
+    if (!results || results.length === 0) {
+        rc.innerHTML = `
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden p-4 sm:p-10 relative fade-in">
+                <div class="text-center py-8">
+                    <div class="text-5xl mb-4">⚠️</div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">載入失敗</h2>
+                    <p class="text-gray-500 mb-6 max-w-md mx-auto">產品數據未能載入，請檢查網絡連接後刷新頁面重試。</p>
+                    <button onclick="resetQuiz();location.reload();" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">🔄 刷新頁面</button>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
     const top = results[0], runnerUps = results.slice(1,4);
     currentQuizResults = { top, runnerUps };
     const stats = typeof QuizData !== 'undefined' ? QuizData.getStats() : null;
@@ -1095,7 +1111,7 @@ function showRecommendation() {
 
     // 最低契合度門檻：低於15%不推薦
     const MIN_SCORE = 15;
-    if (top.score < MIN_SCORE) {
+    if (!top || top.score < MIN_SCORE) {
         rc.innerHTML = `
             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden p-4 sm:p-10 relative fade-in">
                 <div class="absolute top-4 right-4 bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full">暫無合適推薦</div>
