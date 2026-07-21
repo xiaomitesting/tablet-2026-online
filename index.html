@@ -616,21 +616,26 @@ async function manualSync() {
 }
 
 window.onload = async function() {
-    var savedLang = localStorage.getItem('mi_tablet_lang');
-    if (savedLang) currentLang = savedLang;
-    document.documentElement.setAttribute('data-lang', currentLang);
-    document.getElementById('lang-label').textContent = currentLang === 'zh' ? 'EN' : '中';
-    applyI18n();
-    await loadProducts();
-    renderHome();
-    renderQuiz();
-    renderCatalog('all');
-    updateFavBadge();
-    if (localStorage.getItem('mi_dark_mode') === 'true') {
-        document.body.classList.add('dark');
-        document.body.setAttribute('data-theme', 'dark');
-        var btn = document.getElementById('dark-toggle');
-        if (btn) btn.textContent = '☀️';
+    try {
+        var savedLang = localStorage.getItem('mi_tablet_lang');
+        if (savedLang) currentLang = savedLang;
+        document.documentElement.setAttribute('data-lang', currentLang);
+        document.getElementById('lang-label').textContent = currentLang === 'zh' ? 'EN' : '中';
+        applyI18n();
+        await loadProducts();
+        renderHome();
+        renderQuiz();
+        renderCatalog('all');
+        updateFavBadge();
+        if (localStorage.getItem('mi_dark_mode') === 'true') {
+            document.body.classList.add('dark');
+            document.body.setAttribute('data-theme', 'dark');
+            var btn = document.getElementById('dark-toggle');
+            if (btn) btn.textContent = '☀️';
+        }
+    } catch(err) {
+        console.error('❌ Page init error:', err);
+        document.body.innerHTML = '<div style="padding:40px;text-align:center;font-family:sans-serif;"><h2>⚠️ 頁面載入錯誤</h2><p style="color:#666;margin:16px 0;">' + err.message + '</p><p style="color:#999;font-size:13px;">請截圖發給開發者排查</p><pre style="text-align:left;background:#f5f5f5;padding:12px;border-radius:8px;font-size:12px;overflow:auto;max-height:300px;">' + err.stack + '</pre></div>';
     }
 };
 
@@ -2158,30 +2163,31 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
     <script>
+        // 监听 SW 更新消息，强制刷新
         if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', event => {
+                if (event.data && event.data.type === 'SW_UPDATED') {
+                    console.log('🔄 New SW detected, reloading...');
+                    location.reload();
+                }
+            });
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').then(reg => {
                     console.log('SW registered:', reg.scope);
-                    // 检查是否有新版本
                     reg.addEventListener('updatefound', () => {
                         const newWorker = reg.installing;
                         newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // 新 SW 已安装，旧 SW 还在运行 → 强制激活并刷新
-                                newWorker.postMessage({ type: 'skip-waiting' });
-                                setTimeout(() => location.reload(), 300);
+                            if (newWorker.state === 'activated' && navigator.serviceWorker.controller) {
+                                // 新 SW 已激活 → 刷新页面获取新内容
+                                location.reload();
                             }
                         });
                     });
                 }).catch(err => console.log('SW failed:', err));
-                // 监听 SW 发来的「有新版本」消息
-                navigator.serviceWorker.addEventListener('message', event => {
-                    if (event.data && event.data.type === 'sw-version-update') {
-                        location.reload();
-                    }
-                });
             });
         }
     </script>
+    <!-- 版本标记：用于调试部署是否生效 -->
+    <meta name="app-version" content="v10-debug">
 </body>
 </html>
