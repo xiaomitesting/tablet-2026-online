@@ -413,8 +413,8 @@ zh: {
 'detail.pros':'✅ 優點','detail.cons':'⚠️ 注意','detail.suitable':'適合：',
 'detail.promoTitle':'🎁 限時優惠',
 'detail.promoDesc':'購買即送保護殼 · <span data-i18n="promo.desc">額外加購手寫筆或鍵盤再減 HK$100</span>',
-'detail.promoNote':'詳情請參考門市','detail.backBtn':'返回瀏覽',
-'persona.office':'辦公族','persona.gamer':'手遊玩家','persona.mediaFan':'追劇達人','persona.student':'學生黨',
+'detail.promoNote':'詳情請參考門市','detail.battery':'電池','detail.charging':'充電','compare.tag':'定位','compare.panel':'面板類型','compare.matte':'柔光版','compare.refreshRate':'刷新率','compare.stylus':'手寫筆','compare.keyboard':'鍵盤','compare.scenario':'適用場景','compare.colors':'可選顏色','compare.suitable':'適合人群','compare.summary':'對比摘要','guide.stylusTip':'手寫筆需求','guide.keyboardTip':'鍵盤需求','guide.matteTip':'護眼柔光屏','guide.storageTip':'存儲選擇','guide.warrantyTip':'售後保障','guide.5gTip':'5G需求','calc.found':'找到','calc.models':'款符合條件的平板','calc.accessory':'預算配件','detail.backBtn':'返回瀏覽',
+'persona.office':'辦公族','persona.gamer':'手遊玩家','persona.mediaFan':'追劇達人','persona.student':'學生黨','persona.artist':'繪圖達人',
 'persona.kids':'送小朋友','persona.commute':'通勤族','persona.sim':'需要電話卡功能','persona.senior':'送長輩',
 'cs.productivity':'辦公/學習','cs.gaming':'遊戲電競','cs.media':'影音娛樂','cs.creative':'創意設計',
 'cs.reading':'閱讀','cs.portable':'便攜出行','cs.kids':'兒童教育','cs.outdoor':'戶外辦公',
@@ -487,8 +487,8 @@ en: {
 'detail.pros':'✅ Pros','detail.cons':'⚠️ Cons','detail.suitable':'Ideal for:',
 'detail.promoTitle':'🎁 Limited Offer',
 'detail.promoDesc':'Free case with purchase · Add stylus or keyboard and save HK$100',
-'detail.promoNote':'See in-store for details','detail.backBtn':'Back',
-'persona.office':'Office Worker','persona.gamer':'Gamer','persona.mediaFan':'Binge Watcher','persona.student':'Student',
+'detail.promoNote':'See in-store for details','detail.battery':'Battery','detail.charging':'Charging','compare.tag':'Position','compare.panel':'Panel Type','compare.matte':'Matte','compare.refreshRate':'Refresh Rate','compare.stylus':'Stylus','compare.keyboard':'Keyboard','compare.scenario':'Scenarios','compare.colors':'Colors','compare.suitable':'Best For','compare.summary':'Comparison Summary','guide.stylusTip':'Stylus Support','guide.keyboardTip':'Keyboard Support','guide.matteTip':'Matte Anti-glare','guide.storageTip':'Storage','guide.warrantyTip':'Warranty','guide.5gTip':'5G Support','calc.found':'Found','calc.models':'tablets matching your criteria','calc.accessory':'Accessories','detail.backBtn':'Back',
+'persona.office':'Office Worker','persona.gamer':'Gamer','persona.mediaFan':'Binge Watcher','persona.student':'Student','persona.artist':'Artist',
 'persona.kids':'Gift for Kids','persona.commute':'Commuter','persona.sim':'Needs SIM Card','persona.senior':'Gift for Seniors',
 'cs.productivity':'Office / Study','cs.gaming':'Gaming','cs.media':'Media & Video','cs.creative':'Creative',
 'cs.reading':'Reading','cs.portable':'Portable','cs.kids':'Kids Education','cs.outdoor':'Outdoor',
@@ -671,6 +671,7 @@ function renderHome() {
             </div>
         `).join('');
     }
+    applyI18n();
 }
 
 // ============================================================
@@ -902,10 +903,10 @@ function showRecommendationFromCache() {
             ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>${t('detail.suitable')}</strong>${pTargetUser(top.product)}</span></div>` : ''}
             ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${scenarioLabels[s]||s}</span>`).join('')}</div>` : ''}
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
-                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400" data-i18n="detail.screen">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400" data-i18n="detail.chip">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400" data-i18n="detail.battery">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
+                <div><span class="text-xs font-semibold text-gray-400" data-i18n="detail.charging">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
                 <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
             </div>
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
@@ -1135,10 +1136,10 @@ function showRecommendation() {
             ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>適合人群：</strong>${top.product.targetUser}</span></div>` : ''}
             ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => {const labels = {productivity:'💼 辦公',gaming:'🎮 遊戲',media:'🎬 影音',creative:'🎨 創意',reading:'📖 閱讀',portable:'🏃 便攜',kids:'👶 兒童',outdoor:'🏕️ 戶外'}; return `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${labels[s]||s}</span>`;}).join('')}</div>` : ''}
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
-                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400" data-i18n="detail.screen">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400" data-i18n="detail.chip">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400" data-i18n="detail.battery">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
+                <div><span class="text-xs font-semibold text-gray-400" data-i18n="detail.charging">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
                 <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
             </div>
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
@@ -1233,6 +1234,7 @@ function renderQuizStats(stats) {
             <div id="sync-status" style="margin-top:8px;text-align:center;font-size:11px;color:#6B7280;"></div>
         </div>
     `;
+    applyI18n();
 }
 
 // ============================================================
@@ -1308,6 +1310,7 @@ function renderCatalog(filter='all') {
             </div>
         </div>
     `).join('');
+    applyI18n();
 }
 
 function filterCatalog(f) { renderCatalog(f); }
@@ -1386,14 +1389,14 @@ function renderGuide() {
 
     // 人物角色推薦
     const personas = [
-        { icon:'👨\u200D💻', title:'辦公族', primary:'pad_8_pro', secondary:'pad_8_pro_matte', reason:'手寫筆+鍵盤全配備' },
-        { icon:'🎮', title:'手遊玩家', primary:'pad_mini', secondary:'pad_8_pro', reason:'165Hz電競屏+旗艦芯片' },
+        { icon:'👨\u200D💻', title:t('persona.office'), primary:'pad_8_pro', secondary:'pad_8_pro_matte', reason:'手寫筆+鍵盤全配備' },
+        { icon:'🎮', title:t('persona.gamer'), primary:'pad_mini', secondary:'pad_8_pro', reason:'165Hz電競屏+旗艦芯片' },
         { icon:'🎬', title:'追劇達人', primary:'pad_8', secondary:'pad_8_pro', reason:'四揚聲器+大屏' },
-        { icon:'📚', title:'學生黨', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_pro_matte', reason:'支持手寫筆+鍵盤' },
-        { icon:'👶', title:'送小朋友', primary:'redmi_pad_2_kids', secondary:'redmi_pad_2_97', reason:'柔光護眼+保護殼+繪畫筆' },
-        { icon:'🏃', title:'通勤族', primary:'redmi_pad_2_97', secondary:'pad_mini', reason:'輕巧機身+長續航' },
-        { icon:'🏕️', title:'需要電話卡功能', primary:'redmi_pad_2_pro_5g', secondary:'redmi_pad_2', reason:'5G插卡即用+12000mAh' },
-        { icon:'👴', title:'送長輩', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_97', reason:'大屏+高性價比' }
+        { icon:'📚', title:t('persona.student'), primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_pro_matte', reason:'支持手寫筆+鍵盤' },
+        { icon:'👶', title:t('persona.kids'), primary:'redmi_pad_2_kids', secondary:'redmi_pad_2_97', reason:'柔光護眼+保護殼+繪畫筆' },
+        { icon:'🏃', title:t('persona.commute'), primary:'redmi_pad_2_97', secondary:'pad_mini', reason:'輕巧機身+長續航' },
+        { icon:'🏕️', title:t('persona.sim'), primary:'redmi_pad_2_pro_5g', secondary:'redmi_pad_2', reason:'5G插卡即用+12000mAh' },
+        { icon:'👴', title:t('persona.senior'), primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_97', reason:'大屏+高性價比' }
     ];
     const personaHtml = personas.map(p => {
         const pp = products.find(x => x.id === p.primary);
@@ -1433,11 +1436,12 @@ function renderGuide() {
                 <div class="flex gap-2"><span>✅</span><div><strong>鍵盤需求</strong><br>${keyboardProducts.length > 0 ? keyboardProducts.map(p => p.name).join('、') + ' 支持' : '暫無支持鍵盤的機型'}</div></div>
                 ${has5G ? `<div class="flex gap-2"><span>✅</span><div><strong>5G需求</strong><br>${products.filter(p=>p.id.includes('5g')).map(p=>p.name).join('、')} 支持5G SIM</div></div>` : ''}
                 ${hasMatte ? `<div class="flex gap-2"><span>✅</span><div><strong>護眼柔光屏</strong><br>${products.filter(p=>p.panel&&p.panel.includes('柔光')).map(p=>p.name).join('、')} — 長時間使用更護眼</div></div>` : ''}
-                <div class="flex gap-2"><span>✅</span><div><strong>存儲選擇</strong><br>128GB 日常夠用，256GB 更從容</div></div>
-                <div class="flex gap-2"><span>✅</span><div><strong>售後保障</strong><br>香港官網享官方保修</div></div>
+                <div class="flex gap-2"><span>✅</span><div><strong data-i18n="guide.storageTip">存儲選擇</strong><br>128GB 日常夠用，256GB 更從容</div></div>
+                <div class="flex gap-2"><span>✅</span><div><strong data-i18n="guide.warrantyTip">售後保障</strong><br>香港官網享官方保修</div></div>
             </div>
         </div>
     `;
+    applyI18n();
 }
 
 // ============================================================
@@ -1474,6 +1478,7 @@ function renderCalculator() {
         <div id="calc-results"></div>
     `;
     updateCalcResults();
+    applyI18n();
 }
 
 // 輕量更新：拖動滑桿時只更新數值和產品列表，不重建 DOM
@@ -1502,7 +1507,7 @@ function updateCalcResults() {
     const totalMax = calcBudgetMax + (calcAccessory?500:0);
     const matched = products.filter(p=>p.price>=totalMin && p.price<=totalMax).sort((a,b)=>b.rating-a.rating);
     el.innerHTML = matched.length?`
-        <p class="text-sm text-gray-500 mb-3">找到 <strong>${matched.length}</strong> 款符合條件的平板</p>
+        <p class="text-sm text-gray-500 mb-3"><span data-i18n="calc.found">找到</span> <strong>${matched.length}</strong> <span data-i18n="calc.models">款符合條件的平板</span></p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             ${matched.map(p=>`
                 <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
@@ -1574,6 +1579,7 @@ function renderFavorites() {
             `).join('')}
         </div>
     `;
+    applyI18n();
 }
 
 // ============================================================
@@ -1622,6 +1628,7 @@ function renderCompareSelector() {
     }).join('');
     const countEl = document.getElementById('compare-select-count');
     if (countEl) countEl.textContent = t('compare.selectCount', selectedForCompare.length);
+    applyI18n();
 }
 
 // 渲染對比表格
@@ -1861,10 +1868,10 @@ function renderCompareTable() {
 
     // ── 2. 規格行（含柔光版和 variants）──
     const fields = [
-        {key:'tag',label:'定位'},{key:'size',label:'螢幕'},{key:'panel',label:'面板類型'},
-        {key:'matte',label:'柔光版',fmt:v=>v?'✅ 是':'—',compute:p=>(p.panel&&p.panel.includes('柔光'))?true:false},
-        {key:'refreshRate',label:'刷新率',fmt:v=>`${v}Hz`},
-        {key:'chip',label:'芯片'},
+        {key:'tag',label:t('compare.tag')},{key:'size',label:t('detail.screen')},{key:'panel',label:t('compare.panel')},
+        {key:'matte',label:t('compare.matte'),fmt:v=>v?'✅ 是':'—',compute:p=>(p.panel&&p.panel.includes('柔光'))?true:false},
+        {key:'refreshRate',label:t('compare.refreshRate'),fmt:v=>`${v}Hz`},
+        {key:'chip',label:t('detail.chip')},
     ];
     // variants 按 ram+storage 排序後逐行加入
     const allVariants = [];
@@ -1976,8 +1983,8 @@ function toggleDarkMode() {
             b.textContent = isDark ? '☀️' : '🌙';
         }
     });
+    applyI18n();
 }
-
 // ============================================================
 // 14. 產品詳情彈窗
 // ============================================================
