@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tablet-2026-v7';
+const CACHE_NAME = 'tablet-2026-v8';
 
 // 需要缓存的核心资源
 const CORE_ASSETS = [
@@ -40,39 +40,42 @@ self.addEventListener('activate', event => {
   );
 });
 
-// 请求拦截 → Cache First，离线回退
+// 请求拦截
+// - HTML 页面（index.html）：Network First → 确保每次拿到最新版
+// - 其他静态资源：Cache First → 快速加载 + 离线可用
 self.addEventListener('fetch', event => {
-  // 只处理 GET 请求
   if (event.request.method !== 'GET') return;
 
-  event.respondWith(
-    caches.match(event.request)
-      .then(cached => {
-        if (cached) return cached;
+  const url = new URL(event.request.url);
+  const isHTMLPage = event.request.mode === 'navigate'
+    || (event.request.headers.get('accept') || '').includes('text/html');
 
-        return fetch(event.request)
-          .then(response => {
-            // 只缓存同源请求
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // 克隆一份用于缓存
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME)
-              .then(cache => cache.put(event.request, responseToCache));
-
+  if (isHTMLPage) {
+    // Network First：先尝试网络，失败才用缓存
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          if (response && response.status === 200 && response.type === 'basic') {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request).then(cached => cached || caches.match('./offline.html')))
+    );
+  } else {
+    // Cache First：静态资源优先用缓存
+    event.respondWith(
+      caches.match(event.request)
+        .then(cached => {
+          if (cached) return cached;
+          return fetch(event.request).then(response => {
+            if (!response || response.status !== 200 || response.type !== 'basic') return response;
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
             return response;
-          })
-          .catch(() => {
-            // 离线时请求网络失败
-            // 如果是页面请求，返回离线页
-            if (event.request.mode === 'navigate') {
-              return caches.match('./offline.html');
-            }
-            // 其他请求直接失败
-            return new Response('Offline', { status: 503 });
-          });
-      })
-  );
+          }).catch(() => new Response('Offline', { status: 503 }));
+        })
+    );
+  }
 });
