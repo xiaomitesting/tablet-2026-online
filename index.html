@@ -2160,9 +2160,26 @@ document.addEventListener('keydown', function(e) {
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW registered:', reg.scope))
-                    .catch(err => console.log('SW failed:', err));
+                navigator.serviceWorker.register('./sw.js').then(reg => {
+                    console.log('SW registered:', reg.scope);
+                    // 检查是否有新版本
+                    reg.addEventListener('updatefound', () => {
+                        const newWorker = reg.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // 新 SW 已安装，旧 SW 还在运行 → 强制激活并刷新
+                                newWorker.postMessage({ type: 'skip-waiting' });
+                                setTimeout(() => location.reload(), 300);
+                            }
+                        });
+                    });
+                }).catch(err => console.log('SW failed:', err));
+                // 监听 SW 发来的「有新版本」消息
+                navigator.serviceWorker.addEventListener('message', event => {
+                    if (event.data && event.data.type === 'sw-version-update') {
+                        location.reload();
+                    }
+                });
             });
         }
     </script>
