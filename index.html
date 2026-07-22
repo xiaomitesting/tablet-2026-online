@@ -2121,16 +2121,25 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
     <script>
-        // Register SW without aggressive auto-reload
+        // Force SW update + cache bust
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').then(reg => {
+                    reg.update();
+                    if (reg.waiting) {
+                        reg.waiting.postMessage({ type: 'skip-waiting' });
+                        window.location.reload();
+                    }
+                    reg.addEventListener('updatefound', () => {
+                        const newWorker = reg.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'activated') window.location.reload();
+                        });
+                    });
                     console.log('SW registered:', reg.scope);
                 }).catch(err => console.log('SW failed:', err));
             });
         }
     </script>
-    <!-- 版本标记：用于调试部署是否生效 -->
-    <meta name="app-version" content="v12-cache-bust">
 </body>
 </html>
