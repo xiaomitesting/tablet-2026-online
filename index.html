@@ -271,7 +271,7 @@
     <div id="compare-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-2 sm:p-4">
         <div class="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="p-4 sm:p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
-                <h3 class="text-lg sm:text-xl font-bold text-gray-900">⚖️ <span data-i18n="nav.compare">橫向對比</span></h3>
+                <h3 class="text-lg sm:text-xl font-bold text-gray-900">⚖️ <span data-i18n="nav.compare">${t('catalog.compareCheckbox')}</span></h3>
                 <button onclick="closeCompareModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-semibold">&times;</button>
             </div>
             <!-- 機型選擇器 -->
@@ -421,7 +421,7 @@ zh: {
 'compare.maxAlert':'最多同時對比3款','compare.selectCount':function(n){return '已選 '+n+' 款'},'compare.goBtn':'Compare','compare.clearBtn':'Clear','compare.minHint':'請至少選擇2款機型開始對比',
 'import.title':'📥 匯入收藏','import.pasteHint':'貼上之前匯出的 JSON 數據：','import.confirm':'確認匯入','import.cancel':'取消','import.success':function(n){return '✅ 成功匯入 '+n+' 款收藏'},'export.btn':'📥 匯出收藏','import.btn':'📤 匯入收藏','export.jsonBtn':'📥 匯出 JSON',
 'sync.synced':function(n){return '✅ 已同步 '+n+' 條記錄'},'sync.nothing':'✅ 沒有需要同步的記錄','sync.stats':function(t,s){return '已收集 '+t+' 份問答 · '+s+' 份已同步'},
-},
+},'rec.reasons':'✅ 推薦理由：','rec.warnings':'⚠️ 注意：','rec.score':'🎯 契合度','rec.noMatch':'暫無合適推薦','rec.noMatchTitle':'暫時找不到高度匹配的機型','rec.noMatchDesc':'您選擇的條件組合較為特殊，現有机型無法完美匹配。建議調整部分需求，或瀏覽全部機型自行挑選。','rec.yourChoices':'💡 您的選擇摘要：','rec.swap':'↕️ 交換','rec.share':'📲 幫朋友選','rec.restart':'🔄 重新測驗','rec.favSaved':'❤️ 已收藏','rec.favAdd':'🤍 收藏','rec.loadFail':'載入失敗','rec.loadFailDesc':'產品數據未能載入，請檢查網絡連接後刷新頁面重試。','rec.refresh':'🔄 刷新頁面','rec.engineError':'推薦引擎錯誤','rec.priceFrom':'起','detail.battery':'電池','detail.charging':'充電','detail.specVersion':'規格版本','compare.tag':'定位','compare.panel':'面板類型','compare.matte':'柔光版','compare.refreshRate':'刷新率','compare.stylus':'手寫筆','compare.keyboard':'鍵盤','compare.scenario':'適用場景','compare.colors':'可選顏色','compare.suitable':'適合人群','compare.summary':'對比摘要','compare.rec':'🏆 推薦','compare.specHeader':'規格','guide.stylusTip':'手寫筆需求','guide.keyboardTip':'鍵盤需求','guide.5gTip':'5G需求','guide.matteTip':'護眼柔光屏','guide.storageTip':'存儲選擇','guide.warrantyTip':'售後保障','calc.found':'找到','calc.models':'款符合條件的平板','calc.noMatch':'預算範圍內暫無匹配產品','calc.accessory':'預算配件','fav.count':'已收藏','fav.countSuffix':'款產品','fav.remove':'💔 移除收藏','persona.artist':'繪圖達人','catalog.penBadge':'✍️手寫筆','catalog.kbBadge':'⌨️鍵盤','catalog.compareCheckbox':'橫向對比','catalog.priceFrom':'HK$ 起','reason.stylusSupport':'支持手寫筆','reason.keyboardSupport':'支持鍵盤','reason.fullAccessories':'手寫筆+鍵盤全支持','reason.scenarioMatch':'匹配使用場景','reason.scenarioSizeMatch':'場景+尺寸完美匹配','reason.budgetMatch':'預算完美匹配','reason.slightlyUnderBudget':'略低於預算','reason.underBudget':'低於預算','reason.sizeMatch':'尺寸匹配','reason.flagshipChip':'旗艦芯片','reason.largeBattery':'超大電池','reason.decentBattery':'大電池','reason.highRefresh':'高刷螢幕','reason.bestValue':'極致性價比','reason.ultraLight':'超輕機身','reason.familyUse':'適合家庭使用','reason.productivity':'辦公生產力強','reason.outdoorPortability':'戶外便攜','reason.5gOnly':'5G唯一選擇','reason.4gRecommended':'4G插卡推薦','warn.noStylus':'不支持手寫筆','warn.noKeyboard':'不支持鍵盤','warn.scenarioPartial':'場景不完全匹配','warn.budgetExceed':'超出預算','warn.sizeMismatch':'尺寸與需求不符','warn.no5g':'不支持5G','warn.noSim':'無SIM卡版本','warn.heavyOutdoor':'過重不適合戶外','warn.noStylusCompat':'不支持手寫筆'
 en: {
 'nav.home':'🏠 Home','nav.quiz':'🎯 Smart Pick','nav.catalog':'📱 All Models','nav.guide':'📖 Guide','nav.calculator':'🧮 Budget','nav.favorites':'❤️ Favs','nav.compare':'⚖️ Compare',
 'mob.home':'🏠 Home','mob.quiz':'🎯 Pick','mob.catalog':'📱 Models','mob.guide':'📖 Guide','mob.calculator':'🧮 Calc','mob.favorites':'❤️ Favs','mob.compare':'⚖️ Compare',
@@ -495,7 +495,7 @@ en: {
 'compare.maxAlert':'Max 3 models for comparison','compare.selectCount':function(n){return n+' selected'},'compare.goBtn':'Compare','compare.clearBtn':'Clear','compare.minHint':'Select at least 2 models to compare',
 'import.title':'📥 Import Favorites','import.pasteHint':'Paste your exported JSON data:','import.confirm':'Confirm Import','import.cancel':'Cancel','import.success':function(n){return '✅ Imported '+n+' favorites'},'export.btn':'📥 Export Favs','import.btn':'📤 Import Favs','export.jsonBtn':'📥 Export JSON',
 'sync.synced':function(n){return '✅ Synced '+n+' records'},'sync.nothing':'✅ Nothing to sync','sync.stats':function(t,s){return t+' quiz responses collected · '+s+' synced'},
-}
+},'rec.reasons':'✅ Reasons:','rec.warnings':'⚠️ Notes:','rec.score':'🎯 Match','rec.noMatch':'No Match Found','rec.noMatchTitle':'No close match found','rec.noMatchDesc':'Your criteria are quite specific. Try adjusting your needs or browse all models.','rec.yourChoices':'💡 Your choices:','rec.swap':'↕️ Swap','rec.share':'📲 Share','rec.restart':'🔄 Retake','rec.favSaved':'❤️ Saved','rec.favAdd':'🤍 Save','rec.loadFail':'Load Failed','rec.loadFailDesc':'Product data could not be loaded. Please check your connection and refresh.','rec.refresh':'🔄 Refresh','rec.engineError':'Recommendation Error','rec.priceFrom':'from','detail.battery':'Battery','detail.charging':'Charging','detail.specVersion':'Specs','compare.tag':'Position','compare.panel':'Panel Type','compare.matte':'Matte','compare.refreshRate':'Refresh Rate','compare.stylus':'Stylus','compare.keyboard':'Keyboard','compare.scenario':'Scenarios','compare.colors':'Colors','compare.suitable':'Best For','compare.summary':'Comparison Summary','compare.rec':'🏆 Pick','compare.specHeader':'Spec','guide.stylusTip':'Stylus Support','guide.keyboardTip':'Keyboard Support','guide.5gTip':'5G Support','guide.matteTip':'Matte Anti-glare','guide.storageTip':'Storage','guide.warrantyTip':'Warranty','calc.found':'Found','calc.models':'tablets matching your criteria','calc.noMatch':'No matching tablets in this budget range','calc.accessory':'Accessories','fav.count':'','fav.countSuffix':'favorites','fav.remove':'💔 Remove','persona.artist':'Artist','catalog.penBadge':'✍️ Stylus','catalog.kbBadge':'⌨️ Keyboard','catalog.compareCheckbox':'Compare','catalog.priceFrom':'HK$ from','reason.stylusSupport':'Stylus supported','reason.keyboardSupport':'Keyboard supported','reason.fullAccessories':'Full stylus + keyboard support','reason.scenarioMatch':'Matches your scenarios','reason.scenarioSizeMatch':'Scenario + size match','reason.budgetMatch':'Perfect budget match','reason.slightlyUnderBudget':'Slightly under budget','reason.underBudget':'Under budget','reason.sizeMatch':'Size matches','reason.flagshipChip':'Flagship chip','reason.largeBattery':'Large battery','reason.decentBattery':'Good battery','reason.highRefresh':'High refresh rate','reason.bestValue':'Best value','reason.ultraLight':'Ultra-lightweight','reason.familyUse':'Great for family','reason.productivity':'Strong productivity','reason.outdoorPortability':'Outdoor friendly','reason.5gOnly':'Only 5G option','reason.4gRecommended':'4G SIM recommended','warn.noStylus':'No stylus support','warn.noKeyboard':'No keyboard support','warn.scenarioPartial':'Partial scenario match','warn.budgetExceed':'Over budget','warn.sizeMismatch':'Size mismatch','warn.no5g':'No 5G support','warn.noSim':'No SIM version','warn.heavyOutdoor':'Too heavy for outdoor','warn.noStylusCompat':'No stylus support'
 };
 function t(k){var d=I18N[currentLang]||I18N.zh;var v=d[k];if(v===undefined)return k;if(typeof v==='function'){var a=Array.prototype.slice.call(arguments,1);return v.apply(null,a);}return v;}
 function pName(p){return currentLang==='en'&&p.nameEn?p.nameEn:p.name;}
@@ -911,30 +911,30 @@ function showRecommendationFromCache() {
     SCENARIOS.forEach(function(s) { scenarioLabels[s.id] = scenarioLabel(s.id); });
     rc.innerHTML = `
         <div class="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg border-2 border-miOrange overflow-hidden p-4 sm:p-10 relative fade-in">
-            <div class="absolute top-4 right-4 bg-miOrange text-white text-xs font-bold px-3 py-1 rounded-full">最佳推薦 Match!</div>
+            <div class="absolute top-4 right-4 bg-miOrange text-white text-xs font-bold px-3 py-1 rounded-full">${t('rec.bestMatch')}</div>
             <div class="flex items-center gap-2 mb-2">
-                <span class="inline-block px-3 py-1 bg-orange-100 text-miOrange rounded-full text-xs font-bold">🎯 契合度 ${top.score}%</span>
+                <span class="inline-block px-3 py-1 bg-orange-100 text-miOrange rounded-full text-xs font-bold">${t('rec.score')} ${top.score}%</span>
                 <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">${top.product.salesBadge}</span>
             </div>
             <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 mb-1">${pName(top.product)}</h2>
             <p class="text-xs sm:text-sm text-miOrange font-semibold mb-2 sm:mb-3">💬 「${pSalesMsg(top.product)}」</p>
-            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${top.product.price.toLocaleString()} 起</p>
+            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${top.product.price.toLocaleString()} ${t('rec.priceFrom')}</p>
             <p class="text-gray-600 mb-4">${pDesc(top.product)}</p>
             ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>${t('detail.suitable')}</strong>${pTargetUser(top.product)}</span></div>` : ''}
             ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${scenarioLabels[s]||s}</span>`).join('')}</div>` : ''}
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
-                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size||""}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip||""}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery||""}mAh</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging||""}</p></div>
-                <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
+                <div><span class="text-xs font-semibold text-gray-400">${t('detail.screen')}</span><p class="text-sm font-medium">${top.product.size||""}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">${t('detail.chip')}</span><p class="text-sm font-medium">${top.product.chip||""}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">${t('detail.battery')}</span><p class="text-sm font-medium">${top.product.battery||""}mAh</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">${t('detail.charging')}</span><p class="text-sm font-medium">${top.product.charging||""}</p></div>
+                <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">${t('detail.specVersion')}</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
             </div>
-            ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
-            ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
+            ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">${t('rec.reasons')}</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
+            ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">${t('rec.warnings')}</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
             <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="toggleFav('${top.product.id||""}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
-                <button onclick="swapTopResult()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">↕️ 交換</button><button onclick="shareRecommendation()" class="px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-orange-600 transition-all">📲 幫朋友選</button>
-                <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
+                <button onclick="toggleFav('${top.product.id||""}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?t('rec.favSaved'):t('rec.favAdd')}</button>
+                <button onclick="swapTopResult()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">${t('rec.swap')}</button><button onclick="shareRecommendation()" class="px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-orange-600 transition-all">${t('rec.share')}</button>
+                <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">${t('rec.restart')}</button>
             </div>
         </div>
         <div class="slide-up">
@@ -998,11 +998,11 @@ function calculateMatches() {
             const hasStylus = p.stylus;
             const hasKeyboard = p.keyboard;
             let accScore = 0;
-            if (needStylus && hasStylus) { accScore += 15; reasons.push('支持手寫筆'); }
-            if (needKeyboard && hasKeyboard) { accScore += 15; reasons.push('支持鍵盤'); }
-            if (needStylus && needKeyboard && hasStylus && hasKeyboard) { reasons.push('手寫筆+鍵盤全支持'); }
-            if (needStylus && !hasStylus) { penalty += 15; warnings.push('不支持手寫筆'); }
-            if (needKeyboard && !hasKeyboard) { penalty += 15; warnings.push('不支持鍵盤'); }
+            if (needStylus && hasStylus) { accScore += 15; reasons.push(t('reason.stylusSupport')); }
+            if (needKeyboard && hasKeyboard) { accScore += 15; reasons.push(t('reason.keyboardSupport')); }
+            if (needStylus && needKeyboard && hasStylus && hasKeyboard) { reasons.push(t('reason.fullAccessories')); }
+            if (needStylus && !hasStylus) { penalty += 15; warnings.push(t('warn.noStylus')); }
+            if (needKeyboard && !hasKeyboard) { penalty += 15; warnings.push(t('warn.noKeyboard')); }
             score += Math.min(WEIGHT.accessory, accScore);
         }
 
@@ -1011,37 +1011,37 @@ function calculateMatches() {
             const matchedScenarios = (p.scenario || []).filter(s => answers.scenario.includes(s));
             if (matchedScenarios.length > 0) {
                 score += Math.min(WEIGHT.scenario, 10 + matchedScenarios.length * 5);
-                reasons.push('匹配使用場景');
-            } else { warnings.push('場景不完全匹配'); }
+                reasons.push(t('reason.scenarioMatch'));
+            } else { warnings.push(t('warn.scenarioPartial')); }
         }
         // 交叉加分：場景+尺寸同時匹配
         if (answers.size && answers.size !== 'no_preference' && answers.scenario && answers.scenario.length > 0) {
             if (p.screenType === answers.size && (p.scenario || []).some(s => answers.scenario.includes(s))) {
-                score += 5; reasons.push('場景+尺寸完美匹配');
+                score += 5; reasons.push(t('reason.scenarioSizeMatch'));
             }
         }
 
         // ── 網絡（硬性篩選，不計分） ──
         if (answers.connectivity === 'need_5g') {
-            if (p.id === 'redmi_pad_2_pro_5g') { reasons.push('5G唯一選擇'); }
-            else { return { product:p, score:-999, reasons:[], warnings:['不支持5G'] }; }
+            if (p.id === 'redmi_pad_2_pro_5g') { reasons.push(t('reason.5gOnly')); }
+            else { return { product:p, score:-999, reasons:[], warnings:[t('warn.no5g')] }; }
         } else if (answers.connectivity === 'need_4g') {
-            if (p.id === 'redmi_pad_2' || p.id === 'redmi_pad_2_97') { reasons.push('4G插卡推薦'); }
-            else { return { product:p, score:-999, reasons:[], warnings:['無SIM卡版本'] }; }
+            if (p.id === 'redmi_pad_2' || p.id === 'redmi_pad_2_97') { reasons.push(t('reason.4gRecommended')); }
+            else { return { product:p, score:-999, reasons:[], warnings:[t('warn.noSim')] }; }
         }
 
         // ── 預算 (20分) ──
         if (answers.budget && answers.budget !== 'no_budget') {
-            if (p.budget === answers.budget) { score += WEIGHT.budget; reasons.push('預算完美匹配'); }
-            else if (answers.budget === 'premium' && p.budget === 'mid') { score += 12; reasons.push('略低於預算'); }
-            else if (answers.budget === 'mid' && p.budget === 'low') { score += 8; reasons.push('低於預算'); }
-            else { penalty += 10; warnings.push('超出預算'); }
+            if (p.budget === answers.budget) { score += WEIGHT.budget; reasons.push(t('reason.budgetMatch')); }
+            else if (answers.budget === 'premium' && p.budget === 'mid') { score += 12; reasons.push(t('reason.slightlyUnderBudget')); }
+            else if (answers.budget === 'mid' && p.budget === 'low') { score += 8; reasons.push(t('reason.underBudget')); }
+            else { penalty += 10; warnings.push(t('warn.budgetExceed')); }
         }
 
         // ── 尺寸 (15分) ──
         if (answers.size && answers.size !== 'no_preference') {
-            if (p.screenType === answers.size) { score += WEIGHT.size; reasons.push('尺寸匹配'); }
-            else { penalty += 10; warnings.push('尺寸與需求不符'); }
+            if (p.screenType === answers.size) { score += WEIGHT.size; reasons.push(t('reason.sizeMatch')); }
+            else { penalty += 10; warnings.push(t('warn.sizeMismatch')); }
         }
 
         // ── 優先級 (10分，均分) ──
@@ -1049,12 +1049,12 @@ function calculateMatches() {
             const perPri = Math.floor(WEIGHT.priority / answers.priority.length);
             answers.priority.forEach(pr => {
                 switch(pr) {
-                    case 'performance': if (chipTier(p.chip)>=3) { score+=perPri; reasons.push('旗艦芯片'); } break;
-                    case 'battery': if (parseInt(p.battery)>=11000) { score+=perPri; reasons.push('超大電池'); } else if (parseInt(p.battery)>=9000) { score+=Math.floor(perPri*0.6); reasons.push('大電池'); } break;
-                    case 'display': if (p.refreshRate>=120) { score+=perPri; reasons.push('高刷螢幕'); } break;
-                    case 'price': if (p.price<=1500) { score+=perPri; reasons.push('極致性價比'); } break;
-                    case 'portable': if (p.weight<=300) { score+=perPri; reasons.push('超輕機身'); } else if (p.weight>400) { penalty+=5; warnings.push('机身偏重不利便攜'); } break;
-                    case 'stylus': if (p.stylus) { score+=perPri; reasons.push('支持手寫筆'); } else { warnings.push('不支持手寫筆'); } break;
+                    case 'performance': if (chipTier(p.chip)>=3) { score+=perPri; reasons.push(t('reason.flagshipChip')); } break;
+                    case 'battery': if (parseInt(p.battery)>=11000) { score+=perPri; reasons.push(t('reason.largeBattery')); } else if (parseInt(p.battery)>=9000) { score+=Math.floor(perPri*0.6); reasons.push(t('reason.decentBattery')); } break;
+                    case 'display': if (p.refreshRate>=120) { score+=perPri; reasons.push(t('reason.highRefresh')); } break;
+                    case 'price': if (p.price<=1500) { score+=perPri; reasons.push(t('reason.bestValue')); } break;
+                    case 'portable': if (p.weight<=300) { score+=perPri; reasons.push(t('reason.ultraLight')); } else if (p.weight>400) { penalty+=5; warnings.push(t('warn.heavyOutdoor')); } break;
+                    case 'stylus': if (p.stylus) { score+=perPri; reasons.push(t('reason.stylusSupport')); } else { warnings.push(t('warn.noStylus')); } break;
                 }
             });
         }
@@ -1063,9 +1063,9 @@ function calculateMatches() {
         if (answers.environment && answers.environment !== 'none') {
             switch(answers.environment) {
                 case 'personal': score += 2; break;
-                case 'family': if (p.id.includes('kids') || (parseFloat(p.size)>=10.6 && p.rating>=4.4)) { score += WEIGHT.environment; reasons.push('適合家庭使用'); } else score += 2; break;
-                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += WEIGHT.environment; reasons.push('辦公生產力強'); } else score += 2; break;
-                case 'outdoor': if (p.weight <= 350) { score += WEIGHT.environment; reasons.push('戶外便攜'); } else if (p.weight > 450) { penalty += 3; warnings.push('過重不適合戶外'); } break;
+                case 'family': if (p.id.includes('kids') || (parseFloat(p.size)>=10.6 && p.rating>=4.4)) { score += WEIGHT.environment; reasons.push(t('reason.familyUse')); } else score += 2; break;
+                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += WEIGHT.environment; reasons.push(t('reason.productivity')); } else score += 2; break;
+                case 'outdoor': if (p.weight <= 350) { score += WEIGHT.environment; reasons.push(t('reason.outdoorPortability')); } else if (p.weight > 450) { penalty += 3; warnings.push(t('warn.heavyOutdoor')); } break;
             }
         }
 
@@ -1116,9 +1116,9 @@ function showRecommendation() {
             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden p-4 sm:p-10 relative fade-in">
                 <div class="text-center py-8">
                     <div class="text-5xl mb-4">⚠️</div>
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">載入失敗</h2>
-                    <p class="text-gray-500 mb-6 max-w-md mx-auto">產品數據未能載入，請檢查網絡連接後刷新頁面重試。</p>
-                    <button onclick="resetQuiz();location.reload();" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">🔄 刷新頁面</button>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">${t('rec.loadFail')}</h2>
+                    <p class="text-gray-500 mb-6 max-w-md mx-auto">${t('rec.loadFailDesc')}</p>
+                    <button onclick="resetQuiz();location.reload();" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">${t('rec.refresh')}</button>
                 </div>
             </div>
         `;
@@ -1134,17 +1134,17 @@ function showRecommendation() {
     if (!top || top.score < MIN_SCORE) {
         rc.innerHTML = `
             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden p-4 sm:p-10 relative fade-in">
-                <div class="absolute top-4 right-4 bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full">暫無合適推薦</div>
+                <div class="absolute top-4 right-4 bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full">${t('rec.noMatch')}</div>
                 <div class="text-center py-8">
                     <div class="text-5xl mb-4">🤔</div>
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">暫時找不到高度匹配的機型</h2>
-                    <p class="text-gray-500 mb-6 max-w-md mx-auto">您選擇的條件組合較為特殊，現有机型無法完美匹配。建議調整部分需求，或瀏覽全部機型自行挑選。</p>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">${t('rec.noMatchTitle')}</h2>
+                    <p class="text-gray-500 mb-6 max-w-md mx-auto">${t('rec.noMatchDesc')}</p>
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                        <button onclick="resetQuiz()" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">🔄 重新測驗</button>
-                        <button onclick="switchTab('catalog')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-miOrange transition-all">📱 瀏覽全部機型</button>
+                        <button onclick="resetQuiz()" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">${t('rec.restart')}</button>
+                        <button onclick="switchTab('catalog')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-miOrange transition-all">${t('rec.browseAll')}</button>
                     </div>
                     <div class="mt-8 text-left">
-                        <p class="text-sm font-semibold text-gray-700 mb-3">💡 您的選擇摘要：</p>
+                        <p class="text-sm font-semibold text-gray-700 mb-3">${t('rec.yourChoices')}</p>
                         <div class="flex flex-wrap gap-2">
                             ${answers.scenario?.length ? answers.scenario.map(s => `<span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">${SCENARIOS.find(x=>x.id===s)?.label||s}</span>`).join('') : ''}
                             ${answers.budget && answers.budget!=='no_budget' ? `<span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs">${BUDGETS.find(x=>x.id===answers.budget)?.label||answers.budget}</span>` : ''}
@@ -1159,30 +1159,30 @@ function showRecommendation() {
 
     rc.innerHTML = `
         <div class="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg border-2 border-miOrange overflow-hidden p-4 sm:p-10 relative fade-in">
-            <div class="absolute top-4 right-4 bg-miOrange text-white text-xs font-bold px-3 py-1 rounded-full">最佳推薦 Match!</div>
+            <div class="absolute top-4 right-4 bg-miOrange text-white text-xs font-bold px-3 py-1 rounded-full">${t('rec.bestMatch')}</div>
             <div class="flex items-center gap-2 mb-2">
-                <span class="inline-block px-3 py-1 bg-orange-100 text-miOrange rounded-full text-xs font-bold">🎯 契合度 ${top.score}%</span>
+                <span class="inline-block px-3 py-1 bg-orange-100 text-miOrange rounded-full text-xs font-bold">${t('rec.score')} ${top.score}%</span>
                 <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">${top.product.salesBadge||''}</span>
             </div>
             <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 mb-1">${top.product.name||''}</h2>
             <p class="text-xs sm:text-sm text-miOrange font-semibold mb-2 sm:mb-3">💬 「${top.product.salesMsg||''}」</p>
-            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${(top.product.price||0).toLocaleString()} 起</p>
+            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${(top.product.price||0).toLocaleString()} ${t('rec.priceFrom')}</p>
             <p class="text-gray-600 mb-4">${top.product.desc||''}</p>
-            ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>適合人群：</strong>${top.product.targetUser}</span></div>` : ''}
+            ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>${t('rec.suitable')}</strong>${top.product.targetUser}</span></div>` : ''}
             ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => {const labels = {productivity:'💼 辦公',gaming:'🎮 遊戲',media:'🎬 影音',creative:'🎨 創意',reading:'📖 閱讀',portable:'🏃 便攜',kids:'👶 兒童',outdoor:'🏕️ 戶外'}; return `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${labels[s]||s}</span>`;}).join('')}</div>` : ''}
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
-                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size||""}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip||""}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery||""}mAh</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging||""}</p></div>
-                <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
+                <div><span class="text-xs font-semibold text-gray-400">${t('detail.screen')}</span><p class="text-sm font-medium">${top.product.size||""}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">${t('detail.chip')}</span><p class="text-sm font-medium">${top.product.chip||""}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">${t('detail.battery')}</span><p class="text-sm font-medium">${top.product.battery||""}mAh</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">${t('detail.charging')}</span><p class="text-sm font-medium">${top.product.charging||""}</p></div>
+                <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">${t('detail.specVersion')}</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
             </div>
-            ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
-            ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
+            ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">${t('rec.reasons')}</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
+            ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">${t('rec.warnings')}</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
             <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="toggleFav('${top.product.id||""}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
-                <button onclick="swapTopResult()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">↕️ 交換</button><button onclick="shareRecommendation()" class="px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-orange-600 transition-all">📲 幫朋友選</button>
-                <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
+                <button onclick="toggleFav('${top.product.id||""}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?t('rec.favSaved'):t('rec.favAdd')}</button>
+                <button onclick="swapTopResult()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">${t('rec.swap')}</button><button onclick="shareRecommendation()" class="px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-orange-600 transition-all">${t('rec.share')}</button>
+                <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">${t('rec.restart')}</button>
             </div>
         </div>
         <div class="slide-up">
@@ -1215,7 +1215,7 @@ function showRecommendation() {
         const rc = document.getElementById('result-card');
         if (rc) {
             rc.classList.remove('hidden');
-            rc.innerHTML = '<div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center"><div class="text-3xl mb-3">⚠️</div><h2 class="text-lg font-bold text-red-700 mb-2">推薦引擎錯誤</h2><p class="text-sm text-red-600 mb-4">' + err.message + '</p><button onclick="resetQuiz()" class="px-4 py-2 bg-miOrange text-white rounded-xl font-bold">🔄 重新測驗</button></div>';
+            rc.innerHTML = '<div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center"><div class="text-3xl mb-3">⚠️</div><h2 class="text-lg font-bold text-red-700 mb-2">${t('rec.engineError')}</h2><p class="text-sm text-red-600 mb-4">' + err.message + '</p><button onclick="resetQuiz()" class="px-4 py-2 bg-miOrange text-white rounded-xl font-bold">${t('rec.restart')}</button></div>';
         }
     }
 }
@@ -1247,7 +1247,7 @@ function renderCatalog(filter='all') {
                     </div>
                     <div class="text-right">
                         <div class="bg-miOrange text-white px-3 py-1.5 rounded-lg shadow-sm">
-                            <div class="text-[10px] font-medium opacity-80">HK$ 起</div>
+                            <div class="text-[10px] font-medium opacity-80">${t('catalog.priceFrom')}</div>
                             <div class="text-xl font-extrabold leading-tight">${p.price.toLocaleString()}</div>
                         </div>
                     </div>
@@ -1262,14 +1262,14 @@ function renderCatalog(filter='all') {
                     ${p.variants.map(v => `<span class="text-[11px] ${v.price===p.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('')}
                 </div>` : ''}
                 <div class="space-y-1 text-xs text-gray-500 border-t border-gray-50 pt-3">
-                    <div class="flex justify-between"><span>螢幕:</span><span class="font-medium text-gray-700">${p.size}" ${p.refreshRate}Hz</span></div>
-                    <div class="flex justify-between"><span>芯片:</span><span class="font-medium text-gray-700 truncate ml-2">${p.chip}</span></div>
-                    <div class="flex justify-between"><span>存儲:</span><span class="font-medium text-gray-700">${dramShort(p.ram)}GB+${p.storage}GB</span></div>
-                    <div class="flex justify-between"><span>電池:</span><span class="font-medium text-gray-700">${p.battery}mAh / ${p.charging}</span></div>
+                    <div class="flex justify-between"><span>${t("catalog.screen")}</span><span class="font-medium text-gray-700">${p.size}" ${p.refreshRate}Hz</span></div>
+                    <div class="flex justify-between"><span>${t("catalog.chip")}</span><span class="font-medium text-gray-700 truncate ml-2">${p.chip}</span></div>
+                    <div class="flex justify-between"><span>${t("catalog.storage")}</span><span class="font-medium text-gray-700">${dramShort(p.ram)}GB+${p.storage}GB</span></div>
+                    <div class="flex justify-between"><span>${t("catalog.battery")}</span><span class="font-medium text-gray-700">${p.battery}mAh / ${p.charging}</span></div>
                 </div>
                 <div class="flex flex-wrap gap-1 mt-2">
-                    ${p.stylus?'<span class="text-[10px] bg-green-50 text-green-600 px-1.5 py-0.5 rounded">✍️手寫筆</span>':''}
-                    ${p.keyboard?'<span class="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">⌨️鍵盤</span>':''}
+                    ${p.stylus?'<span class="text-[10px] bg-green-50 text-green-600 px-1.5 py-0.5 rounded">${t('catalog.penBadge')}</span>':''}
+                    ${p.keyboard?'<span class="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${t('catalog.kbBadge')}</span>':''}
                     <span class="text-[10px] bg-gray-50 text-gray-500 px-1.5 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
                 ${p.colors ? `
@@ -1288,7 +1288,7 @@ function renderCatalog(filter='all') {
                 <div class="flex items-center justify-between">
                     <label class="flex items-center gap-1.5 cursor-pointer">
                         <input type="checkbox" onchange="toggleCompare('${p.id}')" ${selectedForCompare.includes(p.id)?'checked':''} class="w-3.5 h-3.5 text-miOrange rounded">
-                        <span class="text-[11px] font-semibold text-gray-600">橫向對比</span>
+                        <span class="text-[11px] font-semibold text-gray-600">${t('catalog.compareCheckbox')}</span>
                     </label>
                     <button onclick="toggleFav('${p.id}')" class="fav-btn text-lg">${favorites.includes(p.id)?'❤️':'🤍'}</button>
                 </div>
@@ -1373,14 +1373,14 @@ function renderGuide() {
 
     // 人物角色推薦
     const personas = [
-        { icon:'👨\u200D💻', title:'辦公族', primary:'pad_8_pro', secondary:'pad_8_pro_matte', reason:'手寫筆+鍵盤全配備' },
-        { icon:'🎮', title:'手遊玩家', primary:'pad_mini', secondary:'pad_8_pro', reason:'165Hz電競屏+旗艦芯片' },
-        { icon:'🎬', title:'追劇達人', primary:'pad_8', secondary:'pad_8_pro', reason:'四揚聲器+大屏' },
-        { icon:'📚', title:'學生黨', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_pro_matte', reason:'支持手寫筆+鍵盤' },
-        { icon:'👶', title:'送小朋友', primary:'redmi_pad_2_kids', secondary:'redmi_pad_2_97', reason:'柔光護眼+保護殼+繪畫筆' },
-        { icon:'🏃', title:'通勤族', primary:'redmi_pad_2_97', secondary:'pad_mini', reason:'輕巧機身+長續航' },
-        { icon:'🏕️', title:'需要電話卡功能', primary:'redmi_pad_2_pro_5g', secondary:'redmi_pad_2', reason:'5G插卡即用+12000mAh' },
-        { icon:'👴', title:'送長輩', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_97', reason:'大屏+高性價比' }
+        { icon:'👨\u200D💻', title:t('persona.office'), primary:'pad_8_pro', secondary:'pad_8_pro_matte', reason:'手寫筆+鍵盤全配備' },
+        { icon:'🎮', title:t('persona.gamer'), primary:'pad_mini', secondary:'pad_8_pro', reason:'165Hz電競屏+旗艦芯片' },
+        { icon:'🎬', title:t('persona.mediaFan'), primary:'pad_8', secondary:'pad_8_pro', reason:'四揚聲器+大屏' },
+        { icon:'📚', title:t('persona.student'), primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_pro_matte', reason:'支持手寫筆+鍵盤' },
+        { icon:'👶', title:t('persona.kids'), primary:'redmi_pad_2_kids', secondary:'redmi_pad_2_97', reason:'柔光護眼+保護殼+繪畫筆' },
+        { icon:'🏃', title:t('persona.commute'), primary:'redmi_pad_2_97', secondary:'pad_mini', reason:'輕巧機身+長續航' },
+        { icon:'🏕️', title:t('persona.sim'), primary:'redmi_pad_2_pro_5g', secondary:'redmi_pad_2', reason:'5G插卡即用+12000mAh' },
+        { icon:'👴', title:t('persona.senior'), primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_97', reason:'大屏+高性價比' }
     ];
     const personaHtml = personas.map(p => {
         const pp = products.find(x => x.id === p.primary);
@@ -1416,12 +1416,12 @@ function renderGuide() {
         <div class="mt-6 bg-white rounded-xl border border-gray-200 p-4 sm:p-6 shadow-sm">
             <h3 class="font-bold text-gray-900 mb-4" data-i18n="guide.tipsTitle">📌 購買小貼士</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
-                <div class="flex gap-2"><span>✅</span><div><strong>手寫筆需求</strong><br>${stylusProducts.map(p => p.name).join('、')} 支持</div></div>
-                <div class="flex gap-2"><span>✅</span><div><strong>鍵盤需求</strong><br>${keyboardProducts.length > 0 ? keyboardProducts.map(p => p.name).join('、') + ' 支持' : '暫無支持鍵盤的機型'}</div></div>
-                ${has5G ? `<div class="flex gap-2"><span>✅</span><div><strong>5G需求</strong><br>${products.filter(p=>p.id.includes('5g')).map(p=>p.name).join('、')} 支持5G SIM</div></div>` : ''}
-                ${hasMatte ? `<div class="flex gap-2"><span>✅</span><div><strong>護眼柔光屏</strong><br>${products.filter(p=>p.panel&&p.panel.includes('柔光')).map(p=>p.name).join('、')} — 長時間使用更護眼</div></div>` : ''}
-                <div class="flex gap-2"><span>✅</span><div><strong>存儲選擇</strong><br>128GB 日常夠用，256GB 更從容</div></div>
-                <div class="flex gap-2"><span>✅</span><div><strong>售後保障</strong><br>香港官網享官方保修</div></div>
+                <div class="flex gap-2"><span>✅</span><div><strong>${t('guide.stylusTip')}</strong><br>${stylusProducts.map(p => p.name).join('、')} 支持</div></div>
+                <div class="flex gap-2"><span>✅</span><div><strong>${t('guide.keyboardTip')}</strong><br>${keyboardProducts.length > 0 ? keyboardProducts.map(p => p.name).join('、') + ' 支持' : '暫無支持鍵盤的機型'}</div></div>
+                ${has5G ? `<div class="flex gap-2"><span>✅</span><div><strong>${t('guide.5gTip')}</strong><br>${products.filter(p=>p.id.includes('5g')).map(p=>p.name).join('、')} 支持5G SIM</div></div>` : ''}
+                ${hasMatte ? `<div class="flex gap-2"><span>✅</span><div><strong>${t('guide.matteTip')}</strong><br>${products.filter(p=>p.panel&&p.panel.includes('柔光')).map(p=>p.name).join('、')} — 長時間使用更護眼</div></div>` : ''}
+                <div class="flex gap-2"><span>✅</span><div><strong>${t('guide.storageTip')}</strong><br>128GB 日常夠用，256GB 更從容</div></div>
+                <div class="flex gap-2"><span>✅</span><div><strong>${t('guide.warrantyTip')}</strong><br>香港官網享官方保修</div></div>
             </div>
         </div>
     `;
@@ -1443,7 +1443,7 @@ function renderCalculator() {
             <div class="flex justify-between items-center mb-4">
                 <label class="font-semibold text-sm" data-i18n="calc.budgetLabel">平板預算區間</label>
                 <label class="text-sm text-gray-500 flex items-center gap-2">
-                    <input type="checkbox" ${calcAccessory?'checked':''} onchange="calcAccessory=this.checked;renderCalculator()"> 預算配件（+HK$500）
+                    <input type="checkbox" ${calcAccessory?'checked':''} onchange="calcAccessory=this.checked;renderCalculator()"> ${t('calc.accessoryLabel')}
                 </label>
             </div>
             <div class="relative h-8 mb-2">
@@ -1489,7 +1489,7 @@ function updateCalcResults() {
     const totalMax = calcBudgetMax + (calcAccessory?500:0);
     const matched = products.filter(p=>p.price>=totalMin && p.price<=totalMax).sort((a,b)=>b.rating-a.rating);
     el.innerHTML = matched.length?`
-        <p class="text-sm text-gray-500 mb-3">找到 <strong>${matched.length}</strong> 款符合條件的平板</p>
+        <p class="text-sm text-gray-500 mb-3">${t('calc.found')} <strong>${matched.length}</strong> ${t('calc.models')}</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             ${matched.map(p=>`
                 <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
@@ -1501,12 +1501,12 @@ function updateCalcResults() {
                     <p class="text-[11px] text-miOrange font-medium mt-0.5">${p.tag||''}</p>
                     <p class="text-[11px] text-gray-500 mt-1 line-clamp-2">${p.desc||String(p.size||'').split('(')[0]+' · ⭐'+p.rating}</p>
                     <div class="flex gap-2 mt-3">
-                        <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-1.5 rounded-lg">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                        <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-1.5 rounded-lg">${favorites.includes(p.id)?t('rec.favSaved'):t('rec.favAdd')}</button>
                     </div>
                 </div>
             `).join('')}
         </div>
-    `:`<div class="text-center py-12"><div class="text-4xl mb-4">💸</div><p class="text-gray-500">預算範圍內暫無匹配產品</p><p class="text-xs text-gray-400 mt-2">區間：HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}</p></div>`;
+    `:`<div class="text-center py-12"><div class="text-4xl mb-4">💸</div><p class="text-gray-500">${t('calc.noMatch')}</p><p class="text-xs text-gray-400 mt-2">區間：HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}</p></div>`;
 }
 
 // ============================================================
@@ -1543,7 +1543,7 @@ function renderFavorites() {
         return;
     }
     el.innerHTML = `
-        <p class="text-sm text-gray-500 mb-4">已收藏 ${favProducts.length} 款產品</p>
+        <p class="text-sm text-gray-500 mb-4">${t('fav.count')} ${favProducts.length} ${t('fav.countSuffix')}</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             ${favProducts.map(p=>`
                 <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
@@ -1555,7 +1555,7 @@ function renderFavorites() {
                     <p class="text-xs text-gray-400 mt-1">${p.tag}</p>
                     <p class="text-xs text-gray-600 mt-2 line-clamp-2">${pDesc(p)}</p>
                     <div class="flex gap-2 mt-3">
-                        <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-2 rounded-lg">💔 移除收藏</button>
+                        <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-2 rounded-lg">${t('fav.remove')}</button>
                     </div>
                 </div>
             `).join('')}
@@ -1840,9 +1840,9 @@ function renderCompareTable() {
 
     // ── 2. 規格行（含柔光版和 variants）──
     const fields = [
-        {key:'tag',label:'定位'},{key:'size',label:'螢幕'},{key:'panel',label:'面板類型'},
-        {key:'matte',label:'柔光版',fmt:v=>v?'✅ 是':'—',compute:p=>(p.panel&&p.panel.includes('柔光'))?true:false},
-        {key:'refreshRate',label:'刷新率',fmt:v=>`${v}Hz`},
+        {key:'tag',label:t('compare.tag')},{key:'size',label:t('detail.screen')},{key:'panel',label:t('compare.panel')},
+        {key:'matte',label:t('compare.matte'),fmt:v=>v?'✅ 是':'—',compute:p=>(p.panel&&p.panel.includes('柔光'))?true:false},
+        {key:'refreshRate',label:t('compare.refreshRate'),fmt:v=>`${v}Hz`},
         {key:'chip',label:'芯片'},
     ];
     // variants 按 ram+storage 排序後逐行加入
@@ -1861,9 +1861,9 @@ function renderCompareTable() {
     fields.push(
         {key:'battery',label:'電池',fmt:v=>`${v}mAh`},{key:'charging',label:'充電'},
         {key:'weight',label:'重量',fmt:v=>`${v}g`},
-        {key:'stylus',label:'手寫筆',fmt:v=>v?'✅ 支持':'❌ 不支持'},{key:'keyboard',label:'鍵盤',fmt:v=>v?'✅ 支持':'❌ 不支持'},
-        {key:'scenario',label:'適用場景',fmt:v=>Array.isArray(v)?v.map(s=>scenarioLabels[s]||s).join('、'):(v||'-')},
-        {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},{key:'targetUser',label:'適合人群'},
+        {key:'stylus',label:t('compare.stylus'),fmt:v=>v?'✅ 支持':'❌ 不支持'},{key:'keyboard',label:t('compare.keyboard'),fmt:v=>v?'✅ 支持':'❌ 不支持'},
+        {key:'scenario',label:t('compare.scenario'),fmt:v=>Array.isArray(v)?v.map(s=>scenarioLabels[s]||s).join('、'):(v||'-')},
+        {key:'colors',label:t('compare.colors'),fmt:v=>Array.isArray(v)?v.join('、'):'-'},{key:'targetUser',label:t('compare.suitable')},
         
     );
 
@@ -1894,9 +1894,9 @@ function renderCompareTable() {
     }).sort((a, b) => b.score - a.score);
     const recId = recScores[0].id;
 
-    document.getElementById('compare-table-headers').innerHTML = `<th class="p-3 text-sm font-semibold text-gray-500">規格</th>${prods.map(p => `
+    document.getElementById('compare-table-headers').innerHTML = `<th class="p-3 text-sm font-semibold text-gray-500">${t("compare.specHeader")}</th>${prods.map(p => `
         <th class="p-3 text-center ${p.id === recId ? 'bg-orange-50' : ''}">
-            ${p.id === recId ? '<div class="text-[10px] text-miOrange font-bold mb-1">🏆 推薦</div>' : ''}
+            ${p.id === recId ? '<div class="text-[10px] text-miOrange font-bold mb-1">${t("compare.rec")}</div>' : ''}
             <div class="text-miOrange font-bold">${p.name}</div>
             <div class="text-xs text-gray-500">HK$${p.price.toLocaleString()}</div>
         </th>`).join('')}`;
@@ -1977,7 +1977,7 @@ function openDetailModal(id) {
                 </div>
                 <h2 class="text-2xl font-extrabold text-gray-900 mb-1">${p.name}</h2>
                 <p class="text-miOrange font-semibold mb-1">「${p.salesMsg}」</p>
-                <p class="text-2xl font-bold text-miOrange mb-4">HK$${p.price.toLocaleString()} 起</p>
+                <p class="text-2xl font-bold text-miOrange mb-4">HK$${p.price.toLocaleString()} ${t('rec.priceFrom')}</p>
                 <p class="text-sm text-gray-600 mb-5">${p.desc}</p>
 
                 <div class="grid grid-cols-2 gap-3 mb-5">
@@ -2044,7 +2044,7 @@ function openDetailModal(id) {
                 </div>
 
                 <div class="flex gap-3">
-                    <button onclick="toggleFav('${p.id}');openDetailModal('${p.id}')" class="flex-1 text-center py-3 border-2 ${favorites.includes(p.id)?'border-red-300 bg-red-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-red-300 transition-all">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                    <button onclick="toggleFav('${p.id}');openDetailModal('${p.id}')" class="flex-1 text-center py-3 border-2 ${favorites.includes(p.id)?'border-red-300 bg-red-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-red-300 transition-all">${favorites.includes(p.id)?t('rec.favSaved'):t('rec.favAdd')}</button>
                     <button onclick="closeDetailModal();toggleCompare('${p.id}')" class="flex-1 text-center py-3 border-2 ${selectedForCompare.includes(p.id)?'border-miOrange bg-orange-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-miOrange transition-all">${selectedForCompare.includes(p.id)?'⚖️ 已加入對比':'⚖️ 橫向對比'}</button>
                     <button onclick="closeDetailModal()" class="px-5 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-200 transition-all" data-i18n="detail.backBtn">返回瀏覽</button>
                 </div>

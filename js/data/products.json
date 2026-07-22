@@ -6,7 +6,7 @@
     "desc": "旗艦平板，搭載 Snapdragon 8 Elite 處理器，12.4吋 144Hz 大屏，支持手寫筆與鍵盤，生產力與娛樂兼備。",
     "descEn": "Flagship tablet with Snapdragon 8 Elite processor, 12.4\" 144Hz display, stylus and keyboard support. Built for productivity and entertainment.",
     "series": "Xiaomi",
-    "price": 3999,
+    "price": 4199,
     "rating": 4.8,
     "tag": "旗艦性能之王",
     "tagEn": "Flagship Performance King",
@@ -49,16 +49,16 @@
     "spec": "12GB+256GB",
     "variants": [
       {
-        "label": "",
         "ram": 8,
         "storage": 256,
-        "price": 3999
+        "price": 4199,
+        "label": ""
       },
       {
-        "label": "頂配",
         "ram": 12,
         "storage": 512,
-        "price": 4499
+        "price": 4799,
+        "label": "頂配"
       }
     ],
     "extraVersions": [
@@ -92,7 +92,7 @@
     "desc": "搭載柔光護眼屏的旗艦平板，有效減少反光，長時間使用更舒適，同樣支持手寫筆與鍵盤。",
     "descEn": "Flagship tablet with matte anti-glare display for reduced reflections and comfortable extended use. Full stylus and keyboard support.",
     "series": "Xiaomi",
-    "price": 4299,
+    "price": 4999,
     "rating": 4.7,
     "tag": "護眼旗艦",
     "tagEn": "Eye-Care Flagship",
@@ -115,7 +115,7 @@
       "綠色"
     ],
     "buyLink": "https://www.mi.com/hk/product/xiaomi-pad-8-pro-matte",
-    "salesBadge": "✨ 新品",
+    "salesBadge": "🔥 熱銷",
     "salesMsg": "護眼旗艦，長時間使用不疲勞",
     "salesMsgEn": "Eye-care flagship — comfortable for extended use",
     "targetUser": "長時間辦公、閱讀、繪畫用戶",
@@ -134,16 +134,10 @@
     "spec": "12GB+256GB",
     "variants": [
       {
-        "label": "",
-        "ram": 12,
-        "storage": 256,
-        "price": 4299
-      },
-      {
-        "label": "頂配",
         "ram": 12,
         "storage": 512,
-        "price": 4799
+        "price": 4999,
+        "label": ""
       }
     ],
     "extraVersions": [],
@@ -177,7 +171,7 @@
     "desc": "均衡中端平板，搭載 Snapdragon 8s Gen 4 處理器，11.2吋 120Hz 大屏，四揚聲器影音體驗出色。",
     "descEn": "Well-balanced mid-range tablet with Snapdragon 8s Gen 4, 11.2\" 120Hz display, and quad speakers for immersive media.",
     "series": "Xiaomi",
-    "price": 2499,
+    "price": 3199,
     "rating": 4.6,
     "tag": "均衡之選",
     "tagEn": "Balanced Choice",
@@ -220,16 +214,16 @@
     "spec": "8GB+256GB",
     "variants": [
       {
-        "label": "",
-        "ram": 8,
-        "storage": 128,
-        "price": 2199
-      },
-      {
-        "label": "",
         "ram": 8,
         "storage": 256,
-        "price": 2499
+        "price": 3199,
+        "label": ""
+      },
+      {
+        "ram": 12,
+        "storage": 256,
+        "price": 3599,
+        "label": "頂配"
       }
     ],
     "extraVersions": [],
@@ -261,7 +255,7 @@
     "desc": "小屏電競平板，8.8吋 165Hz 超高刷屏，旗艦芯片加持，輕巧便攜的遊戲利器。",
     "descEn": "Compact gaming tablet with 8.8\" 165Hz ultra-high refresh display and flagship chip. A powerful portable gaming device.",
     "series": "Xiaomi",
-    "price": 1799,
+    "price": 3799,
     "rating": 4.5,
     "tag": "小屏電競",
     "tagEn": "Compact Gaming",
@@ -304,16 +298,16 @@
     "spec": "8GB+128GB",
     "variants": [
       {
-        "label": "",
-        "ram": 8,
-        "storage": 128,
-        "price": 1799
-      },
-      {
-        "label": "",
         "ram": 8,
         "storage": 256,
-        "price": 1999
+        "price": 3799,
+        "label": ""
+      },
+      {
+        "ram": 12,
+        "storage": 512,
+        "price": 4299,
+        "label": "頂配"
       }
     ],
     "extraVersions": [],
@@ -347,7 +341,7 @@
     "desc": "中端旗艦平板，Dimensity 9400 處理器，12.1吋大屏，12000mAh超大電池，支持手寫筆與鍵盤。",
     "descEn": "Mid-range powerhouse with Dimensity 9400, 12.1\" display, 12000mAh battery, stylus and keyboard support.",
     "series": "Redmi",
-    "price": 2199,
+    "price": 1899,
     "rating": 4.6,
     "tag": "長續航之選",
     "tagEn": "Long Battery Life",
@@ -389,16 +383,22 @@
     "spec": "8GB+256GB",
     "variants": [
       {
-        "label": "",
-        "ram": 8,
+        "ram": 6,
         "storage": 128,
-        "price": 1999
+        "price": 1899,
+        "label": ""
       },
       {
-        "label": "",
+        "ram": 8,
+        "storage": 128,
+        "price": 1999,
+        "label": ""
+      },
+      {
         "ram": 8,
         "storage": 256,
-        "price": 2199
+        "price": 2199,
+        "label": ""
       }
     ],
     "extraVersions": [
@@ -583,7 +583,7 @@
     "desc": "入門級平板，Dimensity 7s Gen 3 處理器，10.6吋大屏，價格實惠，適合日常使用。",
     "descEn": "Entry-level tablet with Dimensity 7s Gen 3, 10.6\" display. Affordable for everyday use.",
     "series": "Redmi",
-    "price": 1199,
+    "price": 1399,
     "rating": 4.3,
     "tag": "超值入門",
     "tagEn": "Value Entry-Level",
@@ -625,16 +625,16 @@
     "spec": "4GB+128GB",
     "variants": [
       {
-        "label": "",
         "ram": 4,
         "storage": 128,
-        "price": 1199
+        "price": 1399,
+        "label": ""
       },
       {
-        "label": "",
-        "ram": 6,
-        "storage": 128,
-        "price": 1299
+        "ram": 8,
+        "storage": 256,
+        "price": 1799,
+        "label": ""
       }
     ],
     "extraVersions": [],
@@ -666,7 +666,7 @@
     "desc": "輕巧便攜平板，9.7吋小巧機身，Dimensity 7s Gen 3 處理器，單手可握的隨身好物。",
     "descEn": "Compact portable tablet with 9.7\" form factor. Dimensity 7s Gen 3 for on-the-go convenience.",
     "series": "Redmi",
-    "price": 999,
+    "price": 1199,
     "rating": 4.4,
     "tag": "輕巧便攜",
     "tagEn": "Light & Portable",
@@ -708,16 +708,16 @@
     "spec": "4GB+64GB",
     "variants": [
       {
-        "label": "",
         "ram": 4,
         "storage": 64,
-        "price": 999
+        "price": 1199,
+        "label": ""
       },
       {
-        "label": "",
         "ram": 4,
         "storage": 128,
-        "price": 1099
+        "price": 1299,
+        "label": ""
       }
     ],
     "extraVersions": [],
@@ -749,7 +749,7 @@
     "desc": "專為兒童設計的平板，柔光護眼屏+保護殼+繪畫筆，守護孩子視力的同時寓教於樂。",
     "descEn": "Designed for kids — matte eye-care display, protective case, and drawing pen. Safe and fun learning.",
     "series": "Redmi",
-    "price": 1399,
+    "price": 1799,
     "rating": 4.5,
     "tag": "兒童教育",
     "tagEn": "Kids & Education",
@@ -791,10 +791,10 @@
     "spec": "4GB+128GB",
     "variants": [
       {
-        "label": "",
         "ram": 4,
         "storage": 128,
-        "price": 1399
+        "price": 1799,
+        "label": ""
       }
     ],
     "extraVersions": [],
