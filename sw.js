@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tablet-2026-v12';
+const CACHE_NAME = 'tablet-2026-v13';
 
 const CORE_ASSETS = [
   './',

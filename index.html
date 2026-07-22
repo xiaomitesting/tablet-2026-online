@@ -923,16 +923,16 @@ function showRecommendationFromCache() {
             ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>${t('detail.suitable')}</strong>${pTargetUser(top.product)}</span></div>` : ''}
             ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${scenarioLabels[s]||s}</span>`).join('')}</div>` : ''}
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
-                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size||""}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip||""}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery||""}mAh</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging||""}</p></div>
                 <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
             </div>
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
             ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
             <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="toggleFav('${top.product.id}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                <button onclick="toggleFav('${top.product.id||""}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
                 <button onclick="swapTopResult()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">↕️ 交換</button><button onclick="shareRecommendation()" class="px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-orange-600 transition-all">📲 幫朋友選</button>
                 <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
             </div>
@@ -1090,6 +1090,7 @@ function calculateMatches() {
 }
 
 function showRecommendation() {
+    try {
     document.getElementById('quiz-card').classList.add('hidden');
     const rc = document.getElementById('result-card');
     rc.classList.remove('hidden');
@@ -1162,25 +1163,25 @@ function showRecommendation() {
             <div class="absolute top-4 right-4 bg-miOrange text-white text-xs font-bold px-3 py-1 rounded-full">最佳推薦 Match!</div>
             <div class="flex items-center gap-2 mb-2">
                 <span class="inline-block px-3 py-1 bg-orange-100 text-miOrange rounded-full text-xs font-bold">🎯 契合度 ${top.score}%</span>
-                <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">${top.product.salesBadge}</span>
+                <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">${top.product.salesBadge||''}</span>
             </div>
-            <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 mb-1">${top.product.name}</h2>
-            <p class="text-xs sm:text-sm text-miOrange font-semibold mb-2 sm:mb-3">💬 「${top.product.salesMsg}」</p>
-            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${top.product.price.toLocaleString()} 起</p>
-            <p class="text-gray-600 mb-4">${top.product.desc}</p>
+            <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 mb-1">${top.product.name||''}</h2>
+            <p class="text-xs sm:text-sm text-miOrange font-semibold mb-2 sm:mb-3">💬 「${top.product.salesMsg||''}」</p>
+            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${(top.product.price||0).toLocaleString()} 起</p>
+            <p class="text-gray-600 mb-4">${top.product.desc||''}</p>
             ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>適合人群：</strong>${top.product.targetUser}</span></div>` : ''}
             ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => {const labels = {productivity:'💼 辦公',gaming:'🎮 遊戲',media:'🎬 影音',creative:'🎨 創意',reading:'📖 閱讀',portable:'🏃 便攜',kids:'👶 兒童',outdoor:'🏕️ 戶外'}; return `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${labels[s]||s}</span>`;}).join('')}</div>` : ''}
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
-                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size||""}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip||""}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery||""}mAh</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging||""}</p></div>
                 <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
             </div>
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
             ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
             <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="toggleFav('${top.product.id}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                <button onclick="toggleFav('${top.product.id||""}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
                 <button onclick="swapTopResult()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">↕️ 交換</button><button onclick="shareRecommendation()" class="px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-orange-600 transition-all">📲 幫朋友選</button>
                 <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
             </div>
@@ -1211,6 +1212,14 @@ function showRecommendation() {
         </div>
         ${statsHtml}
     `;
+    } catch(err) {
+        console.error('❌ showRecommendation error:', err);
+        const rc = document.getElementById('result-card');
+        if (rc) {
+            rc.classList.remove('hidden');
+            rc.innerHTML = '<div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center"><div class="text-3xl mb-3">⚠️</div><h2 class="text-lg font-bold text-red-700 mb-2">推薦引擎錯誤</h2><p class="text-sm text-red-600 mb-4">' + err.message + '</p><button onclick="resetQuiz()" class="px-4 py-2 bg-miOrange text-white rounded-xl font-bold">🔄 重新測驗</button></div>';
+        }
+    }
 }
 
 // ============================================================
