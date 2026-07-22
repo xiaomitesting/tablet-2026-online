@@ -426,9 +426,9 @@ en: {
 'nav.home':'🏠 Home','nav.quiz':'🎯 Smart Pick','nav.catalog':'📱 All Models','nav.guide':'📖 Guide','nav.calculator':'🧮 Budget','nav.favorites':'❤️ Favs','nav.compare':'⚖️ Compare',
 'mob.home':'🏠 Home','mob.quiz':'🎯 Pick','mob.catalog':'📱 Models','mob.guide':'📖 Guide','mob.calculator':'🧮 Calc','mob.favorites':'❤️ Favs','mob.compare':'⚖️ Compare',
 'home.findTitle':'Find Your Perfect Xiaomi Tablet','home.findSubtitle':'Answer 7 quick questions and get the best recommendation.',
-'home.welcome':'👋 Welcome to','home.heroTablet':'Tablet','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
+'home.welcome':'👋 Welcome to','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
 'home.heroDesc':'Answer a few simple questions to find your ideal Xiaomi tablet. Covers the full Xiaomi Pad lineup and Redmi Pad, from entry-level to flagship.',
-'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Hot','home.headerBrand':'Xiaomi.com','home.headerTitle':'Tablet Finder','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
+'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Hot','home.headerBrand':'Xiaomi.com','home.headerTitle':'Tablet Finder',
 'home.heroBtn':'🎯 Start Smart Recommendation',
 'home.featureQuiz':'Smart Pick','home.featureCatalog':'All Models','home.featureGuide':'Buying Guide','home.featureCalc':'Budget Calc','home.featureCompare':'Compare',
 'home.featureQuizDesc':'7-step quiz<br>Multi-select','home.featureCatalogDesc':'Browse all tablets<br>Filter, sort & compare','home.featureGuideDesc':'By budget & scenario<br>Quick picks','home.featureCalcDesc':'Drag the slider<br>Instant match','home.featureCompareDesc':'Side-by-side specs<br>At a glance',
@@ -506,7 +506,7 @@ function pSalesMsg(p){return currentLang==='en'&&p.salesMsgEn?p.salesMsgEn:p.sal
 function pTargetUser(p){return currentLang==='en'&&p.targetUserEn?p.targetUserEn:p.targetUser;}
 function scenarioLabel(id){return t('cs.'+id);}
 function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';localStorage.setItem('mi_tablet_lang',currentLang);document.documentElement.setAttribute('data-lang',currentLang);document.getElementById('lang-label').textContent=currentLang==='zh'?'EN':'中';applyI18n();if(currentTab==='home'){renderHome();}if(currentTab==='quiz'){if(!document.getElementById('quiz-card').classList.contains('hidden'))renderQuiz();else if(currentQuizResults)showRecommendationFromCache();}if(currentTab==='catalog')renderCatalog(currentCatalogFilter);if(currentTab==='guide')renderGuide();if(currentTab==='calculator')renderCalculator();if(currentTab==='favorites')renderFavorites();if(!document.getElementById('compare-modal').classList.contains('hidden')){renderCompareSelector();renderCompareTable();}updateCompareDrawer();}
-function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');var v=t(k);if(v!==k)el.textContent=v;});var cc=document.getElementById('compare-select-count');if(cc)cc.textContent=t('compare.selectCount',selectedForCompare.length);applyI18nMobile();}
+function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');var v=t(k);if(v!==k){if(typeof v==='string'&&v.indexOf('<')>-1&&v.indexOf('>')>-1){el.innerHTML=v;}else{el.textContent=v;}}});var cc=document.getElementById('compare-select-count');if(cc)cc.textContent=t('compare.selectCount',selectedForCompare.length);applyI18nMobile();}
 function applyI18nMobile(){var mobMap={};document.querySelectorAll('[data-i18n-mob]').forEach(function(el){var k=el.getAttribute('data-i18n-mob');var v=t(k);if(v!==k)el.textContent=v;});}
 
 // 芯片標籤：提取品牌+型號關鍵詞
@@ -686,6 +686,8 @@ function renderHome() {
             </div>
         `).join('');
     }
+    // Re-translate dynamic elements created by renderHome
+    applyI18n();
 }
 
 // ============================================================
@@ -804,6 +806,7 @@ function renderQuiz() {
         '</div>' +
         (isMulti ? '<button onclick="confirmMultiSelect()" class="mt-4 w-full bg-miOrange text-white py-3 rounded-xl font-bold text-sm hover:bg-orange-600 transition-all">' + t('quiz.confirmMulti', multiSelectTemp.length) + '</button>' : '') +
         (quizStep > 1 ? '<button onclick="prevStep()" class="mt-4 flex items-center text-sm font-medium text-gray-500 hover:text-gray-700">' + t('quiz.back') + '</button>' : '');
+    applyI18n();
 }
 
 function toggleMultiSelect(value) {
@@ -2165,26 +2168,11 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
     <script>
-        // 监听 SW 更新消息，强制刷新
+        // Register SW without aggressive auto-reload
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.addEventListener('message', event => {
-                if (event.data && event.data.type === 'SW_UPDATED') {
-                    console.log('🔄 New SW detected, reloading...');
-                    location.reload();
-                }
-            });
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').then(reg => {
                     console.log('SW registered:', reg.scope);
-                    reg.addEventListener('updatefound', () => {
-                        const newWorker = reg.installing;
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'activated' && navigator.serviceWorker.controller) {
-                                // 新 SW 已激活 → 刷新页面获取新内容
-                                location.reload();
-                            }
-                        });
-                    });
                 }).catch(err => console.log('SW failed:', err));
             });
         }

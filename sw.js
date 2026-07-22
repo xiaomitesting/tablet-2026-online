@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tablet-2026-v11';
+const CACHE_NAME = 'tablet-2026-v12';
 
 const CORE_ASSETS = [
   './',
@@ -37,13 +37,6 @@ self.addEventListener('activate', event => {
             .map(key => caches.delete(key))
       )
     ).then(() => self.clients.claim())
-  );
-
-  // 通知所有已打開的頁面：有新版，請刷新
-  event.waitUntil(
-    self.clients.matchAll({ type: 'window' }).then(clients => {
-      clients.forEach(client => client.postMessage({ type: 'SW_UPDATED' }));
-    })
   );
 });
 
