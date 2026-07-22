@@ -159,7 +159,7 @@
                 <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-16 -mb-16"></div>
                 <div class="relative z-10">
                     <p class="text-orange-100 text-sm mb-2" data-i18n="home.welcome">👋 歡迎使用</p>
-                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">Tablet</span><span data-i18n="home.heroTitle">Smart Finder</span></h1>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">Tablet</span> <span data-i18n="home.heroTitle">Smart Finder</span></h1>
                     <p class="text-orange-100 text-sm sm:text-base mb-6" data-i18n="home.heroDesc">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
                     <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base" data-i18n="home.heroBtn">
                         🎯 開始智能推薦
@@ -531,7 +531,6 @@ async function loadProducts() {
     try {
         const resp = await fetch('js/data/products.json?v=' + Date.now());
         products = await resp.json();
-        console.log('[loadProducts] Loaded ' + products.length + ' products');
     } catch(e) {
         console.error('載入產品數據失敗:', e);
         products = [];
@@ -632,18 +631,13 @@ async function manualSync() {
 
 window.onload = async function() {
     try {
-        console.log('[init] Starting... lang=' + currentLang);
         var savedLang = localStorage.getItem('mi_tablet_lang');
         if (savedLang) currentLang = savedLang;
         document.documentElement.setAttribute('data-lang', currentLang);
         document.getElementById('lang-label').textContent = currentLang === 'zh' ? 'EN' : '中';
-        console.log('[init] applyI18n...');
         applyI18n();
-        console.log('[init] loadProducts...');
         await loadProducts();
-        console.log('[init] products loaded: ' + products.length);
         renderHome();
-        console.log('[init] renderHome done');
         renderQuiz();
         renderCatalog('all');
         updateFavBadge();
@@ -2128,29 +2122,10 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
     <script>
-        // Debug: show JS execution status
-        document.addEventListener('DOMContentLoaded', function() {
-            var el = document.createElement('div');
-            el.id = 'js-debug';
-            el.style.cssText = 'position:fixed;bottom:4px;right:4px;background:#22c55e;color:white;padding:2px 8px;border-radius:4px;font-size:10px;z-index:9999;';
-            el.textContent = 'JS OK ✓ ' + new Date().toLocaleTimeString();
-            document.body.appendChild(el);
-        });
-        // Force SW update + cache bust
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').then(reg => {
                     reg.update();
-                    if (reg.waiting) {
-                        reg.waiting.postMessage({ type: 'skip-waiting' });
-                        window.location.reload();
-                    }
-                    reg.addEventListener('updatefound', () => {
-                        const newWorker = reg.installing;
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'activated') window.location.reload();
-                        });
-                    });
                     console.log('SW registered:', reg.scope);
                 }).catch(err => console.log('SW failed:', err));
             });

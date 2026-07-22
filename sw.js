@@ -1,10 +1,8 @@
-const CACHE_NAME = 'tablet-2026-v17';
+const CACHE_NAME = 'tablet-2026-v18';
 
 const CORE_ASSETS = [
-  './',
   './style.css',
   './css/style.css',
-  './js/data/products.json',
   './js/modules/quiz-data.js',
   './assets/xiaomi-logo-square.png',
   './assets/mi-logo.png',
@@ -69,17 +67,17 @@ self.addEventListener('fetch', event => {
         .catch(() => caches.match(event.request).then(cached => cached || caches.match('./offline.html')))
     );
   } else {
+    // Network First for JS/CSS to ensure latest code is always served
     event.respondWith(
-      caches.match(event.request)
-        .then(cached => {
-          if (cached) return cached;
-          return fetch(event.request).then(response => {
-            if (!response || response.status !== 200 || response.type !== 'basic') return response;
+      fetch(event.request)
+        .then(response => {
+          if (response && response.status === 200 && response.type === 'basic') {
             const clone = response.clone();
             caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-            return response;
-          }).catch(() => new Response('Offline', { status: 503 }));
+          }
+          return response;
         })
+        .catch(() => caches.match(event.request).then(cached => cached || new Response('Offline', { status: 503 })))
     );
   }
 });
