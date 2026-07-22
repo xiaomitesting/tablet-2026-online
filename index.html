@@ -529,8 +529,9 @@ function dramShort(ram) {
 
 async function loadProducts() {
     try {
-        const resp = await fetch('js/data/products.json');
+        const resp = await fetch('js/data/products.json?v=' + Date.now());
         products = await resp.json();
+        console.log('[loadProducts] Loaded ' + products.length + ' products');
     } catch(e) {
         console.error('載入產品數據失敗:', e);
         products = [];
@@ -631,16 +632,22 @@ async function manualSync() {
 
 window.onload = async function() {
     try {
+        console.log('[init] Starting... lang=' + currentLang);
         var savedLang = localStorage.getItem('mi_tablet_lang');
         if (savedLang) currentLang = savedLang;
         document.documentElement.setAttribute('data-lang', currentLang);
         document.getElementById('lang-label').textContent = currentLang === 'zh' ? 'EN' : '中';
+        console.log('[init] applyI18n...');
         applyI18n();
+        console.log('[init] loadProducts...');
         await loadProducts();
+        console.log('[init] products loaded: ' + products.length);
         renderHome();
+        console.log('[init] renderHome done');
         renderQuiz();
         renderCatalog('all');
         updateFavBadge();
+        console.log('[init] All done ✓');
         if (localStorage.getItem('mi_dark_mode') === 'true') {
             document.body.classList.add('dark');
             document.body.setAttribute('data-theme', 'dark');
@@ -2121,6 +2128,14 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
     <script>
+        // Debug: show JS execution status
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.createElement('div');
+            el.id = 'js-debug';
+            el.style.cssText = 'position:fixed;bottom:4px;right:4px;background:#22c55e;color:white;padding:2px 8px;border-radius:4px;font-size:10px;z-index:9999;';
+            el.textContent = 'JS OK ✓ ' + new Date().toLocaleTimeString();
+            document.body.appendChild(el);
+        });
         // Force SW update + cache bust
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
