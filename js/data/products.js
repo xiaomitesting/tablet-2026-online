@@ -35,6 +35,7 @@ const PRODUCTS = [
     os: "HyperOS 3.0",
     connectivity: ["Wi-Fi 7", "Bluetooth 5.4"],
     colors: ["Gray", "Green", "Blue"],
+    matteColors: ["Gray"],
     scenarios: ["productivity", "creative", "media"],
     tags: ["旗舰", "办公", "手写笔"],
     highlight: "PC级多工体验，专业创作首选",
