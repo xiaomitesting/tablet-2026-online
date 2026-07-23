@@ -267,7 +267,7 @@ const PRODUCTS = [
     chip: "Snapdragon 6s 4G Gen 2",
     chipBrand: "Qualcomm",
     battery: 7600,
-    charging: 10,
+    charging: 18,
     ram: 4,
     storage: 64,
     cameras: { rear: "8MP", front: "5MP" },
