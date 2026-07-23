@@ -526,6 +526,15 @@ function dram(ram) {
 function dramShort(ram) {
     return `${ram}`;
 }
+// Price range helper: returns {min, max, label} for a product
+function priceRange(p) {
+    const variants = p.variants && p.variants.length > 0 ? p.variants : [{price: p.price}];
+    const prices = variants.map(v => v.price);
+    const mn = Math.min(...prices);
+    const mx = Math.max(...prices);
+    if (mn === mx) return { min: mn, max: mx, label: 'HK$' + mn.toLocaleString() };
+    return { min: mn, max: mx, label: 'HK$' + mn.toLocaleString() + ' ~ ' + mx.toLocaleString() };
+}
 
 async function loadProducts() {
     try {
@@ -674,7 +683,7 @@ function renderHome() {
                     <div class="product-img-fallback mb-3 ${p.image ? 'hidden' : ''}" style="background:linear-gradient(135deg,${p.series==='Xiaomi'?'#FF6700,#FF8533':'#EF4444,#F87171'})">${p.name.replace(/Xiaomi |REDMI /i,'')}</div>
                 <div class="flex justify-between items-start mb-2">
                     <span class="px-2 py-0.5 ${p.series==='Xiaomi'?'bg-orange-100 text-orange-600':'bg-red-50 text-red-600'} rounded text-[10px] font-bold uppercase">${p.series}</span>
-                    <span class="text-lg font-extrabold text-orange-600">HK$${p.price.toLocaleString()}</span>
+                    <span class="text-sm font-extrabold text-orange-600">${(() => { const pr = priceRange(p); return pr.min !== pr.max ? pr.min.toLocaleString() + ' ~ ' + pr.max.toLocaleString() : 'HK$' + pr.min.toLocaleString(); })()}</span>
                 </div>
                 <h3 class="font-bold text-gray-900 mb-1">${p.name}</h3>
                 <p class="text-xs text-gray-500 mb-2">${pTag(p)}</p>
@@ -921,7 +930,7 @@ function showRecommendationFromCache() {
             </div>
             <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 mb-1">${pName(top.product)}</h2>
             <p class="text-xs sm:text-sm text-miOrange font-semibold mb-2 sm:mb-3">💬 「${pSalesMsg(top.product)}」</p>
-            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${top.product.price.toLocaleString()} ${t('rec.priceFrom')}</p>
+            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">${(() => { const pr = priceRange(top.product); return pr.min !== pr.max ? pr.label + ' 起' : pr.label + ' ' + t('rec.priceFrom'); })()}</p>
             <p class="text-gray-600 mb-4">${pDesc(top.product)}</p>
             ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>${t('detail.suitable')}</strong>${pTargetUser(top.product)}</span></div>` : ''}
             ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${scenarioLabels[s]||s}</span>`).join('')}</div>` : ''}
@@ -947,7 +956,7 @@ function showRecommendationFromCache() {
                     <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
                         <div class="flex justify-between items-start mb-2">
                             <span class="px-2 py-0.5 bg-red-50 text-red-600 rounded text-xs font-bold">${r.product.salesBadge}</span>
-                            <span class="text-sm font-bold text-miOrange">HK$${r.product.price.toLocaleString()}</span>
+                            <span class="text-sm font-bold text-miOrange">${(() => { const pr = priceRange(r.product); return pr.min !== pr.max ? 'HK$' + pr.min.toLocaleString() + ' 起' : 'HK$' + pr.min.toLocaleString(); })()}</span>
                         </div>
                         <h4 class="font-bold text-gray-900 mb-1">${pName(r.product)}</h4>
                         <p class="text-xs text-gray-400 mb-1">${r.product.tag}</p>
@@ -1169,7 +1178,7 @@ function showRecommendation() {
             </div>
             <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 mb-1">${top.product.name||''}</h2>
             <p class="text-xs sm:text-sm text-miOrange font-semibold mb-2 sm:mb-3">💬 「${top.product.salesMsg||''}」</p>
-            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${(top.product.price||0).toLocaleString()} ${t('rec.priceFrom')}</p>
+            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">${(() => { const pr = priceRange(top.product); return pr.min !== pr.max ? pr.label + ' 起' : pr.label + ' ' + t('rec.priceFrom'); })()}</p>
             <p class="text-gray-600 mb-4">${top.product.desc||''}</p>
             ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>${t('rec.suitable')}</strong>${top.product.targetUser}</span></div>` : ''}
             ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => {const labels = {productivity:'💼 辦公',gaming:'🎮 遊戲',media:'🎬 影音',creative:'🎨 創意',reading:'📖 閱讀',portable:'🏃 便攜',kids:'👶 兒童',outdoor:'🏕️ 戶外'}; return `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${labels[s]||s}</span>`;}).join('')}</div>` : ''}
@@ -1195,7 +1204,7 @@ function showRecommendation() {
                     <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
                         <div class="flex justify-between items-start mb-2">
                             <span class="px-2 py-0.5 bg-red-50 text-red-600 rounded text-xs font-bold">${r.product.salesBadge||''}</span>
-                            <span class="text-sm font-bold text-miOrange">HK$${(r.product.price||0).toLocaleString()}</span>
+                            <span class="text-sm font-bold text-miOrange">${(() => { const pr = priceRange(r.product); return pr.min !== pr.max ? 'HK$' + pr.min.toLocaleString() + ' 起' : 'HK$' + (r.product.price||0).toLocaleString(); })()}</span>
                         </div>
                         <h4 class="font-bold text-gray-900 mb-1">${r.product.name||''}</h4>
                         <p class="text-xs text-gray-400 mb-1">${r.product.tag||''}</p>
@@ -1250,8 +1259,7 @@ function renderCatalog(filter='all') {
                     </div>
                     <div class="text-right">
                         <div class="bg-miOrange text-white px-3 py-1.5 rounded-lg shadow-sm">
-                            <div class="text-[10px] font-medium opacity-80">${t('catalog.priceFrom')}</div>
-                            <div class="text-xl font-extrabold leading-tight">${p.price.toLocaleString()}</div>
+                            ${(() => { const pr = priceRange(p); return pr.min !== pr.max ? `<div class="text-[10px] font-medium opacity-80">HK$ 起</div><div class="text-lg font-extrabold leading-tight">${pr.min.toLocaleString()} ~ ${pr.max.toLocaleString()}</div>` : `<div class="text-[10px] font-medium opacity-80">${t('catalog.priceFrom')}</div><div class="text-xl font-extrabold leading-tight">${pr.min.toLocaleString()}</div>`; })()}
                         </div>
                     </div>
                 </div>
@@ -1490,7 +1498,14 @@ function updateCalcResults() {
     if (!el) return;
     const totalMin = calcBudgetMin + (calcAccessory?500:0);
     const totalMax = calcBudgetMax + (calcAccessory?500:0);
-    const matched = products.filter(p=>p.price>=totalMin && p.price<=totalMax).sort((a,b)=>b.rating-a.rating);
+    const matched = products.filter(p=>{
+        const variants = p.variants && p.variants.length > 0 ? p.variants : [{price: p.price}];
+        const prices = variants.map(v => v.price);
+        const mn = Math.min(...prices);
+        const mx = Math.max(...prices);
+        // Match if any variant falls within budget range
+        return mx >= totalMin && mn <= totalMax;
+    }).sort((a,b)=>b.rating-a.rating);
     el.innerHTML = matched.length?`
         <p class="text-sm text-gray-500 mb-3">${t('calc.found')} <strong>${matched.length}</strong> ${t('calc.models')}</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1498,7 +1513,7 @@ function updateCalcResults() {
                 <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow">
                     <div class="flex justify-between items-start mb-2">
                         <span class="px-2 py-0.5 ${p.series==='Xiaomi'?'bg-orange-100 text-miOrange':'bg-red-50 text-red-600'} rounded text-[10px] font-bold">${p.series}</span>
-                        <span class="text-sm font-bold text-miOrange">HK$${p.price.toLocaleString()}</span>
+                        <span class="text-sm font-bold text-miOrange">${(() => { const pr = priceRange(p); return pr.min !== pr.max ? 'HK$' + pr.min.toLocaleString() + ' 起' : 'HK$' + pr.min.toLocaleString(); })()}</span>
                     </div>
                     <h4 class="font-bold text-sm">${p.name}</h4>
                     <p class="text-[11px] text-miOrange font-medium mt-0.5">${p.tag||''}</p>
