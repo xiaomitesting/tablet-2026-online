@@ -1288,8 +1288,8 @@ function renderCatalog(filter='all') {
                     <div class="flex justify-between"><span>${t("catalog.battery")}</span><span class="font-medium text-gray-700">${p.battery}mAh / ${p.charging}</span></div>
                 </div>
                 <div class="flex flex-wrap gap-1 mt-2">
-                    ${p.stylus?`<span class="text-[10px] bg-green-50 text-green-600 px-1.5 py-0.5 rounded">${t('catalog.penBadge')}</span>`:''}
-                    ${p.keyboard?`<span class="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${t('catalog.kbBadge')}</span>`:''}
+                    ${(p.stylus||(p.variants&&p.variants.some(v=>v.stylus)))?`<span class="text-[10px] bg-green-50 text-green-600 px-1.5 py-0.5 rounded">${t('catalog.penBadge')}</span>`:''}
+                    ${(p.keyboard||(p.variants&&p.variants.some(v=>v.keyboard)))?`<span class="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${t('catalog.kbBadge')}</span>`:''}
                     <span class="text-[10px] bg-gray-50 text-gray-500 px-1.5 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
                 ${(p.matteColors||p.colors) ? `

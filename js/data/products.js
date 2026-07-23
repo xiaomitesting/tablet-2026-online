@@ -148,8 +148,8 @@ const PRODUCTS = [
     storage: 256,
     cameras: { rear: "13MP", front: "5MP" },
     speakers: 4,
-    stylus: false,
-    keyboard: false,
+    stylus: true,
+    keyboard: true,
     weight: 510,
     thickness: 7.5,
     os: "HyperOS 2.0",
@@ -158,8 +158,8 @@ const PRODUCTS = [
     scenarios: ["productivity", "media", "outdoor"],
     tags: ["5G", "大屏", "户外"],
     highlight: "支持5G插卡，户外办公不受限",
-    pros: ["5G移动网络", "12000mAh大电池", "12.1吋大屏"],
-    cons: ["无手写笔"],
+    pros: ["5G移动网络", "12000mAh大电池", "12.1吋大屏", "手写笔+键盘支持"],
+    cons: [],
     rating: 4.4,
     targetUser: "经常出差、户外工作者、无Wi-Fi环境用户",
     buyLink: "https://www.mi.com/hk/product/redmi-pad-2-pro-5g/",
@@ -174,7 +174,7 @@ const PRODUCTS = [
     variants: [
       { ram: 6, storage: 128, price: 1899 },
       { ram: 8, storage: 256, price: 2199 },
-      { ram: 8, storage: 256, price: 2399, label: "柔光螢幕版" }
+      { ram: 8, storage: 256, price: 2399, label: "柔光螢幕版", keyboard: true }
     ],
     currency: "HKD",
     size: 12.1,
