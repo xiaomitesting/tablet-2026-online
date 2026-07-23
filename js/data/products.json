@@ -188,7 +188,7 @@
     "storage": 256,
     "battery": 9200,
     "charging": "45W",
-    "weight": 480,
+    "weight": 485,
     "stylus": true,
     "keyboard": true,
     "colors": [
@@ -248,7 +248,8 @@
     "consEn": [
       "No stylus support",
       "No keyboard support"
-    ]
+    ],
+    "thickness": 5.75
   },
   {
     "id": "pad_mini",
@@ -272,7 +273,7 @@
     "storage": 256,
     "battery": 7500,
     "charging": "67W",
-    "weight": 290,
+    "weight": 326,
     "stylus": true,
     "keyboard": false,
     "colors": [
@@ -333,7 +334,8 @@
       "No stylus",
       "Smaller battery",
       "Smaller screen"
-    ]
+    ],
+    "thickness": 6.46
   },
   {
     "id": "redmi_pad_2_pro",
@@ -357,7 +359,7 @@
     "storage": 256,
     "battery": 12000,
     "charging": "67W Turbo Charge",
-    "weight": 520,
+    "weight": 610,
     "stylus": true,
     "keyboard": true,
     "colors": [
@@ -523,7 +525,7 @@
     "storage": 256,
     "battery": 12000,
     "charging": "67W Turbo Charge",
-    "weight": 530,
+    "weight": 600,
     "stylus": true,
     "keyboard": true,
     "colors": [
@@ -600,7 +602,7 @@
     "storage": 128,
     "battery": 7000,
     "charging": "33W Charging",
-    "weight": 465,
+    "weight": 510,
     "stylus": false,
     "keyboard": false,
     "colors": [
@@ -660,7 +662,8 @@
       "No stylus",
       "No keyboard",
       "Lower refresh rate"
-    ]
+    ],
+    "thickness": 7.36
   },
   {
     "id": "redmi_pad_2_97",
