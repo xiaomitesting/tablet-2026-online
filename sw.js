@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tablet-2026-v18';
+const CACHE_NAME = 'tablet-2026-v19';
 
 const CORE_ASSETS = [
   './style.css',
