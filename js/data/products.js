@@ -225,7 +225,7 @@ const PRODUCTS = [
     chip: "MediaTek Helio G100-Ultra",
     chipBrand: "MediaTek",
     battery: 9000,
-    charging: 33,
+    charging: 18,
     ram: 4,
     storage: 128,
     cameras: { rear: "8MP", front: "5MP" },
