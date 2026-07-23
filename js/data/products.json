@@ -86,7 +86,11 @@
     "consEn": [
       "Heavier body",
       "Higher price point"
-    ]
+    ],
+    "cameras": {
+      "rear": "50MP",
+      "front": "32MP"
+    }
   },
   {
     "id": "pad_8_pro_matte",
@@ -249,7 +253,11 @@
       "No stylus support",
       "No keyboard support"
     ],
-    "thickness": 5.75
+    "thickness": 5.75,
+    "connectivity": [
+      "Wi-Fi 7",
+      "Bluetooth 5.4"
+    ]
   },
   {
     "id": "pad_mini",
@@ -425,6 +433,14 @@
     ],
     "consEn": [
       "Heavier body"
+    ],
+    "cameras": {
+      "rear": "8MP",
+      "front": "8MP"
+    },
+    "connectivity": [
+      "Wi-Fi 6",
+      "Bluetooth 5.4"
     ]
   },
   {
@@ -578,6 +594,15 @@
     "consEn": [
       "Heavier body",
       "Higher price"
+    ],
+    "cameras": {
+      "rear": "13MP",
+      "front": "8MP"
+    },
+    "connectivity": [
+      "5G",
+      "Wi-Fi 6",
+      "Bluetooth 5.4"
     ]
   },
   {
