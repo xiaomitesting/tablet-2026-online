@@ -245,14 +245,8 @@
       "Smooth 120Hz",
       "Slim and light"
     ],
-    "cons": [
-      "不支持手寫筆",
-      "不支持鍵盤"
-    ],
-    "consEn": [
-      "No stylus support",
-      "No keyboard support"
-    ],
+    "cons": [],
+    "consEn": [],
     "thickness": 5.75,
     "connectivity": [
       "Wi-Fi 7",
@@ -596,7 +590,7 @@
       "Higher price"
     ],
     "cameras": {
-      "rear": "13MP",
+      "rear": "8MP",
       "front": "8MP"
     },
     "connectivity": [
@@ -713,7 +707,7 @@
     "battery": 7600,
     "charging": "18W Charging",
     "weight": 406,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "石墨灰",
