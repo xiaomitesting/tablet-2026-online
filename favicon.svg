@@ -1,15 +1,4 @@
-<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- 橙色圓角矩形背景 -->
-  <rect width="512" height="512" rx="108" fill="#FF6700"/>
-  <!-- 白色 "mi" 標誌 -->
-  <g fill="white">
-    <!-- m: 三條豎線 + 兩條頂部橫線 -->
-    <rect x="80" y="150" width="56" height="212" rx="4"/>
-    <rect x="168" y="150" width="56" height="212" rx="4"/>
-    <rect x="256" y="150" width="56" height="212" rx="4"/>
-    <rect x="80" y="150" width="232" height="48" rx="4"/>
-    <!-- i: 一條豎線 + 頂部方塊 -->
-    <rect x="344" y="150" width="56" height="212" rx="4"/>
-    <rect x="344" y="106" width="56" height="40" rx="4"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="20" fill="#FF6900"/>
+  <text x="50" y="68" font-family="Arial,sans-serif" font-size="50" font-weight="bold" fill="white" text-anchor="middle">MI</text>
 </svg>
