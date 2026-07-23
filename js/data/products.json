@@ -622,7 +622,7 @@
     "size": 10.6,
     "panel": "LCD",
     "refreshRate": 90,
-    "chip": "Dimensity 7s Gen 3",
+    "chip": "MediaTek Helio G100-Ultra",
     "ram": 4,
     "storage": 128,
     "battery": 9000,
