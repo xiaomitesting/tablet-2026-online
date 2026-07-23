@@ -693,7 +693,7 @@ function renderHome() {
                     <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${chipLabel(p.chip)}</span>
                     <span class="text-[10px] bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
-                ${(p.matteColors||p.colors) ? `<div class="flex items-center gap-1.5 mt-2"><span class="text-[10px] text-gray-400"><span data-i18n="catalog.colorsLabel">顏色：</span></span>${(p.matteColors||p.colors).map(c=>{const m={'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${m[c]||'#CCC'}"></span>${c}</span>`}).join('')}</div>` : ''}
+                ${(p.matteColors||p.colors) ? `<div class="flex items-center gap-1.5 mt-2"><span class="text-[10px] text-gray-400"><span data-i18n="catalog.colorsLabel">顏色：</span></span>${(p.matteColors||p.colors).map(c=>{const m={'灰色':'#808080','Gray':'#808080','綠色':'#4CAF50','Green':'#4CAF50','Pine Green':'#2E7D32','松木綠':'#2E7D32','藍色':'#2196F3','Blue':'#2196F3','紫色':'#9C27B0','Purple':'#9C27B0','薰衣草紫':'#B39DDB','Lavender Purple':'#B39DDB','深灰色':'#505050','Dark Gray':'#505050','銀白色':'#C0C0C0','Silver White':'#C0C0C0','石墨灰':'#3E3E3E','Graphite Gray':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','Cyan':'#00BCD4','銀色':'#D0D0D0','Silver':'#D0D0D0','柔光屏':'#E8E4DF'};return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${m[c]||'#CCC'}"></span>${c}</span>`}).join('')}</div>` : ''}
                 </div>
             </div>
         `).join('');
@@ -1297,7 +1297,7 @@ function renderCatalog(filter='all') {
                     <span class="text-[10px] text-gray-400"><span data-i18n="catalog.colorsLabel">顏色：</span></span>
                     <div class="flex flex-wrap gap-1">
                         ${(p.matteColors||p.colors).map(c => {
-                            const colorMap = {'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};
+                            const colorMap = {'灰色':'#808080','Gray':'#808080','綠色':'#4CAF50','Green':'#4CAF50','Pine Green':'#2E7D32','松木綠':'#2E7D32','藍色':'#2196F3','Blue':'#2196F3','紫色':'#9C27B0','Purple':'#9C27B0','薰衣草紫':'#B39DDB','Lavender Purple':'#B39DDB','深灰色':'#505050','Dark Gray':'#505050','銀白色':'#C0C0C0','Silver White':'#C0C0C0','石墨灰':'#3E3E3E','Graphite Gray':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','Cyan':'#00BCD4','銀色':'#D0D0D0','Silver':'#D0D0D0','柔光屏':'#E8E4DF'};
                             const bg = colorMap[c] || '#CCCCCC';
                             return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${bg}"></span>${c}</span>`;
                         }).join('')}
@@ -1990,7 +1990,7 @@ function toggleDarkMode() {
 function openDetailModal(id) {
     const p = products.find(x => x.id === id);
     if (!p) return;
-    const colorMap = {'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};
+    const colorMap = {'灰色':'#808080','Gray':'#808080','綠色':'#4CAF50','Green':'#4CAF50','Pine Green':'#2E7D32','松木綠':'#2E7D32','藍色':'#2196F3','Blue':'#2196F3','紫色':'#9C27B0','Purple':'#9C27B0','薰衣草紫':'#B39DDB','Lavender Purple':'#B39DDB','深灰色':'#505050','Dark Gray':'#505050','銀白色':'#C0C0C0','Silver White':'#C0C0C0','石墨灰':'#3E3E3E','Graphite Gray':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','Cyan':'#00BCD4','銀色':'#D0D0D0','Silver':'#D0D0D0','柔光屏':'#E8E4DF'};
     const modal = document.getElementById('product-detail-modal');
     const content = document.getElementById('detail-modal-content');
     content.innerHTML = `
