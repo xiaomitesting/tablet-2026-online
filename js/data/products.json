@@ -191,7 +191,7 @@
     "keyboard": false,
     "colors": [
       "灰色",
-      "紫色",
+      "綠色",
       "藍色"
     ],
     "buyLink": "https://www.mi.com/hk/product/xiaomi-pad-8",
@@ -275,8 +275,7 @@
     "keyboard": false,
     "colors": [
       "灰色",
-      "藍色",
-      "綠色"
+      "紫色"
     ],
     "buyLink": "https://www.mi.com/hk/product/xiaomi-pad-mini",
     "salesBadge": "🎮 電競",
@@ -360,8 +359,9 @@
     "stylus": true,
     "keyboard": true,
     "colors": [
-      "灰色",
-      "藍色"
+      "深灰色",
+      "薰衣草紫",
+      "銀白色"
     ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-pro",
     "salesBadge": "🔋 續航",
@@ -525,8 +525,8 @@
     "stylus": true,
     "keyboard": true,
     "colors": [
-      "灰色",
-      "藍色"
+      "深灰色",
+      "銀白色"
     ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-pro-5g",
     "salesBadge": "📶 5G",
@@ -602,8 +602,9 @@
     "stylus": false,
     "keyboard": false,
     "colors": [
-      "灰色",
-      "綠色"
+      "石墨灰",
+      "薰衣紫",
+      "青色"
     ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2",
     "salesBadge": "💰 超值",
@@ -685,7 +686,7 @@
     "stylus": false,
     "keyboard": false,
     "colors": [
-      "灰色",
+      "石墨灰",
       "銀色"
     ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-97",
@@ -768,8 +769,7 @@
     "stylus": false,
     "keyboard": false,
     "colors": [
-      "紫色",
-      "綠色"
+      "灰色"
     ],
     "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-kids",
     "salesBadge": "👶 兒童",
