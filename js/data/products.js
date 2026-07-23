@@ -51,9 +51,9 @@ const PRODUCTS = [
     name: "Xiaomi Pad Mini",
     series: "Xiaomi",
     generation: 1,
-    price: 3799,
+    price: 3499,
     variants: [
-      { ram: 8, storage: 256, price: 3799 },
+      { ram: 8, storage: 256, price: 3499 },
       { ram: 12, storage: 512, price: 4299 }
     ],
     currency: "HKD",
