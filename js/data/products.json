@@ -609,8 +609,8 @@
     "id": "redmi_pad_2",
     "name": "Redmi Pad 2",
     "nameEn": "Redmi Pad 2",
-    "desc": "入門級平板，Dimensity 7s Gen 3 處理器，10.6吋大屏，價格實惠，適合日常使用。",
-    "descEn": "Entry-level tablet with Dimensity 7s Gen 3, 10.6\" display. Affordable for everyday use.",
+    "desc": "入門級平板，Snapdragon 6s 4G Gen 2 處理器，10.6吋大屏，價格實惠，適合日常使用。",
+    "descEn": "Entry-level tablet with Snapdragon 6s 4G Gen 2, 10.6\" display. Affordable for everyday use.",
     "series": "Redmi",
     "price": 1399,
     "rating": 4.3,
@@ -719,7 +719,7 @@
       "石墨灰",
       "銀色"
     ],
-    "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-97",
+    "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-9-7-inch",
     "salesBadge": "🏃 便攜",
     "salesMsg": "輕巧隨行，通勤好夥伴",
     "salesMsgEn": "Lightweight companion for your daily commute",
@@ -753,12 +753,12 @@
     ],
     "extraVersions": [],
     "pros": [
-      "370g超輕",
+      "406g輕巧",
       "9.7吋便攜",
       "價格實惠"
     ],
     "prosEn": [
-      "370g ultra-light",
+      "406g lightweight",
       "9.7\" portable",
       "Affordable price"
     ],
@@ -790,7 +790,7 @@
     "size": 11,
     "panel": "LCD 柔光屏",
     "refreshRate": 90,
-    "chip": "Dimensity 7s Gen 3",
+    "chip": "Snapdragon 6s 4G Gen 2",
     "ram": 4,
     "storage": 128,
     "battery": 9000,
