@@ -998,7 +998,9 @@ function resetQuiz() {
 // ============================================================
 function calculateMatches() {
     // 權重分配（總分100）：配件30 + 場景20 + 預算20 + 尺寸15 + 優先級10 + 環境5
-    const WEIGHT = { accessory: 20, scenario: 20, budget: 20, size: 15, priority: 10, environment: 5, screen_quality: 10 };
+    // 當用戶明確選擇尺寸偏好時，尺寸權重提升至30，成為主導因素
+    const hasSizePref = answers.size && answers.size !== 'no_preference';
+    const WEIGHT = { accessory: 20, scenario: 20, budget: 20, size: hasSizePref ? 30 : 15, priority: 10, environment: 5, screen_quality: 10 };
 
     // 為每款產品衍生 budget 和 screenType
     const enriched = products.map(p => ({
@@ -1057,10 +1059,10 @@ function calculateMatches() {
             else { penalty += 10; warnings.push(t('warn.budgetExceed')); }
         }
 
-        // ── 尺寸 (15分) ──
+        // ── 尺寸 (明確偏好時提升至30分) ──
         if (answers.size && answers.size !== 'no_preference') {
             if (p.screenType === answers.size) { score += WEIGHT.size; reasons.push(t('reason.sizeMatch')); }
-            else { penalty += 10; warnings.push(t('warn.sizeMismatch')); }
+            else { penalty += 15; warnings.push(t('warn.sizeMismatch')); }  // 不匹配加重懲罰
         }
 
         // ── 優先級 (10分，均分) ──
