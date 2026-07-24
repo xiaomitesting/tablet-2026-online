@@ -146,7 +146,7 @@ const PRODUCTS = [
     charging: 33,
     ram: 8,
     storage: 256,
-    cameras: { rear: "8MP", front: "8MP" },
+    cameras: { rear: "13MP", front: "8MP" },
     speakers: 4,
     stylus: true,
     keyboard: true,
