@@ -229,7 +229,7 @@ const PRODUCTS = [
     storage: 128,
     cameras: { rear: "8MP", front: "5MP" },
     speakers: 4,
-    stylus: true,
+    stylus: false,
     keyboard: false,
     weight: 510,
     thickness: 7.36,

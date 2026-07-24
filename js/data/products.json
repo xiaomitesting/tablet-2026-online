@@ -614,7 +614,7 @@
     "battery": 9000,
     "charging": "18W",
     "weight": 510,
-    "stylus": true,
+    "stylus": false,
     "keyboard": false,
     "colors": [
       "石墨灰",
