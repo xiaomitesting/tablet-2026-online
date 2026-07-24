@@ -235,7 +235,7 @@ const PRODUCTS = [
     thickness: 7.36,
     os: "HyperOS 2.0",
     connectivity: ["Wi-Fi 5", "Bluetooth 5.3"],
-    colors: ["Graphite Gray", "Lavender Purple", "Cyan"],
+    colors: ["Graphite Gray", "Lavender Purple", "Mint Green"],
     scenarios: ["reading", "media", "education"],
     tags: ["2K屏", "高性价比"],
     highlight: "2K高清大屏，超抵",
