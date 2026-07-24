@@ -190,7 +190,7 @@ const PRODUCTS = [
     cameras: { rear: "8MP", front: "8MP" },
     speakers: 4,
     stylus: true,
-    keyboard: false,
+    keyboard: true,
     weight: 610,
     thickness: 7.5,
     os: "HyperOS 3.0",
