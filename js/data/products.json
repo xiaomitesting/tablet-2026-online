@@ -49,7 +49,7 @@
       "creative"
     ],
     "image": "https://i02.appmifile.com/65_item_hk/02/03/2026/225af62e688c00daca8b5c521cabe9bd.png",
-    "spec": "12GB+256GB",
+    "spec": "8GB+256GB",
     "variants": [
       {
         "ram": 8,
@@ -299,7 +299,7 @@
       "media"
     ],
     "image": "https://i02.appmifile.com/976_item_hk/17/09/2025/6920f9954597030f76579b31a0501e56.png",
-    "spec": "8GB+128GB",
+    "spec": "8GB+256GB",
     "variants": [
       {
         "ram": 8,
@@ -535,7 +535,7 @@
     "storage": 256,
     "battery": 12000,
     "charging": "33W Charging",
-    "weight": 600,
+    "weight": 610,
     "stylus": true,
     "keyboard": true,
     "colors": [
@@ -603,8 +603,8 @@
     "id": "redmi_pad_2",
     "name": "Redmi Pad 2",
     "nameEn": "Redmi Pad 2",
-    "desc": "入門級平板，Snapdragon 6s 4G Gen 2 處理器，10.6吋大屏，價格實惠，適合日常使用。",
-    "descEn": "Entry-level tablet with Snapdragon 6s 4G Gen 2, 10.6\" display. Affordable for everyday use.",
+    "desc": "入門級平板，MediaTek Helio G100-Ultra 處理器，11吋 2.5K 大屏，價格實惠，支援手寫筆，適合日常使用。",
+    "descEn": "Entry-level tablet with MediaTek Helio G100-Ultra, 11\" 2.5K display, stylus support. Affordable for everyday use.",
     "series": "Redmi",
     "price": 1399,
     "rating": 4.3,
@@ -795,7 +795,7 @@
     "colors": [
       "灰色"
     ],
-    "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-kids",
+    "buyLink": "https://www.mi.com/hk/product/redmi-pad-2-play-bundle",
     "salesBadge": "👶 兒童",
     "salesMsg": "守護孩子視力的學習好夥伴",
     "salesMsgEn": "A learning companion that protects kids' eyes",
