@@ -622,7 +622,7 @@
     "battery": 9000,
     "charging": "18W",
     "weight": 510,
-    "stylus": true,
+    "stylus": false,
     "keyboard": false,
     "colors": [
       "石墨灰",
@@ -784,7 +784,7 @@
     "size": 11,
     "panel": "LCD 柔光屏",
     "refreshRate": 90,
-    "chip": "Snapdragon 6s 4G Gen 2",
+    "chip": "MediaTek Helio G100-Ultra",
     "ram": 4,
     "storage": 128,
     "battery": 9000,
