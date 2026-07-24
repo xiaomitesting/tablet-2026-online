@@ -344,7 +344,7 @@
     "desc": "中端旗艦平板，Snapdragon 7s Gen 4 處理器，12.1吋大屏，12000mAh超大電池，支持手寫筆與鍵盤。",
     "descEn": "Mid-range powerhouse with Snapdragon 7s Gen 4, 12.1\" display, 12000mAh battery, stylus and keyboard support.",
     "series": "Redmi",
-    "price": 1699,
+    "price": 1899,
     "rating": 4.6,
     "tag": "長續航之選",
     "tagEn": "Long Battery Life",
@@ -389,13 +389,13 @@
       {
         "ram": 6,
         "storage": 128,
-        "price": 1699,
+        "price": 1899,
         "label": ""
       },
       {
         "ram": 8,
         "storage": 256,
-        "price": 1999,
+        "price": 2199,
         "label": ""
       }
     ],
@@ -436,7 +436,7 @@
     "desc": "柔光護眼屏中端平板，Snapdragon 7s Gen 4 處理器，12000mAh大電池，支持手寫筆與鍵盤，長時間使用更舒適。",
     "descEn": "Matte eye-care display tablet with Snapdragon 7s Gen 4, 12000mAh battery, stylus and keyboard support. Comfortable for extended sessions.",
     "series": "Redmi",
-    "price": 2199,
+    "price": 2399,
     "rating": 4.5,
     "tag": "護眼長續航",
     "tagEn": "Eye-Care + Long Battery",
@@ -480,7 +480,7 @@
         "label": "",
         "ram": 8,
         "storage": 256,
-        "price": 2199
+        "price": 2399
       }
     ],
     "extraVersions": [],
