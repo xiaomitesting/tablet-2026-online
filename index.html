@@ -1923,7 +1923,7 @@ function renderCompareTable() {
 
     document.getElementById('compare-table-headers').innerHTML = `<th class="p-3 text-sm font-semibold text-gray-500">${t("compare.specHeader")}</th>${prods.map(p => `
         <th class="p-3 text-center ${p.id === recId ? 'bg-orange-50' : ''}">
-            ${p.id === recId ? '<div class="text-[10px] text-miOrange font-bold mb-1">${t("compare.rec")}</div>' : ''}
+            ${p.id === recId ? `<div class="text-[10px] text-miOrange font-bold mb-1">${t('compare.rec')}</div>` : ''}
             <div class="text-miOrange font-bold">${p.name}</div>
             <div class="text-xs text-gray-500">HK$${p.price.toLocaleString()}</div>
         </th>`).join('')}`;
