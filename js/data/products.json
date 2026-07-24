@@ -328,12 +328,10 @@
       "Great value"
     ],
     "cons": [
-      "不支持手寫筆",
       "電池容量較小",
       "螢幕較小"
     ],
     "consEn": [
-      "No stylus",
       "Smaller battery",
       "Smaller screen"
     ],
@@ -535,7 +533,7 @@
     "storage": 256,
     "battery": 12000,
     "charging": "33W Charging",
-    "weight": 610,
+    "weight": 600,
     "stylus": true,
     "keyboard": true,
     "colors": [
@@ -622,7 +620,7 @@
     "battery": 9000,
     "charging": "18W",
     "weight": 510,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "石墨灰",
@@ -673,12 +671,10 @@
       "7000mAh battery life"
     ],
     "cons": [
-      "不支持手寫筆",
       "不支持鍵盤",
       "刷新率較低"
     ],
     "consEn": [
-      "No stylus",
       "No keyboard",
       "Lower refresh rate"
     ],
@@ -835,12 +831,10 @@
       "Kids mode"
     ],
     "cons": [
-      "不支持手寫筆",
       "不支持鍵盤",
       "性能入門級"
     ],
     "consEn": [
-      "No stylus",
       "No keyboard",
       "Entry-level performance"
     ]
