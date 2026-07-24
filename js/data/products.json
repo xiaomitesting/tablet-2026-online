@@ -260,7 +260,7 @@
     "desc": "小屏電競平板，8.8吋 165Hz 超高刷屏，旗艦芯片加持，輕巧便攜的遊戲利器。",
     "descEn": "Compact gaming tablet with 8.8\" 165Hz ultra-high refresh display and flagship chip. A powerful portable gaming device.",
     "series": "Xiaomi",
-    "price": 3799,
+    "price": 3999,
     "rating": 4.7,
     "tag": "小屏電競",
     "tagEn": "Compact Gaming",
@@ -304,13 +304,13 @@
       {
         "ram": 8,
         "storage": 256,
-        "price": 3799,
+        "price": 3999,
         "label": ""
       },
       {
         "ram": 12,
         "storage": 512,
-        "price": 4299,
+        "price": 4499,
         "label": "頂配"
       }
     ],
