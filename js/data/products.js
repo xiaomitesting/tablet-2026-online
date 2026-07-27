@@ -129,7 +129,7 @@ const PRODUCTS = [
   {
     id: "redmi_pad_2_pro_5g",
     name: "REDMI Pad 2 Pro 5G",
-    series: "Redmi",
+    series: "REDMI",
     generation: 2,
     price: 2699,
     variants: [
@@ -168,7 +168,7 @@ const PRODUCTS = [
   {
     id: "redmi_pad_2_pro",
     name: "REDMI Pad 2 Pro",
-    series: "Redmi",
+    series: "REDMI",
     generation: 2,
     price: 1899,
     variants: [
@@ -208,7 +208,7 @@ const PRODUCTS = [
   {
     id: "redmi_pad_2",
     name: "REDMI Pad 2",
-    series: "Redmi",
+    series: "REDMI",
     generation: 2,
     price: 1399,
     variants: [
@@ -249,7 +249,7 @@ const PRODUCTS = [
   {
     id: "redmi_pad_2_97",
     name: "REDMI Pad 2 9.7",
-    series: "Redmi",
+    series: "REDMI",
     generation: 2,
     price: 1199,
     variants: [
@@ -291,7 +291,7 @@ const PRODUCTS = [
   {
     id: "redmi_pad_2_kids",
     name: "REDMI Pad 2 兒童護眼版",
-    series: "Redmi",
+    series: "REDMI",
     generation: 2,
     price: 1599,
     variants: [

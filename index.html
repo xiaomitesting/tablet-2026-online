@@ -160,7 +160,7 @@
                 <div class="relative z-10">
                     <p class="text-orange-100 text-sm mb-2" data-i18n="home.welcome">👋 歡迎使用</p>
                     <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">Tablet</span> <span data-i18n="home.heroTitle">Smart Finder</span></h1>
-                    <p class="text-orange-100 text-sm sm:text-base mb-6" data-i18n="home.heroDesc">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
+                    <p class="text-orange-100 text-sm sm:text-base mb-6" data-i18n="home.heroDesc">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 REDMI Pad，從入門到旗艦一網打盡。</p>
                     <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base" data-i18n="home.heroBtn">
                         🎯 開始智能推薦
                     </button>
@@ -217,7 +217,7 @@
                     <span class="text-xs sm:text-sm font-medium text-gray-500" data-i18n="catalog.filterLabel">篩選：</span>
                     <button onclick="filterCatalog('all')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-miOrange text-white" data-i18n="catalog.filterAll">全部</button>
                     <button onclick="filterCatalog('Xiaomi')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Xiaomi</button>
-                    <button onclick="filterCatalog('Redmi')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Redmi</button>
+                    <button onclick="filterCatalog('REDMI')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">REDMI</button>
                 </div>
                 <select onchange="sortCatalog(this.value)" class="text-xs border border-gray-200 rounded-lg px-3 py-1.5 bg-white w-full sm:w-auto">
                     <option value="price-asc" data-i18n="catalog.sortPriceAsc">價格 低→高</option>
@@ -354,7 +354,7 @@ zh: {
 'mob.home':'🏠 首頁','mob.quiz':'🎯 推薦','mob.catalog':'📱 機型','mob.guide':'📖 指南','mob.calculator':'🧮 計算','mob.favorites':'❤️ 收藏','mob.compare':'⚖️ 對比',
 'home.findTitle':'尋找最適合您的小米平板','home.findSubtitle':'回答 7 個簡單問題，為您推薦最佳機型。',
 'home.welcome':'👋 歡迎使用','home.heroTablet':'平板','home.heroTitle':'智能選購助手',
-'home.heroDesc':'回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。',
+'home.heroDesc':'回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 REDMI Pad，從入門到旗艦一網打盡。',
 'home.headerBrand':'小米官網','home.headerTitle':'平板選購助手','home.startQuiz':'開始智能推薦','home.featuresTitle':'🛠️ 功能一覽','home.popularTitle':'🏆 人氣推薦','home.topBadge':'熱門',
 'home.heroBtn':'🎯 開始智能推薦',
 'home.featureQuiz':'智能推薦','home.featureCatalog':'全部機型','home.featureGuide':'選購指南','home.featureCalc':'預算計算','home.featureCompare':'橫向對比',
@@ -428,7 +428,7 @@ zh: {
 'mob.home':'🏠 Home','mob.quiz':'🎯 Pick','mob.catalog':'📱 Models','mob.guide':'📖 Guide','mob.calculator':'🧮 Calc','mob.favorites':'❤️ Favs','mob.compare':'⚖️ Compare',
 'home.findTitle':'Find Your Perfect Xiaomi Tablet','home.findSubtitle':'Answer 7 quick questions and get the best recommendation.',
 'home.welcome':'👋 Welcome to','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
-'home.heroDesc':'Answer a few simple questions to find your ideal Xiaomi tablet. Covers the full Xiaomi Pad lineup and Redmi Pad, from entry-level to flagship.',
+'home.heroDesc':'Answer a few simple questions to find your ideal Xiaomi tablet. Covers the full Xiaomi Pad lineup and REDMI Pad, from entry-level to flagship.',
 'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Hot','home.headerBrand':'Xiaomi Home','home.headerTitle':'Tablet Finder',
 'home.heroBtn':'🎯 Start Smart Recommendation',
 'home.featureQuiz':'Smart Pick','home.featureCatalog':'All Models','home.featureGuide':'Buying Guide','home.featureCalc':'Budget Calc','home.featureCompare':'Compare',
@@ -1250,7 +1250,7 @@ function renderCatalog(filter='all') {
     currentCatalogFilter = filter;
     const grid = document.getElementById('catalog-grid');
     document.querySelectorAll('.filter-btn').forEach(btn => {
-        const match = (filter==='all'&&btn.innerText==='全部')||(filter==='Xiaomi'&&btn.innerText.includes('Xiaomi'))||(filter==='Redmi'&&btn.innerText.includes('Redmi'));
+        const match = (filter==='all'&&btn.innerText==='全部')||(filter==='Xiaomi'&&btn.innerText.includes('Xiaomi'))||(filter==='REDMI'&&btn.innerText.includes('REDMI'));
         btn.className = `filter-btn px-3 py-1 rounded-full text-xs font-medium ${match?'bg-miOrange text-white':'bg-gray-100 text-gray-600 hover:bg-gray-200'}`;
     });
     let filtered = filter==='all'?[...products]:products.filter(p=>p.series===filter);
