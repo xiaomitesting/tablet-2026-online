@@ -9,7 +9,7 @@
       "currency": "HKD",
       "source": "apple.com/hk",
       "notes": "128GB Wi-Fi 起步價 HK$3,599；教育優惠 HK$3,399 起",
-      "lastUpdated": "2026-07-22"
+      "lastUpdated": "2026-07-31"
     },
     {
       "id": "apple_ipad_air_m3",
@@ -20,7 +20,7 @@
       "currency": "HKD",
       "source": "apple.com/hk",
       "notes": "128GB Wi-Fi 起步價 HK$4,599；13\" 版 HK$6,099 起；同系列 M4 版本 HK$5,999 起",
-      "lastUpdated": "2026-07-22"
+      "lastUpdated": "2026-07-31"
     },
     {
       "id": "samsung_tab_s10_fe",
@@ -31,7 +31,7 @@
       "currency": "HKD",
       "source": "samsung.com/hk",
       "notes": "8GB/128GB Wi-Fi 版 HK$3,788（↓HK$1,140）；購機享禮遇高達 HK$997（送保護套+耳機）",
-      "lastUpdated": "2026-07-22"
+      "lastUpdated": "2026-07-31"
     },
     {
       "id": "huawei_matepad_11_5s_2026",
@@ -42,8 +42,8 @@
       "currency": "HKD",
       "source": "consumer.huawei.com/hk",
       "notes": "RRP HK$3,588；官方限時優惠價 HK$3,188（減免 HK$400）；衛訊等渠道有更低售價",
-      "lastUpdated": "2026-07-22"
+      "lastUpdated": "2026-07-31"
     }
   ],
-  "lastChecked": "2026-07-24T06:05:00+08:00"
+  "lastChecked": "2026-07-31T06:00:00+08:00"
 }
