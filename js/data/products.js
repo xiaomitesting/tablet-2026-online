@@ -131,9 +131,9 @@ const PRODUCTS = [
     name: "REDMI Pad 2 Pro 5G",
     series: "REDMI",
     generation: 2,
-    price: 2699,
+    price: 2799,
     variants: [
-      { ram: 8, storage: 256, price: 2699 }
+      { ram: 8, storage: 256, price: 2799 }
     ],
     currency: "HKD",
     size: 12.1,
@@ -170,10 +170,10 @@ const PRODUCTS = [
     name: "REDMI Pad 2 Pro",
     series: "REDMI",
     generation: 2,
-    price: 1899,
+    price: 1999,
     variants: [
-      { ram: 6, storage: 128, price: 1899 },
-      { ram: 8, storage: 256, price: 2199 }
+      { ram: 6, storage: 128, price: 1999 },
+      { ram: 8, storage: 256, price: 2299 }
     ],
     currency: "HKD",
     size: 12.1,
