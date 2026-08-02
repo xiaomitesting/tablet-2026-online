@@ -9,18 +9,18 @@
       "currency": "HKD",
       "source": "apple.com/hk",
       "notes": "128GB Wi-Fi 起步價 HK$3,599；教育優惠 HK$3,399 起",
-      "lastUpdated": "2026-07-31"
+      "lastUpdated": "2026-08-03"
     },
     {
       "id": "apple_ipad_air_m3",
       "brand": "Apple",
-      "name": "iPad Air 11\" (M3)",
+      "name": "iPad Air 11\" (M4)",
       "market": "HK",
-      "price": 4599,
+      "price": 5999,
       "currency": "HKD",
       "source": "apple.com/hk",
-      "notes": "128GB Wi-Fi 起步價 HK$4,599；13\" 版 HK$6,099 起；同系列 M4 版本 HK$5,999 起",
-      "lastUpdated": "2026-07-31"
+      "notes": "128GB Wi-Fi 起步價 HK$5,999（已由 M3 升級為 M4）；13\" 版 HK$7,499 起；M3 版本已從官網下架",
+      "lastUpdated": "2026-08-03"
     },
     {
       "id": "samsung_tab_s10_fe",
@@ -31,7 +31,7 @@
       "currency": "HKD",
       "source": "samsung.com/hk",
       "notes": "8GB/128GB Wi-Fi 版 HK$3,788（↓HK$1,140）；購機享禮遇高達 HK$997（送保護套+耳機）",
-      "lastUpdated": "2026-07-31"
+      "lastUpdated": "2026-08-03"
     },
     {
       "id": "huawei_matepad_11_5s_2026",
@@ -42,8 +42,8 @@
       "currency": "HKD",
       "source": "consumer.huawei.com/hk",
       "notes": "RRP HK$3,588；官方限時優惠價 HK$3,188（減免 HK$400）；衛訊等渠道有更低售價",
-      "lastUpdated": "2026-07-31"
+      "lastUpdated": "2026-08-03"
     }
   ],
-  "lastChecked": "2026-07-31T06:00:00+08:00"
+  "lastChecked": "2026-08-03T06:00:00+08:00"
 }
