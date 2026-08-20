@@ -9,29 +9,29 @@
       "currency": "HKD",
       "source": "apple.com/hk",
       "notes": "128GB Wi-Fi 起步價 HK$3,599（2026年6月Apple HK調價後新售價，教育優惠 HK$3,399）",
-      "lastUpdated": "2026-08-11"
+      "lastUpdated": "2026-08-21"
     },
     {
       "id": "apple_ipad_air_m3",
       "brand": "Apple",
-      "name": "iPad Air 11\" (M3)",
+      "name": "iPad Air 11\" (M4)",
       "market": "HK",
-      "price": 4599,
+      "price": 5999,
       "currency": "HKD",
-      "source": "apple.com/hk / mobilesetting.com.hk",
-      "notes": "128GB Wi-Fi 起步價 HK$4,599（M3 版已從官網下架，售罄前售價；官網現售 M4 版 HK$5,999 起）",
-      "lastUpdated": "2026-08-11"
+      "source": "apple.com/hk / fortress.com.hk",
+      "notes": "M3版已停售，官網現售 M4 版 128GB Wi-Fi 起步價 HK$5,999；M3版停售前售價 HK$4,599",
+      "lastUpdated": "2026-08-21"
     },
     {
       "id": "samsung_tab_s10_fe",
       "brand": "Samsung",
       "name": "Galaxy Tab S10 FE",
       "market": "HK",
-      "price": 3788,
+      "price": 4888,
       "currency": "HKD",
-      "source": "samsung.com/hk / mobilesetting.com.hk",
-      "notes": "128GB Wi-Fi 版官網售價 HK$3,788（2025年4月上市價）；購機享禮遇高達 HK$997（送保護套+耳機）；256GB 版 HK$6,188",
-      "lastUpdated": "2026-08-11"
+      "source": "samsung.com/hk",
+      "notes": "128GB Wi-Fi 版官網售價 HK$4,888（2025年4月上市價 HK$3,788 已調升）；購機享即減高達 HK$300；256GB 版 HK$5,888",
+      "lastUpdated": "2026-08-21"
     },
     {
       "id": "huawei_matepad_11_5s_2026",
@@ -41,9 +41,9 @@
       "price": 3588,
       "currency": "HKD",
       "source": "consumer.huawei.com/hk / fortress.com.hk",
-      "notes": "RRP HK$3,588（12GB+256GB 柔光屏版）；Fortress售 HK$3,019；蘇寧售 HK$3,028；華為官網限時優惠減 HK$400",
-      "lastUpdated": "2026-08-11"
+      "notes": "RRP HK$3,588（12GB+256GB 柔光屏版）；Fortress售 HK$3,019；Broadway售 HK$3,188（即慳11%）；華為官網限時優惠減 HK$400",
+      "lastUpdated": "2026-08-21"
     }
   ],
-  "lastChecked": "2026-08-12T06:00:00+08:00"
+  "lastChecked": "2026-08-21T06:00:00+08:00"
 }
