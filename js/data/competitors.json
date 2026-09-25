@@ -27,11 +27,11 @@
       "brand": "Samsung",
       "name": "Galaxy Tab S10 FE",
       "market": "HK",
-      "price": 3693,
+      "price": 3888,
       "currency": "HKD",
       "source": "samsung.com/hk",
-      "notes": "128GB Wi-Fi 版建議零售價 HK$4,188，優惠價 HK$3,693（節省 HK$495）；256GB Wi-Fi 版 HK$5,888；官網另享 HK$300 Galaxy Credit",
-      "lastUpdated": "2026-09-22"
+      "notes": "128GB Wi-Fi 版建議零售價 HK$4,188，優惠價 HK$3,888（節省 HK$300）；256GB Wi-Fi 版 HK$5,888（原價$6,188，省$300）；官網另享 HK$300 Galaxy Credit",
+      "lastUpdated": "2026-09-26"
     },
     {
       "id": "huawei_matepad_11_5s_2026",
@@ -41,9 +41,9 @@
       "price": 3588,
       "currency": "HKD",
       "source": "consumer.huawei.com/hk / fortress.com.hk",
-      "notes": "RRP HK$3,588（12GB+256GB 柔光屏版）；華為官網目前限時優惠價 HK$3,188（節省11%）；Fortress售 HK$3,019；Broadway售 HK$3,188",
+      "notes": "RRP HK$3,588（12GB+256GB 柔光屏版）；華為官網目前限時優惠價 HK$3,188（節省HK$400）；Fortress售 HK$3,019；Broadway售 HK$3,188",
       "lastUpdated": "2026-09-21"
     }
   ],
-  "lastChecked": "2026-09-22T06:00:00+08:00"
+  "lastChecked": "2026-09-26T06:00:00+08:00"
 }
