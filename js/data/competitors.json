@@ -9,7 +9,7 @@
       "currency": "HKD",
       "source": "apple.com/hk",
       "notes": "128GB Wi-Fi 起步價 HK$3,599；教育優惠 HK$3,399（2026年6月Apple HK調價後新售價）；翻新機 Wi-Fi+Cellular 128GB HK$3,399",
-      "lastUpdated": "2026-09-30"
+      "lastUpdated": "2026-10-03"
     },
     {
       "id": "apple_ipad_air_m4",
@@ -20,18 +20,18 @@
       "currency": "HKD",
       "source": "apple.com/hk",
       "notes": "128GB Wi-Fi 起步價 HK$5,999（2026年6月25日Apple HK全線調價，由HK$4,599上調HK$1,400/+30.4%）；上市價HK$4,599已成歷史；教育優惠價同步調整",
-      "lastUpdated": "2026-10-01"
+      "lastUpdated": "2026-10-03"
     },
     {
       "id": "samsung_tab_s10_fe",
       "brand": "Samsung",
       "name": "Galaxy Tab S10 FE",
       "market": "HK",
-      "price": 3688,
+      "price": 3888,
       "currency": "HKD",
       "source": "samsung.com/hk",
-      "notes": "128GB Wi-Fi 版優惠價 HK$3,688（原價 HK$3,888，節省 HK$200）；免息分期每月 HK$102.44 起；會員優惠另享最高額外減HK$400＋贈配件；Tab S11 系列已上架，S10 FE 價格持續下探",
-      "lastUpdated": "2026-10-01"
+      "notes": "128GB Wi-Fi 版現售價 HK$3,888（RRP/原價 HK$4,188，節省 HK$300）；此前 HK$3,688 優惠價已失效（2026-10-09 官網核實）；會員優惠另享額外減＋贈配件；Tab S11/S12 系列已上架，S10 FE 價格回調",
+      "lastUpdated": "2026-10-09"
     },
     {
       "id": "huawei_matepad_11_5s_2026",
@@ -42,8 +42,8 @@
       "currency": "HKD",
       "source": "consumer.huawei.com/hk / fortress.com.hk",
       "notes": "RRP HK$3,588（12GB+256GB 柔光屏版）；華為官網限時優惠價 HK$3,188（節省HK$400）；Fortress特價 HK$3,019；Broadway售 HK$3,019",
-      "lastUpdated": "2026-10-01"
+      "lastUpdated": "2026-10-03"
     }
   ],
-  "lastChecked": "2026-10-01T06:00:00+08:00"
+  "lastChecked": "2026-10-09T06:00:00+08:00"
 }
